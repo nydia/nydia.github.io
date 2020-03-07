@@ -14,7 +14,6 @@ export PUB_HOSTED_URL=https://pub.flutter-io.cn //国内用户需要设置
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn //国内用户需要置
 export PATH=`pwd`/flutter/bin:$PATH
 ~~~
-![服务器图片](http://images.lhqmm.com/images/picbed/20180719/20180719_418921a2ae1e4c1e85f20efc6c704b67.png)
 b. 永久变量：
 转到 “控制面板>用户帐户>用户帐户>更改我的环境变量”
 在“用户变量”下检查是否有名为“Path”的条目:
@@ -24,23 +23,19 @@ b. 永久变量：
 
 4. 安装依赖
 运行 flutter doctor  检测需要的安装项
-![服务器图片](http://images.lhqmm.com/images/picbed/20180719/20180719_0156b94884654eeb85bca01bc59f7e01.png)
 
 5. 检测设备连接
 flutter devices
-![服务器图片](http://images.lhqmm.com/images/picbed/20180719/20180719_036b4613c9674801961eb8b48cca6d90.png)
 
 6. Flutter开发工具IDEA开发环境搭建
 安装flutter和dart插件，插件的安装安装下图操作：
 file->setting->Browse repositories
 或者选择install plugin from disk 本地安装
-![服务器图片](http://images.lhqmm.com/images/picbed/20180719/20180719_ecd8d6d16ba94bd4bfabb747ed928d5b.png)
 
 7. Flutter的android开发的环境搭建
 a. 安装android sdk
 b. idea里面配置jdk和android sdk
 需要配置JDK和Android SDK
-![服务器图片](http://images.lhqmm.com/images/picbed/20180719/20180719_75d2d043ebea4cefb7704e7eafac6218.png)
 
 ## 参考网站
 1. Flutter百度百科： https://baike.baidu.com/item/Flutter/22498985
