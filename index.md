@@ -1,4 +1,4 @@
-# Welcome to https://nyida.github.io
+# Welcome to https://nydia.github.io
 
 ## RocketMQ
 - [rocketmq中文文档](rocketmq-docs/cn/README.md) 
