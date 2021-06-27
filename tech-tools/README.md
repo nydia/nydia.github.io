@@ -3,6 +3,9 @@
 1. [身份证生成器](http://sfz.uzuzuz.com/)
 2. [windows系统官方使用文档](https://docs.microsoft.com/zh-cn/)
 
+# Java书单
+
+[https://github.com/JavaCourse00/JavaBooks](https://github.com/JavaCourse00/JavaBooks)
 
 ## 常用技术网址
 
