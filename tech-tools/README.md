@@ -1,13 +1,12 @@
 # 常用在线技术工具
 
-1. [身份证生成器](http://sfz.uzuzuz.com/)
-2. [windows系统官方使用文档](https://docs.microsoft.com/zh-cn/)
+- [身份证生成器](http://sfz.uzuzuz.com/)
+- [windows系统官方使用文档](https://docs.microsoft.com/zh-cn/)
+- https://maven.aliyun.com/mvn/search 阿里云搜索jar
 
-# Java书单
-
-[https://github.com/JavaCourse00/JavaBooks](https://github.com/JavaCourse00/JavaBooks)
 
 ## 常用技术网址
+
 
 - https://www.websequencediagrams.com/ 在线序列图
 - http://bestcbooks.com/ 计算机书籍控
@@ -133,3 +132,7 @@
 - http://struts.apache.org/release/2.0.x/index.html   struts2 官网
 - http://www.linuxidc.com
 - https://github.com/jobbole/awesome-python-cn  python 学习汇总网站
+
+# Java书单
+
+[https://github.com/JavaCourse00/JavaBooks](https://github.com/JavaCourse00/JavaBooks)
