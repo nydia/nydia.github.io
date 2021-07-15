@@ -7,7 +7,7 @@
 
 ## 常用技术网址
 
-
+- https://mirrors.tuna.tsinghua.edu.cn/ 清华大学开源软件镜像站
 - https://www.websequencediagrams.com/ 在线序列图
 - http://bestcbooks.com/ 计算机书籍控
 - https://leetcode-cn.com/ 力扣（算法）
