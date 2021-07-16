@@ -1,5 +1,4 @@
-﻿﻿Apache RocketMQ Developer Guide
---------
+Apache RocketMQ Developer Guide
 
 ##### This guide helps develpers understand and use Apache RocketMQ quickly.
 
