@@ -133,6 +133,3 @@
 - http://www.linuxidc.com
 - https://github.com/jobbole/awesome-python-cn  python 学习汇总网站
 
-# Java书单
-
-[https://github.com/JavaCourse00/JavaBooks](https://github.com/JavaCourse00/JavaBooks)
