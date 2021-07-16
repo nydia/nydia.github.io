@@ -11,5 +11,10 @@
 ## 工具类网站
 - [工具类网站](tech-tools/README.md)
 
+## Java书单
+
+[https://github.com/JavaCourse00/JavaBooks](https://github.com/JavaCourse00/JavaBooks)
+
+
 ## 面试
 - [面试题](interview/README.md)
