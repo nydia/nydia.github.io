@@ -137,4 +137,50 @@
 - http://www.2cto.com
 - http://struts.apache.org/release/2.0.x/index.html   struts2 官网
 - http://www.linuxidc.com
-- https://github.com/jobbole/awesome-python-cn  python 学习汇总网站、
+- https://github.com/jobbole/awesome-python-cn  python 学习汇总网站
+
+一、无敌全能综合导航站
+- 虫部落（聚合搜索平台）
+https://search.chongbuluo.com
+- 科塔学术（专业学术导航）
+https://site.sciping.com
+- 码力全开（设计资源导航）
+https://design.maliquankai.com
+- SeeSeed（设计资源导航2）
+https://www.seeseed.com
+- 书享家（电子书资源导航）
+http://shuxiangjia.cn
+- HiPPTer（PPT资源导航）
+https://www.hippter.com
+
+二、学习资源
+- 哔哩哔哩（直接吹爆）
+https://www.bilibili.com
+- 第一教程网（课程学习资源）
+https://www.diyijc.com
+- 北大教材（精品学习教材）
+https://pup6.yunzhan365.com/bookcase/jmyr/index.html
+- 考试酷（百万题库网站）
+https://www.examcoo.com/index/ku
+- 外语慕课平台（外语学习好渠道）
+https://moocs.unipus.cn
+
+三、图片视频资源
+- Wallhaven（宝藏壁纸网站）
+https://wallhaven.cc
+- Unsplash（优质图片资源）
+https://unsplash.com
+- Videvo（精品视频图片资源）
+https://www.videvo.net
+- Pixabay（图片视频音频图形插画）
+https://pixabay.com
+- Pexels（老牌图库网站）
+https://www.pexels.com/zh-cn
+
+四、稀缺宝藏资源
+- 千米游戏（全是爷青回游戏）
+https://www.yikm.net
+- AirPano（云旅游-巨爽）
+https://www.airpano.org.cn
+- Upanso（优质度盘搜索）
+https://upanso.com
