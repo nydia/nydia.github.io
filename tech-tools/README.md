@@ -14,7 +14,7 @@
 
 ## 常用技术网址
 
-[https://www.deepl.com/translator 专业技术翻译网站](https://www.deepl.com/translator)
+- [https://www.deepl.com/translator 专业技术翻译网站](https://www.deepl.com/translator)
 - https://www.websequencediagrams.com/ 在线序列图
 - http://bestcbooks.com/ 计算机书籍控
 - https://leetcode-cn.com/ 力扣（算法）
