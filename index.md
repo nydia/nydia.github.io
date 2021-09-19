@@ -8,6 +8,10 @@
 ## Flutter
 - [flutter简单介绍](flutter.md)
 
+## ShardingSphere
+
+- [ShardingSphere中文文档](https://shardingsphere.apache.org/document/current/cn/overview/)
+
 ## 工具类网站
 - [工具类网站](tech-tools/README.md)
 
