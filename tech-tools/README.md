@@ -8,10 +8,6 @@
 1. [身份证生成器](http://sfz.uzuzuz.com/)
 2. [windows系统官方使用文档](https://docs.microsoft.com/zh-cn/)
 
-# Java书单
-
-[https://github.com/JavaCourse00/JavaBooks](https://github.com/JavaCourse00/JavaBooks)
-
 ## 常用技术网址
 
 - https://www.websequencediagrams.com/ 在线序列图
@@ -118,7 +114,7 @@
 - http://www.jikexueyuan.com/      极客学习网站
 - http://maven.oschina.net  开源中国Maven库
 - http://note.youdao.com/  有道云笔记
-- http://www.open-open.com 
+- http://www.open-open.com
 - http://www.jiagoushuo.com/  架构说
 - http://www.hx95.com/   黑客网站
 - http://abbr.dict.cn/Statistics/Stats  英文简称网站
@@ -127,11 +123,11 @@
 - http://www.docin.com/list.html  豆丁学习
 - http://home.51cto.com/index.php?s=/space/5084129  51CTO首页
 - http://ishare.iask.sina.com.cn/download/explain.php?fileid=22242016
-- http://www.56.com/u74/v_ODM2MDUxNjc.html 
+- http://www.56.com/u74/v_ODM2MDUxNjc.html
 - http://www.cn-java.com/www1/struts.php   中文Java技术网
 - http://115.com/
 - http://www.apache.org/dist/httpd/binaries/win32/  apache  下载地址
-- www.cnblogs.com    博客园 
+- www.cnblogs.com    博客园
 - http://engineeredweb.com/blog/09/12/preloading-images-jquery-and-javascript/ jquery 国外网址
 - https://code.google.com              google代码集
 - http://www.2cto.com
@@ -139,7 +135,8 @@
 - http://www.linuxidc.com
 - https://github.com/jobbole/awesome-python-cn  python 学习汇总网站
 
-一、无敌全能综合导航站
+## 资源库
+1. 无敌全能综合导航站
 - 虫部落（聚合搜索平台）
 https://search.chongbuluo.com
 - 科塔学术（专业学术导航）
@@ -153,7 +150,7 @@ http://shuxiangjia.cn
 - HiPPTer（PPT资源导航）
 https://www.hippter.com
 
-二、学习资源
+2. 学习资源
 - 哔哩哔哩（直接吹爆）
 https://www.bilibili.com
 - 第一教程网（课程学习资源）
@@ -165,7 +162,7 @@ https://www.examcoo.com/index/ku
 - 外语慕课平台（外语学习好渠道）
 https://moocs.unipus.cn
 
-三、图片视频资源
+3. 图片视频资源
 - Wallhaven（宝藏壁纸网站）
 https://wallhaven.cc
 - Unsplash（优质图片资源）
@@ -177,7 +174,7 @@ https://pixabay.com
 - Pexels（老牌图库网站）
 https://www.pexels.com/zh-cn
 
-四、稀缺宝藏资源
+4. 稀缺宝藏资源
 - 千米游戏（全是爷青回游戏）
 https://www.yikm.net
 - AirPano（云旅游-巨爽）
