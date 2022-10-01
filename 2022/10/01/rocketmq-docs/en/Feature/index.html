@@ -1,32 +1,196 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Features | nydia</title><meta name="keywords" content="Features"><meta name="author" content="nydia"><meta name="copyright" content="nydia"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Features1 Subscribe and PublishMessage publication refers to that a producer sends messages to a topic; Message subscription means a consumer follows a topic with certain tags and then consumes data f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Features">
+<meta property="og:url" content="https://github.com/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/Feature/index.html">
+<meta property="og:site_name" content="nydia">
+<meta property="og:description" content="Features1 Subscribe and PublishMessage publication refers to that a producer sends messages to a topic; Message subscription means a consumer follows a topic with certain tags and then consumes data f">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png">
+<meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
+<meta property="article:modified_time" content="2022-10-01T13:51:40.656Z">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="Features">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png"><link rel="shortcut icon" href="/nydia/nydia.github.io/img/favicon.png"><link rel="canonical" href="https://github.com/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/Feature/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/nydia/nydia.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/nydia/nydia.github.io/',
+  algolia: undefined,
+  localSearch: {"path":"/nydia/nydia.github.io/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Features',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-01 21:51:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
-
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
-
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/nydia/nydia.github.io/archives/"><div class="headline">Articles</div><div class="length-num">50</div></a><a href="/nydia/nydia.github.io/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/nydia/nydia.github.io/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://qn.images.lhqmm.com/wikis/msg-receiver-model.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/nydia/nydia.github.io/">nydia</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Features</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-10-01T13:51:40.656Z" title="Updated 2022-10-01 21:51:40">2022-10-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Features"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h1><h2 id="1-Subscribe-and-Publish"><a href="#1-Subscribe-and-Publish" class="headerlink" title="1 Subscribe and Publish"></a>1 Subscribe and Publish</h2><p>Message publication refers to that a producer sends messages to a topic; Message subscription means a consumer follows a topic with certain tags and then consumes data from that topic.</p>
+<h2 id="2-Message-Ordering"><a href="#2-Message-Ordering" class="headerlink" title="2 Message Ordering"></a>2 Message Ordering</h2><p>Message ordering refers to that a group of messages can be consumed orderly as they are published. For example, an order generates three messages: order creation, order payment, and order completion. It only makes sense to consume them in their generated order, but orders can be consumed in parallel at the same time. RocketMQ can strictly guarantee these messages are in order.</p>
+<p>Orderly message is divided into global orderly message and partitioned orderly message. Global order means that all messages under a certain topic must be in order, partitioned order only requires each group of messages are consumed orderly.</p>
+<ul>
+<li>Global message ordering:<br>For a given Topic, all messages are published and consumed in strict first-in-first-out (FIFO) order.<br>Applicable scenario: the performance requirement is not high, and all messages are published and consumed according to FIFO principle strictly.</li>
+<li>Partitioned message ordering:<br>For a given Topic, all messages are partitioned according to sharding key. Messages within the same partition are published and consumed in strict FIFO order. Sharding key is the key field to distinguish message’s partition, which is a completely different concept from the key of ordinary messages.<br>Applicable scenario: high performance requirement, with sharding key as the partition field, messages within the same partition are published and consumed according to FIFO principle strictly.</li>
+</ul>
+<h2 id="3-Message-Filter"><a href="#3-Message-Filter" class="headerlink" title="3 Message Filter"></a>3 Message Filter</h2><p>Consumers of RocketMQ can filter messages based on tags as well as supporting for user-defined attribute filtering. Message filter is currently implemented on the Broker side, with the advantage of reducing the network transmission of useless messages for Consumer and the disadvantage of increasing the burden on the Broker and relatively complex implementation.</p>
+<h2 id="4-Message-Reliability"><a href="#4-Message-Reliability" class="headerlink" title="4 Message Reliability"></a>4 Message Reliability</h2><p>RocketMQ supports high reliability of messages in several situations:<br>1 Broker shutdown normally<br>2 Broker abnormal crash<br>3 OS Crash<br>4 The machine is out of power, but it can be recovered immediately<br>5 The machine cannot be started up (the CPU, motherboard, memory and other key equipment may be damaged)<br>6 Disk equipment damaged</p>
+<p>In the four cases of 1), 2), 3), and 4) where the hardware resource can be recovered immediately, RocketMQ guarantees that the message will not be lost or a small amount of data will be lost (depending on whether the flush disk type is synchronous or asynchronous).</p>
+<p>5 ) and 6) are single point of failure and cannot be recovered. Once it happens, all messages on the single point will be lost. In both cases, RocketMQ ensures that 99% of the messages are not lost through asynchronous replication, but a very few number of messages may still be lost. Synchronous double write mode can completely avoid single point of failure, which will surely affect the performance and suitable for the occasion of high demand for message reliability, such as money related applications. Note: RocketMQ supports synchronous double writes since version 3.0.</p>
+<h2 id="5-At-Least-Once"><a href="#5-At-Least-Once" class="headerlink" title="5 At Least Once"></a>5 At Least Once</h2><p>At least Once refers to that every message will be delivered at least once. RocketMQ supports this feature because the Consumer pulls the message locally and does not send an ack back to the server until it has consumed it.</p>
+<h2 id="6-Backtracking-Consumption"><a href="#6-Backtracking-Consumption" class="headerlink" title="6 Backtracking Consumption"></a>6 Backtracking Consumption</h2><p>Backtracking consumption refers to that the Consumer has consumed the message successfully, but the business needs to consume again. To support this function, the message still needs to be retained after the Broker sends the message to the Consumer successfully. The re-consumption is normally based on time dimension. For example, after the recovery of the Consumer system failured, the data one hour ago needs to be re-consumed, then the Broker needs to provide a mechanism to reverse the consumption progress according to the time dimension. RocketMQ supports backtracking consumption by time trace, with the time dimension down to milliseconds.</p>
+<h2 id="7-Transactional-Message"><a href="#7-Transactional-Message" class="headerlink" title="7 Transactional Message"></a>7 Transactional Message</h2><p>RocketMQ transactional message refers to the fact that the application of a local transaction and the sending of a Message operation can be defined in a global transaction which means both succeed or failed simultaneously. RocketMQ transactional message provides distributed transaction functionality similar to X&#x2F;Open XA, enabling the ultimate consistency of distributed transactions through transactional message.</p>
+<h2 id="8-Scheduled-Message"><a href="#8-Scheduled-Message" class="headerlink" title="8 Scheduled Message"></a>8 Scheduled Message</h2><p>Scheduled message(delay queue) refers to that messages are not consumed immediately after they are sent to the broker, but waiting to be delivered to the real topic after a specific time.<br>The broker has a configuration item, <code>messageDelayLevel</code>, with default values “1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h”, 18 levels. Users can configure a custom <code>messageDelayLevel</code>. Note that <code>messageDelayLevel</code> is a broker’s property rather than a topic’s. When sending a message, just set the delayLevel level: msg.setDelayLevel(level). There are three types of levels:</p>
+<ul>
+<li>level &#x3D;&#x3D; 0, The message is not a delayed message</li>
+<li>1&lt;&#x3D;level&lt;&#x3D;maxLevel, Message delay specific time, such as level&#x3D;&#x3D;1, delay for 1s</li>
+<li>level &gt; maxLevel, than level&#x3D;&#x3D; maxLevel, such as level&#x3D;&#x3D;20, delay for 2h</li>
+</ul>
+<p>Scheduled messages are temporarily saved in a topic named SCHEDULE_TOPIC_XXXX, and saved in a specific queue according to delayTimeLevel, queueId &#x3D; delayTimeLevel - 1, that is, only messages with the same delay are saved in a queue, ensuring that messages with the same sending delay can be consumed orderly. The broker consumes SCHEDULE_TOPIC_XXXX on schedule and writes messages to the real topic.</p>
+<p>Note that Scheduled messages are counted both the first time they are written and the time they are scheduled to be written to the real topic, so both the send number and the TPS are increased.</p>
+<h2 id="9-Message-Retry"><a href="#9-Message-Retry" class="headerlink" title="9 Message Retry"></a>9 Message Retry</h2><p>When the Consumer fails to consume the message, a retry mechanism is needed to make the message to be consumed again. Consumer’s consume failure can usually be classified as follows:</p>
+<ul>
+<li>Due to the reasons of the message itself, such as deserialization failure, the message data itself cannot be processed (for example, the phone number of the current message is cancelled and cannot be charged), etc. This kind of error usually requires skipping this message and consuming others since immediately retry would be failed 99%, so it is better to provide a timed retry mechanism that retries after 10 seconds.</li>
+<li>Due to the reasons of dependent downstream application services are not available, such as db connection is not usable, perimeter network is not unreachable, etc. When this kind of error is encountered, consuming other messages will also result in an error even if the current failed message is skipped. In this case, it is recommended to sleep for 30s before consuming the next message, which will reduce the pressure on the broker to retry the message.</li>
+</ul>
+<p>RocketMQ will set up a retry queue named “%RETRY%+consumerGroup” for each consumer group(Note that the retry queue for this topic is for consumer groups, not for each topic) to temporarily save messages cannot be consumed by customer due to all kinds of reasons. Considering that it takes some time for the exception to recover, multiple retry levels are set for the retry queue, and each retry level has a corresponding re-deliver delay. The more retries, the greater the deliver delay. RocketMQ first save retry messages to the delay queue which topic is named “SCHEDULE_TOPIC_XXXX”, then background schedule task will save the messages to “%RETRY%+consumerGroup” retry queue according to their corresponding delay.</p>
+<h2 id="10-Message-Resend"><a href="#10-Message-Resend" class="headerlink" title="10 Message Resend"></a>10 Message Resend</h2><p>When a producer sends a message, the synchronous message will be resent if fails, the asynchronous message will retry and oneway message is without any guarantee. Message resend ensures that messages are sent successfully and without lost as much as possible, but it can lead to message duplication, which is an unavoidable problem in RocketMQ. Under normal circumstances, message duplication will not occur, but when there is a large number of messages and network jitter, message duplication will be a high-probability event. In addition, producer initiative messages resend and the consumer load changes will also result in duplicate messages. The message retry policy can be set as follows:</p>
+<ul>
+<li><code>retryTimesWhenSendFailed</code>: Synchronous message retry times when send failed, default value is 2, so the producer will try to send <code>retryTimesWhenSendFailed</code> + 1 times at most. To ensure that the message is not lost, producer will try sending the message to another broker instead of selecting the broker that failed last time. An exception will be thrown if it reaches the retry limit, and the client should guarantee that the message will not be lost. Messages will resend when RemotingException, MQClientException, and partial MQBrokerException occur.</li>
+<li><code>retryTimesWhenSendAsyncFailed</code>: Asynchronous message retry times when send failed, asynchronous retry sends message to the same broker instead of selecting another one and does not guarantee that the message wont lost.</li>
+<li><code>retryAnotherBrokerWhenNotStoreOK</code>: Message flush disk (master or slave) timeout or slave not available (return status is not SEND_OK), whether to try to send to another broker, default value is false. Very important messages can set to true.</li>
+</ul>
+<h2 id="11-Flow-Control"><a href="#11-Flow-Control" class="headerlink" title="11 Flow Control"></a>11 Flow Control</h2><p>Producer flow control, because broker processing capacity reaches a bottleneck; Consumer flow control, because the consumption capacity reaches a bottleneck.</p>
+<p>Producer flow control:</p>
+<ul>
+<li>When commitLog file locked time exceeds osPageCacheBusyTimeOutMills, default value of <code>osPageCacheBusyTimeOutMills</code> is 1000 ms, then return flow control.</li>
+<li>If <code>transientStorePoolEnable</code> &#x3D;&#x3D; true, and the broker is asynchronous flush disk type, and resources are insufficient in the transientStorePool, reject the current send request and return flow control.</li>
+<li>The broker checks the head request wait time of the send request queue every 10ms. If the wait time exceeds waitTimeMillsInSendQueue, which default value is 200ms, the current send request is rejected and the flow control is returned.</li>
+<li>The broker implements flow control by rejecting send requests.</li>
+</ul>
+<p>Consumer flow control:</p>
+<ul>
+<li>When consumer local cache messages number exceeds pullThresholdForQueue, default value is 1000. </li>
+<li>When consumer local cache messages size exceeds pullThresholdSizeForQueue, default value is 100MB. </li>
+<li>When consumer local cache messages span exceeds consumeConcurrentlyMaxSpan, default value is 2000.</li>
+</ul>
+<p>The result of consumer flow control is to reduce the pull frequency.</p>
+<h2 id="12-Dead-Letter-Queue"><a href="#12-Dead-Letter-Queue" class="headerlink" title="12 Dead Letter Queue"></a>12 Dead Letter Queue</h2><p>Dead letter queue is used to deal messages that cannot be consumed normally. When a message is consumed failed at first time, the message queue will automatically resend the message. If the consumption still fails after the maximum number retry, it indicates that the consumer cannot properly consume the message under normal circumstances. At this time, the message queue will not immediately abandon the message, but send it to the special queue corresponding to the consumer.</p>
+<p>RocketMQ defines the messages that could not be consumed under normal circumstances as Dead-Letter Messages, and the special queue in which the Dead-Letter Messages are saved as Dead-Letter Queues. In RocketMQ, the consumer instance can consume again by resending messages in the Dead-Letter Queue using console.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://github.com/nydia/nydia.github.io">nydia</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/Feature/">https://github.com/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/Feature/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/nydia/nydia.github.io/tags/Features/">Features</a></div><div class="post_share"><div class="social-share" data-image="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/FAQ/"><img class="prev-cover" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="onerror=null;src='/nydia/nydia.github.io/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Frequently Asked Questions</div></div></a></div><div class="next-post pull-right"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/Operations_Broker/"><img class="next-cover" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="onerror=null;src='/nydia/nydia.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Broker</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">nydia</div><div class="author-info__description">开源，协作，共享，进步</div></div><div class="card-info-data site-data is-center"><a href="/nydia/nydia.github.io/archives/"><div class="headline">Articles</div><div class="length-num">50</div></a><a href="/nydia/nydia.github.io/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/nydia/nydia.github.io/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><a id="card-info-btn" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Features"><span class="toc-number">1.</span> <span class="toc-text">Features</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Subscribe-and-Publish"><span class="toc-number">1.1.</span> <span class="toc-text">1 Subscribe and Publish</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Message-Ordering"><span class="toc-number">1.2.</span> <span class="toc-text">2 Message Ordering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Message-Filter"><span class="toc-number">1.3.</span> <span class="toc-text">3 Message Filter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Message-Reliability"><span class="toc-number">1.4.</span> <span class="toc-text">4 Message Reliability</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-At-Least-Once"><span class="toc-number">1.5.</span> <span class="toc-text">5 At Least Once</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Backtracking-Consumption"><span class="toc-number">1.6.</span> <span class="toc-text">6 Backtracking Consumption</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Transactional-Message"><span class="toc-number">1.7.</span> <span class="toc-text">7 Transactional Message</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Scheduled-Message"><span class="toc-number">1.8.</span> <span class="toc-text">8 Scheduled Message</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Message-Retry"><span class="toc-number">1.9.</span> <span class="toc-text">9 Message Retry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-Message-Resend"><span class="toc-number">1.10.</span> <span class="toc-text">10 Message Resend</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Flow-Control"><span class="toc-number">1.11.</span> <span class="toc-text">11 Flow Control</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-Dead-Letter-Queue"><span class="toc-number">1.12.</span> <span class="toc-text">12 Dead Letter Queue</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/hello-world/" title="Hello World"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/hello-world/" title="Hello World">Hello World</a><time datetime="2022-10-01T15:10:34.170Z" title="Created 2022-10-01 23:10:34">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/flutter/flutter/" title="Flutter"><img src="http://qn.images.lhqmm.com/wikis/flutter.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Flutter"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/flutter/flutter/" title="Flutter">Flutter</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/index/index/" title="目录"><img src="http://qn.images.lhqmm.com/wikis/list.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="目录"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/index/index/" title="目录">目录</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/interview/README/" title="题库"><img src="http://qn.images.lhqmm.com/wikis/%E9%9D%A2%E8%AF%95.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="题库"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/interview/README/" title="题库">题库</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/tech-tools/README/" title="工具"><img src="http://qn.images.lhqmm.com/wikis/tools-logo.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="工具"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/tech-tools/README/" title="工具">工具</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By nydia</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/nydia/nydia.github.io/js/utils.js"></script><script src="/nydia/nydia.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/nydia/nydia.github.io/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

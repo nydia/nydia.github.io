@@ -1,7 +1,299 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>nydia - 开源，协作，共享，进步</title><meta name="author" content="nydia"><meta name="copyright" content="nydia"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="开源，协作，共享，进步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="nydia">
+<meta property="og:url" content="https://github.com/nydia/nydia.github.io/page/5/index.html">
+<meta property="og:site_name" content="nydia">
+<meta property="og:description" content="开源，协作，共享，进步">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="nydia">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/nydia/nydia.github.io/img/favicon.png"><link rel="canonical" href="https://github.com/nydia/nydia.github.io/page/5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/nydia/nydia.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/nydia/nydia.github.io/',
+  algolia: undefined,
+  localSearch: {"path":"/nydia/nydia.github.io/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'nydia',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-10-01 23:19:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  include ./includes/mixins/post-ui.pug
-  #recent-posts.recent-posts
-    +postUI
-    include includes/pagination.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/nydia/nydia.github.io/archives/"><div class="headline">Articles</div><div class="length-num">50</div></a><a href="/nydia/nydia.github.io/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/nydia/nydia.github.io/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/nydia/nydia.github.io/">nydia</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">nydia</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/Troubleshoopting/" title="Operation FAQ"><img class="post_bg" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Operation FAQ"></a></div><div class="recent-post-info"><a class="article-title" href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/Troubleshoopting/" title="Operation FAQ">Operation FAQ</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="content">Operation FAQ1 RocketMQ’s mqadmin command error.
+ Problem: Sometimes after deploying the RocketMQ cluster, when you try to execute some commands of “mqadmin”, the following exception will appear：
+ 1org.apache.rocketmq.remoting.exception.RemotingConnectException: connect to &lt;null&gt; failed
+
+Solution: Execute  export NAMESRV_ADDR=ip:9876 (ip refers to the address of NameServer deployed in the cluster) on the VM that deploys the RocketMQ cluster.Then you will execute commands of “mqadmin” succe ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/best_practice/" title="Best practices"><img class="post_bg" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Best practices"></a></div><div class="recent-post-info"><a class="article-title" href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/best_practice/" title="Best practices">Best practices</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="content">Best practices1 Producer2 Consumer3 Broker3.1 Broker Role3.2 FlushDiskType3.3 Broker Configuration
+
+
+Parameter name
+Default
+Description
+
+
+
+listenPort
+10911
+listen port for client
+
+
+namesrvAddr
+null
+name server address
+
+
+brokerIP1
+InetAddress for network interface
+Should be configured if having multiple addresses
+
+
+brokerIP2
+InetAddress for network interface
+If configured for the Master broker in the Master&#x2F;Slave cluster, slave broker will connect to this port for data synchronization
+
+
+brok ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/architecture/" title="Architecture design"><img class="post_bg" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Architecture design"></a></div><div class="recent-post-info"><a class="article-title" href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/architecture/" title="Architecture design">Architecture design</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="content">Architecture designTechnology Architecture
+The RocketMQ architecture is divided into four parts, as shown in the figure above:
+
+Producer：The role of message publishing supports distributed cluster mode deployment. Producer selects the corresponding Broker cluster queue for message delivery through MQ’s load balancing module. The delivery process supports fast failure and low latency.
+
+Consumer：The role of message consumption supports distributed cluster deployment. Support push, pull two modes t ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/design/" title="Design"><img class="post_bg" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Design"></a></div><div class="recent-post-info"><a class="article-title" href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/design/" title="Design">Design</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="content">Design1 Message Store
+1.1 The Architecure of Message Store1.2 PageCache and Memory-Map(Mmap)1.3 Message Flush
+2 Communication Mechanism2.1 The class diagram of Remoting module
+2.2 The design of protocol and encode&#x2F;decode
+2.3 The three ways and process of message communication
+2.4 The multi-thread design of Reactor
+3 Message Filter
+4 LoadBalancing4.1 The loadBalance of Producer4.2 The loadBalance of Consumer
+
+5 Transactional MessageApache RocketMQ supports distributed transactional message f ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/cn/acl/user_guide/" title="权限控制"><img class="post_bg" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="权限控制"></a></div><div class="recent-post-info"><a class="article-title" href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/cn/acl/user_guide/" title="权限控制">权限控制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="content">权限控制
+1.权限控制特性介绍权限控制（ACL）主要为RocketMQ提供Topic资源级别的用户访问控制。用户在使用RocketMQ权限控制时，可以在Client客户端通过 RPCHook注入AccessKey和SecretKey签名；同时，将对应的权限控制属性（包括Topic访问权限、IP白名单和AccessKey和SecretKey签名等）设置在distribution&#x2F;conf&#x2F;plain_acl.yml的配置文件中。Broker端对AccessKey所拥有的权限进行校验，校验不过，抛出异常；ACL客户端可以参考：org.apache.rocketmq.example.simple包下面的AclClient代码。
+2. 权限控制的定义与属性值2.1权限定义对RocketMQ的Topic资源访问权限控制定义主要如下表所示，分为以下四种
+
+
+
+权限
+含义
+
+
+
+DENY
+拒绝
+
+
+ANY
+PUB 或者 SUB 权限
+
+
+PUB
+发送权限
+
+
+SUB
+订阅权限
+
+
+2.2 权限定义的关键属性
+
+
+字段
+取值
+含义
+
+
+
+globalWhiteRemoteAddre ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/cn/dledger/deploy_guide/" title="Dledger集群搭建"><img class="post_bg" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Dledger集群搭建"></a></div><div class="recent-post-info"><a class="article-title" href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/cn/dledger/deploy_guide/" title="Dledger集群搭建">Dledger集群搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="content">Dledger集群搭建
+前言该文档主要介绍如何部署自动容灾切换的 RocketMQ-on-DLedger Group。
+RocketMQ-on-DLedger Group 是指一组相同名称的 Broker，至少需要 3 个节点，通过 Raft 自动选举出一个 Leader，其余节点 作为 Follower，并在 Leader 和 Follower 之间复制数据以保证高可用。RocketMQ-on-DLedger Group 能自动容灾切换，并保证数据一致。RocketMQ-on-DLedger Group 是可以水平扩展的，也即可以部署任意多个 RocketMQ-on-DLedger Group 同时对外提供服务。  
+1. 新集群部署1.1 编写配置每个 RocketMQ-on-DLedger Group 至少准备三台机器（本文假设为 3）。编写 3 个配置文件，建议参考 conf&#x2F;dledger 目录下的配置文件样例。关键配置介绍：  
+
+
+
+name
+含义
+举例
+
+
+
+enableDLegerCommitLog
+是否启动 DLedger
+true
+
+
+dLegerGro ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/cn/dledger/quick_start/" title="Dledger快速搭建"><img class="post_bg" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Dledger快速搭建"></a></div><div class="recent-post-info"><a class="article-title" href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/cn/dledger/quick_start/" title="Dledger快速搭建">Dledger快速搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="content">Dledger快速搭建
+前言该文档主要介绍如何快速构建和部署基于 DLedger 的可以自动容灾切换的 RocketMQ 集群。
+详细的新集群部署和旧集群升级指南请参考 部署指南。
+1. 源码构建构建分为两个部分，需要先构建 DLedger，然后 构建 RocketMQ
+1.1 构建 DLedgergit clone https://github.com/openmessaging/openmessaging-storage-dledger.git
+cd openmessaging-storage-dledger
+mvn clean install -DskipTests
+1.2 构建 RocketMQgit clone https://github.com/apache/rocketmq.git
+cd rocketmq
+git checkout -b store_with_dledger origin/store_with_dledger
+mvn -Prelease-all -DskipTests clean install -U
+2. 快速部署在构建成功后
+cd distribut ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/cn/msg_trace/user_guide/" title="消息轨迹"><img class="post_bg" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="消息轨迹"></a></div><div class="recent-post-info"><a class="article-title" href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/cn/msg_trace/user_guide/" title="消息轨迹">消息轨迹</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="content">消息轨迹
+1. 消息轨迹数据关键属性
+
+
+Producer端
+Consumer端
+Broker端
+
+
+
+生产实例信息
+消费实例信息
+消息的Topic
+
+
+发送消息时间
+投递时间,投递轮次
+消息存储位置
+
+
+消息是否发送成功
+消息是否消费成功
+消息的Key值
+
+
+发送耗时
+消费耗时
+消息的Tag值
+
+
+2. 支持消息轨迹集群部署2.1 Broker端配置文件这里贴出Broker端开启消息轨迹特性的properties配置文件内容：
+123456789101112131415brokerClusterName=DefaultClusterbrokerName=broker-abrokerId=0deleteWhen=04fileReservedTime=48brokerRole=ASYNC_MASTERflushDiskType=ASYNC_FLUSHstorePathRootDir=/data/rocketmq/rootdir-a-mstorePathCommitLog=/data/rocketmq/commitlog-a-mautoCreateSubscriptionGroup=tru ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/acl/Operations_ACL/" title="Access control list"><img class="post_bg" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Access control list"></a></div><div class="recent-post-info"><a class="article-title" href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/acl/Operations_ACL/" title="Access control list">Access control list</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="content">Access control listOverviewThis document focuses on how to quickly deploy and use a RocketMQ cluster that supports the privilege control feature.
+1. Access control featuresAccess Control (ACL) mainly provides Topic resource level user access control for RocketMQ.If you want to enable RocketMQ permission control, you can inject the AccessKey and SecretKey signatures through the RPCHook on the Client side.And then, the corresponding permission control attributes (including Topic access rights, IP  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/cn/client/java/API_Reference_DefaultMQProducer/" title="DefaultMQProducer"><img class="post_bg" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="DefaultMQProducer"></a></div><div class="recent-post-info"><a class="article-title" href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/cn/client/java/API_Reference_DefaultMQProducer/" title="DefaultMQProducer">DefaultMQProducer</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="content">DefaultMQProducer
+类简介public class DefaultMQProducer  extends ClientConfig  implements MQProducer
+
+DefaultMQProducer类是应用用来投递消息的入口，开箱即用，可通过无参构造方法快速创建一个生产者。主要负责消息的发送，支持同步&#x2F;异步&#x2F;oneway的发送方式，这些发送方式均支持批量发送。可以通过该类提供的getter&#x2F;setter方法，调整发送者的参数。DefaultMQProducer提供了多个send方法，每个send方法略有不同，在使用前务必详细了解其意图。下面给出一个生产者示例代码，点击查看更多示例代码。
+
+12345678910111213141516171819202122232425262728public class Producer &#123;    public static void main(String[] args) throws MQClientException &#123;        // 创建指定分组名的生产者 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/nydia/nydia.github.io/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/nydia/nydia.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/nydia/nydia.github.io/page/4/#content-inner">4</a><span class="page-number current">5</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">nydia</div><div class="author-info__description">开源，协作，共享，进步</div></div><div class="card-info-data site-data is-center"><a href="/nydia/nydia.github.io/archives/"><div class="headline">Articles</div><div class="length-num">50</div></a><a href="/nydia/nydia.github.io/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/nydia/nydia.github.io/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><a id="card-info-btn" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/hello-world/" title="Hello World"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/hello-world/" title="Hello World">Hello World</a><time datetime="2022-10-01T15:10:34.170Z" title="Created 2022-10-01 23:10:34">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/flutter/flutter/" title="Flutter"><img src="http://qn.images.lhqmm.com/wikis/flutter.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Flutter"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/flutter/flutter/" title="Flutter">Flutter</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/index/index/" title="目录"><img src="http://qn.images.lhqmm.com/wikis/list.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="目录"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/index/index/" title="目录">目录</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/interview/README/" title="题库"><img src="http://qn.images.lhqmm.com/wikis/%E9%9D%A2%E8%AF%95.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="题库"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/interview/README/" title="题库">题库</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/tech-tools/README/" title="工具"><img src="http://qn.images.lhqmm.com/wikis/tools-logo.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="工具"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/tech-tools/README/" title="工具">工具</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/nydia/nydia.github.io/categories/RocketMQ/"><span class="card-category-list-name">RocketMQ</span><span class="card-category-list-count">43</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/nydia/nydia.github.io/categories/%E4%B9%A6%E5%8D%95/"><span class="card-category-list-name">书单</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/nydia/nydia.github.io/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/nydia/nydia.github.io/categories/%E5%BD%92%E7%BA%B3/"><span class="card-category-list-name">归纳</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/nydia/nydia.github.io/categories/%E9%9D%A2%E8%AF%95/"><span class="card-category-list-name">面试</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/nydia/nydia.github.io/tags/Access-control-list/" style="font-size: 1.1em; color: #999">Access control list</a> <a href="/nydia/nydia.github.io/tags/Apache-RocketMQ-Developer-Guide/" style="font-size: 1.1em; color: #999">Apache RocketMQ Developer Guide</a> <a href="/nydia/nydia.github.io/tags/Apache-RocketMQ%E5%BC%80%E5%8F%91%E8%80%85%E6%8C%87%E5%8D%97/" style="font-size: 1.1em; color: #999">Apache RocketMQ开发者指南</a> <a href="/nydia/nydia.github.io/tags/Architecture-design/" style="font-size: 1.1em; color: #999">Architecture design</a> <a href="/nydia/nydia.github.io/tags/Basic-Concept/" style="font-size: 1.1em; color: #999">Basic Concept</a> <a href="/nydia/nydia.github.io/tags/Basic-Sample/" style="font-size: 1.1em; color: #999">Basic Sample</a> <a href="/nydia/nydia.github.io/tags/Batch-Message-Sample/" style="font-size: 1.1em; color: #999">Batch Message Sample</a> <a href="/nydia/nydia.github.io/tags/Best-practices/" style="font-size: 1.1em; color: #999">Best practices</a> <a href="/nydia/nydia.github.io/tags/Broker/" style="font-size: 1.1em; color: #999">Broker</a> <a href="/nydia/nydia.github.io/tags/Client-Configuration/" style="font-size: 1.1em; color: #999">Client Configuration</a> <a href="/nydia/nydia.github.io/tags/Consumer/" style="font-size: 1.1em; color: #999">Consumer</a> <a href="/nydia/nydia.github.io/tags/DefaultMQProducer/" style="font-size: 1.1em; color: #999">DefaultMQProducer</a> <a href="/nydia/nydia.github.io/tags/Deployment-Architectures-and-Setup-Steps/" style="font-size: 1.1em; color: #999">Deployment Architectures and Setup Steps</a> <a href="/nydia/nydia.github.io/tags/Design/" style="font-size: 1.1em; color: #999">Design</a> <a href="/nydia/nydia.github.io/tags/Dledger%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA/" style="font-size: 1.1em; color: #999">Dledger快速搭建</a> <a href="/nydia/nydia.github.io/tags/Dledger%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" style="font-size: 1.1em; color: #999">Dledger集群搭建</a> <a href="/nydia/nydia.github.io/tags/Example-for-Ordered-Messages/" style="font-size: 1.1em; color: #999">Example for Ordered Messages</a> <a href="/nydia/nydia.github.io/tags/Features/" style="font-size: 1.1em; color: #999">Features</a> <a href="/nydia/nydia.github.io/tags/Filter-Example/" style="font-size: 1.1em; color: #999">Filter Example</a> <a href="/nydia/nydia.github.io/tags/Flutter/" style="font-size: 1.1em; color: #999">Flutter</a> <a href="/nydia/nydia.github.io/tags/Frequently-Asked-Questions/" style="font-size: 1.1em; color: #999">Frequently Asked Questions</a> <a href="/nydia/nydia.github.io/tags/Load-Balancing/" style="font-size: 1.1em; color: #999">Load Balancing</a> <a href="/nydia/nydia.github.io/tags/Message-Filter/" style="font-size: 1.1em; color: #999">Message Filter</a> <a href="/nydia/nydia.github.io/tags/Message-Queries/" style="font-size: 1.1em; color: #999">Message Queries</a> <a href="/nydia/nydia.github.io/tags/Message-Storage/" style="font-size: 1.1em; color: #999">Message Storage</a> <a href="/nydia/nydia.github.io/tags/Message-Trace/" style="font-size: 1.1em; color: #999">Message Trace</a> <a href="/nydia/nydia.github.io/tags/OpenMessaging-Example/" style="font-size: 1.1em; color: #999">OpenMessaging Example</a> <a href="/nydia/nydia.github.io/tags/Operation-FAQ/" style="font-size: 1.1em; color: #999">Operation FAQ</a> <a href="/nydia/nydia.github.io/tags/Producer/" style="font-size: 1.1em; color: #999">Producer</a> <a href="/nydia/nydia.github.io/tags/RocketMQ-message/" style="font-size: 1.1em; color: #999">RocketMQ message</a> <a href="/nydia/nydia.github.io/tags/Schedule-example/" style="font-size: 1.1em; color: #999">Schedule example</a> <a href="/nydia/nydia.github.io/tags/The-system-configuration/" style="font-size: 1.1em; color: #999">The system configuration</a> <a href="/nydia/nydia.github.io/tags/Transaction-Message/" style="font-size: 1.1em; color: #999">Transaction Message</a> <a href="/nydia/nydia.github.io/tags/Transaction-Message-Example/" style="font-size: 1.1em; color: #999">Transaction Message Example</a> <a href="/nydia/nydia.github.io/tags/nstructions-on-the-use-of-mqadmin/" style="font-size: 1.1em; color: #999">nstructions on the use of mqadmin</a> <a href="/nydia/nydia.github.io/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 1.1em; color: #999">书单</a> <a href="/nydia/nydia.github.io/tags/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" style="font-size: 1.1em; color: #999">基本概念</a> <a href="/nydia/nydia.github.io/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">工具</a> <a href="/nydia/nydia.github.io/tags/%E5%B8%B8%E7%94%A8%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/" style="font-size: 1.1em; color: #999">常用文档目录</a> <a href="/nydia/nydia.github.io/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" style="font-size: 1.1em; color: #999">最佳实践</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/nydia/nydia.github.io/archives/2022/10/"><span class="card-archive-list-date">October 2022</span><span class="card-archive-list-count">50</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">50</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-10-01T15:19:00.100Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By nydia</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/nydia/nydia.github.io/js/utils.js"></script><script src="/nydia/nydia.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/nydia/nydia.github.io/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

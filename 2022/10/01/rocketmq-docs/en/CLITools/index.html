@@ -1,32 +1,1335 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>nstructions on the use of mqadmin | nydia</title><meta name="keywords" content="nstructions on the use of mqadmin"><meta name="author" content="nydia"><meta name="copyright" content="nydia"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Instructions on the use of mqadmin Management toolsBefore introducing the mqadmin management tool, the following points need to be declared:  The way of executing a command is:.&#x2F;mqadmin {command}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nstructions on the use of mqadmin">
+<meta property="og:url" content="https://github.com/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/CLITools/index.html">
+<meta property="og:site_name" content="nydia">
+<meta property="og:description" content="Instructions on the use of mqadmin Management toolsBefore introducing the mqadmin management tool, the following points need to be declared:  The way of executing a command is:.&#x2F;mqadmin {command}">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png">
+<meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
+<meta property="article:modified_time" content="2022-10-01T13:46:37.280Z">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="nstructions on the use of mqadmin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png"><link rel="shortcut icon" href="/nydia/nydia.github.io/img/favicon.png"><link rel="canonical" href="https://github.com/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/CLITools/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/nydia/nydia.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/nydia/nydia.github.io/',
+  algolia: undefined,
+  localSearch: {"path":"/nydia/nydia.github.io/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'nstructions on the use of mqadmin',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-01 21:46:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/nydia/nydia.github.io/archives/"><div class="headline">Articles</div><div class="length-num">50</div></a><a href="/nydia/nydia.github.io/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/nydia/nydia.github.io/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://qn.images.lhqmm.com/wikis/msg-receiver-model.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/nydia/nydia.github.io/">nydia</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">nstructions on the use of mqadmin</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-10-01T13:46:37.280Z" title="Updated 2022-10-01 21:46:37">2022-10-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/nydia/nydia.github.io/categories/RocketMQ/">RocketMQ</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="nstructions on the use of mqadmin"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Instructions-on-the-use-of-mqadmin-Management-tools"><a href="#Instructions-on-the-use-of-mqadmin-Management-tools" class="headerlink" title="Instructions on the use of mqadmin Management tools"></a>Instructions on the use of mqadmin Management tools</h1><p>Before introducing the mqadmin management tool, the following points need to be declared:</p>
+<ul>
+<li>The way of executing a command is:.&#x2F;mqadmin {command} {args}</li>
+<li>Almost all commands need to attach the -n option to represent the nameServer address, formatted as ip:port;</li>
+<li>Almost all commands can get help information with the -h option;</li>
+<li>If the broker address -b option and clusterName -c option are both configured with specific values, the command execution will select the broker address specified by -b option. The value of the -b option can only be configured with a single address. The format is ip:port. The default port value is 10911. If the value of the -b option is not configured, the command will be applied to all brokers in the entire cluster.</li>
+<li>You can see many commands under tools, but not all commands can be used, only the commands initialized in MQAdminStartup can be used, you can also modify this class, add or customize commands;</li>
+<li>Due to the issue of version update, a small number of commands may not be updated in time, please read the related command source code to eliminate and resolve the error.</li>
+</ul>
+<h2 id="1-Topic-related-command-instructions"><a href="#1-Topic-related-command-instructions" class="headerlink" title="1 Topic related command instructions"></a>1 Topic related command instructions</h2><table border=0 cellpadding=0 cellspacing=0 width=714>
+ <col width=177>
+ <col width=175>
+ <col width=177>
+ <col width=185>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl63 width=177 style='height:17.0pt;width:133pt'>Name</td>
+  <td class=xl64 width=175 style='width:131pt'>Meaning</td>
+  <td class=xl64 width=177 style='width:133pt'>Command option</td>
+  <td class=xl64 width=185 style='width:139pt'>Explain</td>
+ </tr>
+ <tr height=132 style='height:99.0pt'>
+  <td rowspan=8 height=593 class=xl68 width=163 style='border-bottom:1.0pt;
+  height:444.0pt;border-top:none;width:122pt'>updateTopic</td>
+  <td rowspan=8 class=xl70 width=135 style='border-bottom:1.0pt;
+  border-top:none;width:101pt'>Create or update the configuration of topic</td>
+  <td class=xl65 width=149 style='width:112pt'>-b</td>
+  <td class=xl66 width=159 style='width:119pt'>The -b option declares the specific address of the broker, indicating that the broker, in which the topic is located supports only a single broker and the address format is ip:port.</td>
+ </tr>
+ <tr height=132 style='height:99.0pt'>
+  <td height=132 class=xl65 width=149 style='height:99.0pt;width:112pt'>-c</td>
+  <td class=xl66 width=159 style='width:119pt'>The -c option declares the name of the cluster, which represents the cluster in which the current topic is located. (clusters are available through clusterList query)</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=149 style='height:17.0pt;width:112pt'>-h-</td>
+  <td class=xl66 width=159 style='width:119pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=149 style='height:43.0pt;width:112pt'>-n</td>
+  <td class=xl66 width=159 style='width:119pt'>Declare the service address of the nameServer, and the option format is ip:port</td>
+ </tr>
+ <tr height=76 style='height:57.0pt'>
+  <td height=76 class=xl65 width=149 style='height:57.0pt;width:112pt'>-p</td>
+  <td class=xl66 width=159 style='width:119pt'>The -p option is used to specify the read and write permission for the new topic (W=2 | R=4 | WR=6)</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 width=149 style='height:29.0pt;width:112pt'>-r</td>
+  <td class=xl66 width=159 style='width:119pt'>The -r option declares the number of readable queues (default 8)</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 width=149 style='height:29.0pt;width:112pt'>-w</td>
+  <td class=xl66 width=159 style='width:119pt'>The -w option declares the number of writable queues (default 8)</td>
+ </tr>
+ <tr height=95 style='height:71.0pt'>
+  <td height=95 class=xl65 width=149 style='height:71.0pt;width:112pt'>-t</td>
+  <td class=xl66 width=159 style='width:119pt'>The -t option declares the name of the topic (the name can only use characters^ [a-zA-Z0-9s -] + $)</td>
+ </tr>
+ <tr height=132 style='height:99.0pt'>
+  <td rowspan=4 height=307 class=xl68 width=163 style='border-bottom:1.0pt;
+  height:230.0pt;border-top:none;width:122pt'>deleteTopic</td>
+  <td rowspan=4 class=xl70 width=135 style='border-bottom:1.0pt;
+  border-top:none;width:101pt'>Delete the topic command</td>
+  <td class=xl65 width=149 style='width:112pt'>-c</td>
+  <td class=xl66 width=159 style='width:119pt'>The -c option specifies the name of the cluster, which means that one of the topic in the specified cluster is deleted (cluster names can be queried via clusterList)</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=149 style='height:17.0pt;width:112pt'>-h</td>
+  <td class=xl66 width=159 style='width:119pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=149 style='height:43.0pt;width:112pt'>-n</td>
+  <td class=xl66 width=159 style='width:119pt'>Declare the service address of the nameServer, and the option format is ip:port</td>
+ </tr>
+ <tr height=95 style='height:71.0pt'>
+  <td height=95 class=xl65 width=149 style='height:71.0pt;width:112pt'>-t</td>
+  <td class=xl66 width=159 style='width:119pt'>The -t option declares the name of the topic (the name can only use characters^ [a-zA-Z0-9s -] + $)</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=3 height=287 class=xl68 width=163 style='border-bottom:1.0pt;
+  height:215.0pt;border-top:none;width:122pt'>topicList</td>
+  <td rowspan=3 class=xl70 width=135 style='border-bottom:1.0pt;
+  border-top:none;width:101pt'>View topic list information</td>
+  <td class=xl65 width=149 style='width:112pt'>-h</td>
+  <td class=xl66 width=159 style='width:119pt'>Print help information</td>
+ </tr>
+ <tr height=207 style='height:155.0pt'>
+  <td height=207 class=xl65 width=149 style='height:155.0pt;width:112pt'>-c</td>
+  <td class=xl66 width=159 style='width:119pt'>If the -c option is not configured, only the topic list is returned, and the addition of -c option returns additional information about the clusterName, topic, consumerGroup, that is, the cluster and subscription to which the topic belongs, and no other option need to be configured.</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=149 style='height:43.0pt;width:112pt'>-n</td>
+  <td class=xl66 width=159 style='width:119pt'>Declare the service address of the nameServer, and the option format is ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=3 height=103 class=xl68 width=163 style='border-bottom:1.0pt;
+  height:77.0pt;border-top:none;width:122pt'>topicRoute</td>
+  <td rowspan=3 class=xl70 width=135 style='border-bottom:1.0pt;
+  border-top:none;width:101pt'>To view topic specific routing information</td>
+  <td class=xl65 width=149 style='width:112pt'>-t</td>
+  <td class=xl66 width=159 style='width:119pt'>Used to specify the name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=149 style='height:17.0pt;width:112pt'>-h</td>
+  <td class=xl66 width=159 style='width:119pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=149 style='height:43.0pt;width:112pt'>-n</td>
+  <td class=xl66 width=159 style='width:119pt'>Declare the service address of the nameServer, and the option format is ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=3 height=103 class=xl68 width=163 style='border-bottom:1.0pt;
+  height:77.0pt;border-top:none;width:122pt'>topicStatus</td>
+  <td rowspan=3 class=xl70 width=135 style='border-bottom:1.0pt;
+  border-top:none;width:101pt'>The location of the offset used to view the topic message queue</td>
+  <td class=xl65 width=149 style='width:112pt'>-t</td>
+  <td class=xl66 width=159 style='width:119pt'>Used to specify the name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=149 style='height:17.0pt;width:112pt'>-h</td>
+  <td class=xl66 width=159 style='width:119pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=149 style='height:43.0pt;width:112pt'>-n</td>
+  <td class=xl66 width=159 style='width:119pt'>Declare the service address of the nameServer, and the option format is ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=3 height=103 class=xl68 width=163 style='border-bottom:1.0pt;
+  height:77.0pt;border-top:none;width:122pt'>topicClusterList</td>
+  <td rowspan=3 class=xl70 width=135 style='border-bottom:1.0pt;
+  border-top:none;width:101pt'>To view the list of clusters to which topic belongs</td>
+  <td class=xl65 width=149 style='width:112pt'>-t</td>
+  <td class=xl66 width=159 style='width:119pt'>Used to specify the name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=149 style='height:17.0pt;width:112pt'>-h</td>
+  <td class=xl66 width=159 style='width:119pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=149 style='height:43.0pt;width:112pt'>-n</td>
+  <td class=xl66 width=159 style='width:119pt'>Declare the service address of the nameServer, and the option format is ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=6 height=518 class=xl68 width=163 style='border-bottom:1.0pt;
+  height:380pt;border-top:none;width:122pt'>updateTopicPerm</td>
+  <td rowspan=6 class=xl70 width=135 style='border-bottom:1.0pt;
+  border-top:none;width:101pt'>This command is used to update read and write permissions for topic</td>
+  <td class=xl65 width=149 style='width:112pt'>-t</td>
+  <td class=xl66 width=159 style='width:119pt'>Used to specify the name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=149 style='height:17.0pt;width:112pt'>-h</td>
+  <td class=xl66 width=159 style='width:119pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=149 style='height:43.0pt;width:112pt'>-n</td>
+  <td class=xl66 width=159 style='width:119pt'>Declare the service address of the nameServer, and the option format is ip:port</td>
+ </tr>
+ <tr height=132 style='height:99.0pt'>
+  <td height=132 class=xl65 width=149 style='height:99.0pt;width:112pt'>-b</td>
+  <td class=xl66 width=159 style='width:119pt'>The -b option declares the specific address of the broker, indicating that the broker, in which the topic is located supports only a single broker and the address format is ip:port.</td>
+ </tr>
+ <tr height=76 style='height:57.0pt'>
+  <td height=76 class=xl65 width=149 style='height:57.0pt;width:112pt'>-p</td>
+  <td class=xl66 width=159 style='width:119pt'>The -p option is used to specify the read and write permission for the new topic (W=2 | R=4 | WR=6)</td>
+ </tr>
+ <tr height=207 style='height:155.0pt'>
+  <td height=207 class=xl65 width=149 style='height:155.0pt;width:112pt'>-c</td>
+  <td class=xl66 width=159 style='width:119pt'>Used to specify the name of the cluster that represents the cluster in which the topic is located, which can be accessed through the clusterList query, but the -b parameter has a higher priority, and if no -b option related configuration is specified, the command is executed on all broker in the cluster</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=5 height=199 class=xl68 width=163 style='border-bottom:1.0pt;
+  height:149.0pt;border-top:none;width:122pt'>updateOrderConf</td>
+  <td rowspan=5 class=xl70 width=135 style='border-bottom:1.0pt;
+  border-top:none;width:101pt'>The key, value configuration that creates, deletes, and retrieves specific namespaces from nameServer is not yet enabled.</td>
+  <td class=xl65 width=149 style='width:112pt'>-h</td>
+  <td class=xl66 width=159 style='width:119pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=149 style='height:43.0pt;width:112pt'>-n</td>
+  <td class=xl66 width=159 style='width:119pt'>Declare the service address of the nameServer, and the option format is ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=149 style='height:17.0pt;width:112pt'>-t</td>
+  <td class=xl66 width=159 style='width:119pt'>topic，key</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 width=149 style='height:29.0pt;width:112pt'>-v</td>
+  <td class=xl66 width=159 style='width:119pt'>orderConf，value</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=149 style='height:43.0pt;width:112pt'>-m</td>
+  <td class=xl66 width=159 style='width:119pt'>method，available values include get, put, delete</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=4 height=198 class=xl68 width=163 style='border-bottom:1.0pt;
+  height:140pt;border-top:none;width:122pt'>allocateMQ</td>
+  <td rowspan=4 class=xl70 width=135 style='border-bottom:1.0pt;
+  border-top:none;width:101pt'>Computing load result of load message queue in consumer list with average load algorithm</td>
+  <td class=xl65 width=149 style='width:112pt'>-t</td>
+  <td class=xl66 width=159 style='width:119pt'>Used to specify the name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=149 style='height:17.0pt;width:112pt'>-h</td>
+  <td class=xl66 width=159 style='width:119pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=149 style='height:43.0pt;width:112pt'>-n</td>
+  <td class=xl66 width=159 style='width:119pt'>Declare the service address of the nameServer, and the option format is ip:port</td>
+ </tr>
+ <tr height=95 style='height:71.0pt'>
+  <td height=95 class=xl65 width=149 style='height:71.0pt;width:112pt'>-i</td>
+  <td class=xl66 width=159 style='width:119pt'>IpList, is separated by commas to calculate which message queues these ip unload topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=4 height=142 class=xl68 width=163 style='border-bottom:1.0pt solid black;
+  height:106.0pt;border-top:1.0pt;width:122pt'>statsAll</td>
+  <td rowspan=4 class=xl70 width=135 style='border-bottom:1.0pt;
+  border-top:none;width:101pt'>For printing topic subscription, TPS, cumulative amount, 24 hours read and write total, etc.</td>
+  <td class=xl65 width=149 style='width:112pt'>-h</td>
+  <td class=xl66 width=159 style='width:119pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=149 style='height:43.0pt;width:112pt'>-n</td>
+  <td class=xl66 width=159 style='width:119pt'>Declare the service address of the nameServer, and the option format is ip:port</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 width=149 style='height:29.0pt;width:112pt'>-a</td>
+  <td class=xl66 width=159 style='width:119pt'>Whether to print only active topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=149 style='height:17.0pt;width:112pt'>-t</td>
+  <td class=xl66 width=159 style='width:119pt'>Used to specify the name of the topic</td>
+ </tr>
+</table>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
 
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
 
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+
+
+
+
+<h2 id="2-Cluster-related-command-instructions"><a href="#2-Cluster-related-command-instructions" class="headerlink" title="2 Cluster related command instructions"></a>2 Cluster related command instructions</h2><h4 id=""><a href="#" class="headerlink" title=""></a></h4><table border=0 cellpadding=0 cellspacing=0 width=714>
+ <col width=177>
+ <col width=175>
+ <col width=177>
+ <col width=185>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl63 width=177 style='height:17.0pt;width:133pt'>Name</td>
+  <td class=xl64 width=175 style='width:131pt'>Meaning</td>
+  <td class=xl64 width=177 style='width:133pt'>Command option</td>
+  <td class=xl64 width=185 style='width:139pt'>Explain</td>
+ </tr>
+ <tr height=207 style='height:155.0pt'>
+  <td rowspan=4 height=326 class=xl67 width=177 style='border-bottom:1.0pt;
+  height:244.0pt;border-top:none;width:133pt'><span
+  style='mso-spacerun:yes'> </span>clusterList</td>
+  <td rowspan=4 class=xl70 width=175 style='border-bottom:1.0pt;
+  border-top:none;width:131pt'>View cluster information, cluster, brokerName, brokerId, TPS, and so on</td>
+  <td class=xl65 width=177 style='width:133pt'>-m</td>
+  <td class=xl66 width=185 style='width:139pt'>Print more information (add print to # InTotalYest,
+  #OutTotalYest, #InTotalToday ,#OutTotalToday)</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=177 style='height:17.0pt;width:133pt'>-h</td>
+  <td class=xl66 width=185 style='width:139pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=177 style='height:43.0pt;width:133pt'>-n</td>
+  <td class=xl66 width=185 style='width:139pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 width=177 style='height:29.0pt;width:133pt'>-i</td>
+  <td class=xl66 width=185 style='width:139pt'>Print interval，unit basis is seconds</td>
+ </tr>
+ <tr height=95 style='height:71.0pt'>
+  <td rowspan=8 height=391 class=xl67 width=177 style='border-bottom:1.0pt;
+  height:292.0pt;border-top:none;width:133pt'>clusterRT</td>
+  <td rowspan=8 class=xl70 width=175 style='border-bottom:1.0pt;
+  border-top:none;width:131pt'>Send message to detect each broker RT of the cluster.the message send to ${BrokerName} Topic</td>
+  <td class=xl65 width=177 style='width:133pt'>-a</td>
+  <td class=xl66 width=185 style='width:139pt'>amount，total number per probe，RT = Total time/amount</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 width=177 style='height:29.0pt;width:133pt'>-s</td>
+  <td class=xl66 width=185 style='width:139pt'>Message size，unit basis is B</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=177 style='height:17.0pt;width:133pt'>-c</td>
+  <td class=xl66 width=185 style='width:139pt'>Which cluster to detect.</td>
+ </tr>
+ <tr height=76 style='height:57.0pt'>
+  <td height=76 class=xl65 width=177 style='height:57.0pt;width:133pt'>-p</td>
+  <td class=xl66 width=185 style='width:139pt'>Whether to print the formatted log,split with "|", not printed by default</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl65 width=177 style='height:17.0pt;width:133pt'>-h</td>
+  <td class=xl66 width=185 style='width:139pt'>Print help information</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 width=177 style='height:29.0pt;width:133pt'>-m</td>
+  <td class=xl66 width=185 style='width:139pt'>Owned computer room for printing</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl65 width=177 style='height:29.0pt;width:133pt'>-i</td>
+  <td class=xl66 width=185 style='width:139pt'>The interval, in seconds, at which a message is sent.</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl65 width=177 style='height:43.0pt;width:133pt'>-n</td>
+  <td class=xl66 width=185 style='width:139pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+</table>
+
+
+
+
+
+<h2 id="3-Broker-related-command-instructions"><a href="#3-Broker-related-command-instructions" class="headerlink" title="3 Broker related command instructions"></a>3 Broker related command instructions</h2><table border=0 cellpadding=0 cellspacing=0 width=714>
+ <col width=177>
+ <col width=175>
+ <col width=177>
+ <col width=185>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl63 width=177 style='height:17.0pt;width:133pt'>Name</td>
+  <td class=xl64 width=175 style='width:131pt'>Meaning</td>
+  <td class=xl64 width=177 style='width:133pt'>Command option</td>
+  <td class=xl64 width=185 style='width:139pt'>Explain</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=6 height=206 class=xl69 width=191 style='border-bottom:1.0pt;
+  height:154.0pt;border-top:none;width:143pt'>updateBrokerConfig</td>
+  <td rowspan=6 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>The configuration information used to update the broker and the contents of the Broker.conf file are modified</td>
+  <td class=xl67 width=87 style='width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>Declare the address of the broker and format as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-c</td>
+  <td class=xl68 width=87 style='width:65pt'>Specify the name of the cluster</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-k</td>
+  <td class=xl68 width=87 style='width:65pt'>the value of k</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-v</td>
+  <td class=xl68 width=87 style='width:65pt'>the value of value</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=3 height=137 class=xl69 width=191 style='border-bottom:1.0pt;
+  height:103.0pt;border-top:none;width:143pt'>brokerStatus</td>
+  <td rowspan=3 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>For viewing broker related statistics and running status (almost all the information you want is inside)</td>
+  <td class=xl67 width=87 style='width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>Declare the address of the broker and format as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=6 height=256 class=xl69 width=191 style='border-bottom:1.0pt;
+  height:192.0pt;border-top:none;width:143pt'>brokerConsumeStats</td>
+  <td rowspan=6 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>Get the consumption of each consumer in broker and return information such as consume Offset,broker Offset,diff,timestamp by message queue dimension</td>
+  <td class=xl67 width=87 style='width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>Declare the address of the broker and format as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>Configure the timeout of the request</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-l</td>
+  <td class=xl68 width=87 style='width:65pt'>Configure the diff threshold beyond which to print</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-o</td>
+  <td class=xl68 width=87 style='width:65pt'>Specifies whether the order topic, is typically false</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=2 height=114 class=xl69 width=191 style='border-bottom:1.0pt;
+  height:86.0pt;border-top:none;width:143pt'>getBrokerConfig</td>
+  <td rowspan=2 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Get configuration information for the broker</td>
+  <td class=xl67 width=87 style='width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>Declare the address of the broker and format as ip:port</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=3 height=137 class=xl69 width=191 style='border-bottom:1.0pt;
+  height:103.0pt;border-top:none;width:143pt'>wipeWritePerm</td>
+  <td rowspan=3 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Clear write permissions for broker from nameServer</td>
+  <td class=xl67 width=87 style='width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>Declare the address of the broker and format as ip:port</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=4 height=160 class=xl69 width=191 style='border-bottom:1.0pt;
+  height:120.0pt;border-top:none;width:143pt'>cleanExpiredCQ</td>
+  <td rowspan=4 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Clean up expired consume Queue on broker，An expired queue may be generated if the number of columns is reduced manually</td>
+  <td class=xl67 width=87 style='width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>Declare the address of the broker and format as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-c</td>
+  <td class=xl68 width=87 style='width:65pt'>Used to specify the name of the cluster</td>
+ </tr>
+ <tr height=88 style='mso-height-source:userset;height:66.0pt'>
+  <td rowspan=4 height=191 class=xl69 width=191 style='border-bottom:1.0pt;
+  height:143.0pt;border-top:none;width:143pt'>cleanUnusedTopic</td>
+  <td rowspan=4 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Clean up unused topic on broker and release topic's consume Queue from memory，If the topic is removed manually, an unused topic will be generated</td>
+  <td class=xl67 width=87 style='width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>Declare the address of the broker and format as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-c</td>
+  <td class=xl68 width=87 style='width:65pt'>Used to specify the name of the cluster</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=5 height=199 class=xl69 width=191 style='border-bottom:1.0pt;
+  height:149.0pt;border-top:none;width:143pt'>sendMsgStatus</td>
+  <td rowspan=5 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Send a message to the broker and then return the send status and RT</td>
+  <td class=xl67 width=87 style='width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>brokerName，note that this is not broker's address</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-s</td>
+  <td class=xl68 width=87 style='width:65pt'>Message size，the unit of account is B</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-c</td>
+  <td class=xl68 width=87 style='width:65pt'>Number of messages sent</td>
+ </tr>
+</table>
+
+
+
+<h2 id="4-Message-related-command-instructions"><a href="#4-Message-related-command-instructions" class="headerlink" title="4 Message related command instructions"></a>4 Message related command instructions</h2><h4 id="-1"><a href="#-1" class="headerlink" title=""></a></h4><table border=0 cellpadding=0 cellspacing=0 width=714>
+ <col width=177>
+ <col width=175>
+ <col width=177>
+ <col width=185>
+<tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl63 width=177 style='height:17.0pt;width:133pt'>Name</td>
+  <td class=xl64 width=175 style='width:131pt'>Meaning</td>
+  <td class=xl64 width=177 style='width:133pt'>Command option</td>
+  <td class=xl64 width=185 style='width:139pt'>Explain</td>
+ </tr>
+ <tr height=128 style='height:96.0pt'>
+  <td rowspan=3 height=208 class=xl69 width=87 style='border-bottom:1.0pt;
+  height:156.0pt;border-top:none;width:65pt'>queryMsgById</td>
+  <td rowspan=3 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>Query msg according to offsetMsgId. If you use open source console, you should use offsetMsgId. There are other parameters for this command. For details, please read QueryMsgByIdSubCommand.
+</td>
+  <td class=xl67 width=87 style='width:65pt'>-i</td>
+  <td class=xl67 width=87 style='width:65pt'>msgId</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=4 height=126 class=xl69 width=87 style='border-bottom:1.0pt;
+  height:94.0pt;border-top:none;width:65pt'>queryMsgByKey</td>
+  <td rowspan=4 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>Query messages based on message Key</td>
+  <td class=xl67 width=87 style='width:65pt'>-k</td>
+  <td class=xl67 width=87 style='width:65pt'>msgKey</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=225 style='height:169.0pt'>
+  <td rowspan=6 height=390 class=xl69 width=87 style='border-bottom:1.0pt;
+  height:292.0pt;border-top:none;width:65pt'>queryMsgByOffset</td>
+  <td rowspan=6 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>Query messages based on Offset</td>
+  <td class=xl67 width=87 style='width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of broker,(Note here: the name of broker is filled in, not the address of broker, and the broker name can be found in clusterList)</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-i</td>
+  <td class=xl68 width=87 style='width:65pt'>Queue id of the query</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-o</td>
+  <td class=xl68 width=87 style='width:65pt'>The value of offset</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=47>
+  <td rowspan=6 height=209 class=xl69 width=87 style='border-bottom:1.0pt;
+  height:156.0pt;border-top:none;width:65pt'>queryMsgByUniqueKey</td>
+  <td rowspan=6 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>According to the msgId query, msgId is different from offsetMsgId. The specific differences can be found in common operational and maintenance problems. "-g" option and "-d" option are to be used together, and when you find the message, try to get a particular consumer to consume the message and return the result of the consumption.</td>
+  <td class=xl67 width=87 style='width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-i</td>
+  <td class=xl67 width=87 style='width:65pt'>uniqe msg id</td>
+ </tr>
+ <tr height=36 style='height:27.0pt'>
+  <td height=36 class=xl67 width=87 style='height:27.0pt;width:65pt'>-g</td>
+  <td class=xl67 width=87 style='width:65pt'>consumerGroup</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-d</td>
+  <td class=xl67 width=87 style='width:65pt'>clientId</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=5 height=149 class=xl69 width=87 style='border-bottom:1.0pt
+  height:111.0pt;border-top:none;width:65pt'>checkMsgSendRT</td>
+  <td rowspan=5 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>Detect RT to send a message to topic, function similar to clusterRT</td>
+  <td class=xl67 width=87 style='width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-a</td>
+  <td class=xl68 width=87 style='width:65pt'>the number of probes</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-s</td>
+  <td class=xl68 width=87 style='width:65pt'>The size of message</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=8 height=218 class=xl69 width=87 style='border-bottom:1.0pt;
+  height:162.0pt;border-top:none;width:65pt'>sendMessage</td>
+  <td rowspan=8 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>Send a message that can be sent, as configured, to a particular message Queue, or to a normal send.</td>
+  <td class=xl67 width=87 style='width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-p</td>
+  <td class=xl68 width=87 style='width:65pt'>body，message body</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-k</td>
+  <td class=xl67 width=87 style='width:65pt'>keys</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-c</td>
+  <td class=xl67 width=87 style='width:65pt'>tags</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-b</td>
+  <td class=xl67 width=87 style='width:65pt'>brokerName</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-i</td>
+  <td class=xl67 width=87 style='width:65pt'>queueId</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=10 height=312 class=xl69 width=87 style='border-bottom:1.0pt;
+  height:232.0pt;border-top:none;width:65pt'>consumeMessage</td>
+  <td rowspan=10 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>Consumer messages. You can consume messages based on offset, start timestamps, end timestamps, message queues, and configure different consumption logic for different execution, as detailed in ConsumeMessageCommand.</td>
+  <td class=xl67 width=87 style='width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-b</td>
+  <td class=xl67 width=87 style='width:65pt'>brokerName</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-o</td>
+  <td class=xl68 width=87 style='width:65pt'>Start consumption from offset</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-i</td>
+  <td class=xl67 width=87 style='width:65pt'>queueId</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-g</td>
+  <td class=xl68 width=87 style='width:65pt'>Group of consumers</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-s</td>
+  <td class=xl68 width=87 style='width:65pt'>Specify a start timestamp in a format see -h</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-d</td>
+  <td class=xl68 width=87 style='width:65pt'>Specify a end timestamp</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-c</td>
+  <td class=xl68 width=87 style='width:65pt'>Specify how many messages to consume</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=8 height=282 class=xl69 width=87 style='border-bottom:1.0pt;
+  height:210.0pt;border-top:none;width:65pt'>printMsg</td>
+  <td rowspan=8 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>Consume messages from broker and print them, optional time periods</td>
+  <td class=xl67 width=87 style='width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of the topic</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-c</td>
+  <td class=xl68 width=87 style='width:65pt'>Character set，for example UTF-8</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-s</td>
+  <td class=xl68 width=87 style='width:65pt'>subExpress，filter expression</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>Specify a start timestamp in a format see -h</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-e</td>
+  <td class=xl68 width=87 style='width:65pt'>Specify the end timestamp</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-d</td>
+  <td class=xl68 width=87 style='width:65pt'>Whether to print the message body</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=12 height=390 class=xl69 width=87 style='border-bottom:1.0pt;
+  height:290.0pt;border-top:none;width:65pt'>printMsgByQueue</td>
+  <td rowspan=12 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>Similar to printMsg, but specifying message queue</td>
+  <td class=xl67 width=87 style='width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of the topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-i</td>
+  <td class=xl67 width=87 style='width:65pt'>queueId</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-a</td>
+  <td class=xl67 width=87 style='width:65pt'>brokerName</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-c</td>
+  <td class=xl68 width=87 style='width:65pt'>Character set，for example UTF-8</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-s</td>
+  <td class=xl68 width=87 style='width:65pt'>subExpress，filter expression</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>Specify a start timestamp in a format see -h</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-e</td>
+  <td class=xl68 width=87 style='width:65pt'>Specify the end timestamp</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-p</td>
+  <td class=xl68 width=87 style='width:65pt'>Whether to print a message</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-d</td>
+  <td class=xl68 width=87 style='width:65pt'>Whether to print the message body</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-f</td>
+  <td class=xl68 width=87 style='width:65pt'>Whether to count the number of tags and print
+</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=7 height=410 class=xl69 width=87 style='border-bottom:1.0pt;
+  height:307.0pt;border-top:none;width:65pt'>resetOffsetByTime</td>
+  <td rowspan=7 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>Reset both offset,broker and consumer by timestamp</td>
+  <td class=xl67 width=87 style='width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-g</td>
+  <td class=xl68 width=87 style='width:65pt'>Group of consumers</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of the topic</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-s</td>
+  <td class=xl68 width=87 style='width:65pt'>Resets the offset corresponding to this timestamp</td>
+ </tr>
+ <tr height=188 style='height:141.0pt'>
+  <td height=188 class=xl67 width=87 style='height:141.0pt;width:65pt'>-f</td>
+  <td class=xl68 width=87 style='width:65pt'>Whether to force a reset, if set to false, only supports backtracking offset, if it is true, regardless of the relationship between offset and consume Offset with the timestamp</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-c</td>
+  <td class=xl68 width=87 style='width:65pt'>Whether to reset the C++ client offset</td>
+ </tr>
+</table>
+
+
+
+<h2 id="5-Consumer-and-Consumer-Group-related-command-instructions"><a href="#5-Consumer-and-Consumer-Group-related-command-instructions" class="headerlink" title="5 Consumer and Consumer Group related command instructions"></a>5 Consumer and Consumer Group related command instructions</h2><h4 id="-2"><a href="#-2" class="headerlink" title=""></a></h4><table border=0 cellpadding=0 cellspacing=0 width=714>
+ <col width=177>
+ <col width=175>
+ <col width=177>
+ <col width=185>
+<tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl63 width=177 style='height:17.0pt;width:133pt'>Name</td>
+  <td class=xl64 width=175 style='width:131pt'>Meaning</td>
+  <td class=xl64 width=177 style='width:133pt'>Command option</td>
+  <td class=xl64 width=185 style='width:139pt'>Explain</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td rowspan=4 height=158 class=xl69 width=87 style='border-bottom:1.0pt;
+  height:110pt;border-top:none;width:65pt'>consumerProgress</td>
+  <td rowspan=4 class=xl72 width=87 style='border-bottom:1.0pt;
+  border-top:none;width:65pt'>To view the subscriber consumption status, you can see the amount of message accumulation for a specific client IP</td>
+  <td class=xl67 width=87 style='width:65pt'>-g</td>
+  <td class=xl68 width=87 style='width:65pt'>The group name of consumer</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-s</td>
+  <td class=xl68 width=87 style='width:65pt'>Whether to print client IP</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=105 style='mso-height-source:userset;height:79.0pt'>
+  <td rowspan=5 height=260 class=xl69 width=87 style='border-bottom:1.0pt;
+  height:195.0pt;border-top:none;width:65pt'>consumerStatus</td>
+  <td rowspan=5 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>See the consumer status, including whether the same subscription is in the same group, analyze whether the process queue is stacked, return the consumer jstack results, more content, and see ConsumerStatusSubCommand for the user</td>
+  <td class=xl67 width=87 style='width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=36 style='height:27.0pt'>
+  <td height=36 class=xl67 width=87 style='height:27.0pt;width:65pt'>-g</td>
+  <td class=xl67 width=87 style='width:65pt'>consumer group</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-i</td>
+  <td class=xl67 width=87 style='width:65pt'>clientId</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-s</td>
+  <td class=xl68 width=87 style='width:65pt'>Whether to execute jstack</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td rowspan=5 height=181 class=xl69 width=87 style='border-bottom:1.0pt
+  height:135.0pt;border-top:none;width:65pt'>getConsumerStatus</td>
+  <td rowspan=5 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Get Consumer consumption progress</td>
+  <td class=xl67 width=87 style='width:65pt'>-g</td>
+  <td class=xl68 width=87 style='width:65pt'>the group name of consumer</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>Query topic</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-i</td>
+  <td class=xl68 width=87 style='width:65pt'>Ip address of consumer client</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=13 height=761 class=xl69 width=87 style='border-bottom:1.0pt
+  height:569.0pt;border-top:none;width:65pt'>updateSubGroup</td>
+  <td rowspan=13 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Update or create a subscription</td>
+  <td class=xl67 width=87 style='width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>the address of broker</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-c</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of cluster</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-g</td>
+  <td class=xl68 width=87 style='width:65pt'>The group name of consumer</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-s</td>
+  <td class=xl68 width=87 style='width:65pt'>Whether the group is allowed to consume</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-m</td>
+  <td class=xl68 width=87 style='width:65pt'>Whether to start consumption from the minimum offset</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-d</td>
+  <td class=xl68 width=87 style='width:65pt'>Is it a broadcast mode</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-q</td>
+  <td class=xl68 width=87 style='width:65pt'>The Number of retry queues</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-r</td>
+  <td class=xl68 width=87 style='width:65pt'>Maximum number of retries</td>
+ </tr>
+ <tr height=207 style='height:155.0pt'>
+  <td height=207 class=xl67 width=87 style='height:155.0pt;width:65pt'>-i</td>
+  <td class=xl68 width=87 style='width:65pt'>When the slaveReadEnable is on and which brokerId consumption is recommended for consumption from slave, the brokerid of slave, can be configured to consume from the slave actively</td>
+ </tr>
+ <tr height=132 style='height:99.0pt'>
+  <td height=132 class=xl67 width=87 style='height:99.0pt;width:65pt'>-w</td>
+  <td class=xl68 width=87 style='width:65pt'>If broker recommends consumption from slave, configuration determines which slave consumption to consume from, and configure a specific brokerId, such as 1</td>
+ </tr>
+ <tr height=76 style='height:57.0pt'>
+  <td height=76 class=xl67 width=87 style='height:57.0pt;width:65pt'>-a</td>
+  <td class=xl68 width=87 style='width:65pt'>Whether to notify other consumers of load balancing when the number of consumers changes</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=5 height=165 class=xl69 width=87 style='border-bottom:1.0pt
+  height:123.0pt;border-top:none;width:65pt'>deleteSubGroup</td>
+  <td rowspan=5 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Remove subscriptions from broker</td>
+  <td class=xl67 width=87 style='width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-b</td>
+  <td class=xl68 width=87 style='width:65pt'>the address of broker</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-c</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of cluster</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td height=39 class=xl67 width=87 style='height:29.0pt;width:65pt'>-g</td>
+  <td class=xl68 width=87 style='width:65pt'>The group name of consumer</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=6 height=172 class=xl69 width=87 style='border-bottom:1.0pt
+  height:120pt;border-top:none;width:65pt'>cloneGroupOffset</td>
+  <td rowspan=6 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Use the offset of the source group in the target group
+</td>
+  <td class=xl67 width=87 style='width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-s</td>
+  <td class=xl68 width=87 style='width:65pt'>Source consumer group</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-d</td>
+  <td class=xl68 width=87 style='width:65pt'>Target consumer group</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of topic</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-o</td>
+  <td class=xl68 width=87 style='width:65pt'>Not used yet</td>
+ </tr>
+</table>
+
+
+
+
+<h2 id="6-Connection-related-command-instructions"><a href="#6-Connection-related-command-instructions" class="headerlink" title="6 Connection related command instructions"></a>6 Connection related command instructions</h2><h4 id="-3"><a href="#-3" class="headerlink" title=""></a></h4><table border=0 cellpadding=0 cellspacing=0 width=714>
+ <col width=177>
+ <col width=175>
+ <col width=177>
+ <col width=185>
+<tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl63 width=177 style='height:17.0pt;width:133pt'>Name</td>
+  <td class=xl64 width=175 style='width:131pt'>Meaning</td>
+  <td class=xl64 width=177 style='width:133pt'>Command option</td>
+  <td class=xl64 width=185 style='width:139pt'>Explain</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td rowspan=3 height=119 class=xl69 width=87 style='border-bottom:1.0pt
+  height:89.0pt;border-top:none;width:65pt'>consumerConnec tion</td>
+  <td rowspan=3 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Query the network connection of consumer</td>
+  <td class=xl67 width=87 style='width:65pt'>-g</td>
+  <td class=xl68 width=87 style='width:65pt'>The group name of consumer</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=39 style='height:29.0pt'>
+  <td rowspan=4 height=142 class=xl69 width=87 style='border-bottom:1.0pt
+  height:106.0pt;border-top:none;width:65pt'>producerConnec tion</td>
+  <td rowspan=4 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Query the network connection of producer</td>
+  <td class=xl67 width=87 style='width:65pt'>-g</td>
+  <td class=xl68 width=87 style='width:65pt'>the group name of producer</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-t</td>
+  <td class=xl68 width=87 style='width:65pt'>The name of topic</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+</table>
+
+
+
+
+<h2 id="7-NameServer-related-command-instructions"><a href="#7-NameServer-related-command-instructions" class="headerlink" title="7 NameServer related command instructions"></a>7 NameServer related command instructions</h2><h4 id="-4"><a href="#-4" class="headerlink" title=""></a></h4><table border=0 cellpadding=0 cellspacing=0 width=714>
+ <col width=177>
+ <col width=175>
+ <col width=177>
+ <col width=185>
+<tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl63 width=177 style='height:17.0pt;width:133pt'>Name</td>
+  <td class=xl64 width=175 style='width:131pt'>Meaning</td>
+  <td class=xl64 width=177 style='width:133pt'>Command option</td>
+  <td class=xl64 width=185 style='width:139pt'>Explain</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td rowspan=5 height=143 class=xl69 width=87 style='border-bottom:1.0pt
+  height:100pt;border-top:none;width:65pt'>updateKvConfig</td>
+  <td rowspan=5 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Update the kv configuration of nameServer, which is not currently used</td>
+  <td class=xl75 width=87 style='width:65pt'>-s</td>
+  <td class=xl76 width=87 style='width:65pt'>Specify a specific namespace</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 class=xl75 width=87 style='height:16.0pt;width:65pt'>-k</td>
+  <td class=xl75 width=87 style='width:65pt'>key</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 class=xl75 width=87 style='height:16.0pt;width:65pt'>-v</td>
+  <td class=xl75 width=87 style='width:65pt'>value</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td rowspan=4 height=126 class=xl69 width=87 style='border-bottom:1.0pt
+  height:94.0pt;border-top:none;width:65pt'>deleteKvConfig</td>
+  <td rowspan=4 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'> Delete the kv configuration of nameServer</td>
+  <td class=xl67 width=87 style='width:65pt'>-s</td>
+  <td class=xl68 width=87 style='width:65pt'>Specify a specific namespace</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-k</td>
+  <td class=xl67 width=87 style='width:65pt'>key</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td height=57 class=xl67 width=87 style='height:43.0pt;width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=2 height=80 class=xl69 width=87 style='border-bottom:1.0pt
+  height:60.0pt;border-top:none;width:65pt'>getNamesrvConfig</td>
+  <td rowspan=2 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Get the configuration of the nameServer</td>
+  <td class=xl67 width=87 style='width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=4 height=126 class=xl69 width=87 style='border-bottom:1.0pt
+  height:94.0pt;border-top:none;width:65pt'>updateNamesrvConfig</td>
+  <td rowspan=4 class=xl72 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Modifying the configuration of nameServer</td>
+  <td class=xl67 width=87 style='width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-k</td>
+  <td class=xl67 width=87 style='width:65pt'>The value of key</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-v</td>
+  <td class=xl67 width=87 style='width:65pt'>The value of value</td>
+ </tr>
+</table>
+
+
+
+
+<h2 id="8-Other-relevant-command-notes"><a href="#8-Other-relevant-command-notes" class="headerlink" title="8 Other relevant command notes"></a>8 Other relevant command notes</h2><h4 id="-5"><a href="#-5" class="headerlink" title=""></a></h4><table border=0 cellpadding=0 cellspacing=0 width=714>
+ <col width=177>
+ <col width=175>
+ <col width=177>
+ <col width=185>
+<tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl63 width=177 style='height:17.0pt;width:133pt'>Name</td>
+  <td class=xl64 width=175 style='width:131pt'>Meaning</td>
+  <td class=xl64 width=177 style='width:133pt'>Command option</td>
+  <td class=xl64 width=185 style='width:139pt'>Explain</td>
+ </tr>
+ <tr height=57 style='height:43.0pt'>
+  <td rowspan=2 height=80 class=xl69 width=87 style='border-bottom:1.0pt
+  height:60.0pt;border-top:none;width:65pt'>startMonitoring</td>
+  <td rowspan=2 class=xl71 width=87 style='border-bottom:1.0pt
+  border-top:none;width:65pt'>Used to start the monitoring process, monitor message deletion, retry queue messages, etc.</td>
+  <td class=xl67 width=87 style='width:65pt'>-n</td>
+  <td class=xl68 width=87 style='width:65pt'>Service address used to specify nameServer and formatted as ip:port</td>
+ </tr>
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl67 width=87 style='height:17.0pt;width:65pt'>-h</td>
+  <td class=xl68 width=87 style='width:65pt'>Print help information</td>
+ </tr>
+</table>
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://github.com/nydia/nydia.github.io">nydia</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/CLITools/">https://github.com/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/CLITools/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/nydia/nydia.github.io/tags/nstructions-on-the-use-of-mqadmin/">nstructions on the use of mqadmin</a></div><div class="post_share"><div class="social-share" data-image="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/Concept/"><img class="prev-cover" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="onerror=null;src='/nydia/nydia.github.io/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Basic Concept</div></div></a></div><div class="next-post pull-right"><a href="/nydia/nydia.github.io/2022/10/01/rocketmq-docs/en/Configuration_Client/"><img class="next-cover" src="http://qn.images.lhqmm.com/wikis/msg-receiver-model.png" onerror="onerror=null;src='/nydia/nydia.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Client Configuration</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">nydia</div><div class="author-info__description">开源，协作，共享，进步</div></div><div class="card-info-data site-data is-center"><a href="/nydia/nydia.github.io/archives/"><div class="headline">Articles</div><div class="length-num">50</div></a><a href="/nydia/nydia.github.io/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/nydia/nydia.github.io/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><a id="card-info-btn" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Instructions-on-the-use-of-mqadmin-Management-tools"><span class="toc-number">1.</span> <span class="toc-text">Instructions on the use of mqadmin Management tools</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Topic-related-command-instructions"><span class="toc-number">1.1.</span> <span class="toc-text">1 Topic related command instructions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Cluster-related-command-instructions"><span class="toc-number">1.2.</span> <span class="toc-text">2 Cluster related command instructions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">1.2.0.1.</span> <span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Broker-related-command-instructions"><span class="toc-number">1.3.</span> <span class="toc-text">3 Broker related command instructions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Message-related-command-instructions"><span class="toc-number">1.4.</span> <span class="toc-text">4 Message related command instructions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#-1"><span class="toc-number">1.4.0.1.</span> <span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Consumer-and-Consumer-Group-related-command-instructions"><span class="toc-number">1.5.</span> <span class="toc-text">5 Consumer and Consumer Group related command instructions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#-2"><span class="toc-number">1.5.0.1.</span> <span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Connection-related-command-instructions"><span class="toc-number">1.6.</span> <span class="toc-text">6 Connection related command instructions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#-3"><span class="toc-number">1.6.0.1.</span> <span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-NameServer-related-command-instructions"><span class="toc-number">1.7.</span> <span class="toc-text">7 NameServer related command instructions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#-4"><span class="toc-number">1.7.0.1.</span> <span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Other-relevant-command-notes"><span class="toc-number">1.8.</span> <span class="toc-text">8 Other relevant command notes</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#-5"><span class="toc-number">1.8.0.1.</span> <span class="toc-text"></span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/hello-world/" title="Hello World"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/hello-world/" title="Hello World">Hello World</a><time datetime="2022-10-01T15:10:34.170Z" title="Created 2022-10-01 23:10:34">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/flutter/flutter/" title="Flutter"><img src="http://qn.images.lhqmm.com/wikis/flutter.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Flutter"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/flutter/flutter/" title="Flutter">Flutter</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/index/index/" title="目录"><img src="http://qn.images.lhqmm.com/wikis/list.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="目录"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/index/index/" title="目录">目录</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/interview/README/" title="题库"><img src="http://qn.images.lhqmm.com/wikis/%E9%9D%A2%E8%AF%95.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="题库"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/interview/README/" title="题库">题库</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/tech-tools/README/" title="工具"><img src="http://qn.images.lhqmm.com/wikis/tools-logo.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="工具"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/tech-tools/README/" title="工具">工具</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By nydia</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/nydia/nydia.github.io/js/utils.js"></script><script src="/nydia/nydia.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/nydia/nydia.github.io/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

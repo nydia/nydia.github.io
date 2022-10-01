@@ -1,32 +1,318 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>工具 | nydia</title><meta name="keywords" content="工具"><meta name="author" content="nydia"><meta name="copyright" content="nydia"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="常用技术工具 身份证生成器  常用在线技术工具 身份证生成器 windows系统官方使用文档  常用技术网址 https:&#x2F;&#x2F;www.deepl.com&#x2F;translator 专业技术翻译网站 https:&#x2F;&#x2F;www.websequencediagrams.com 在线序列图 http:&#x2F;&#x2F;bestcbooks.com&#x2F; 计算机书籍控 https:&#x2F;&#x2F;leetcode-cn.com&#x2F; 力扣（算法）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工具">
+<meta property="og:url" content="https://github.com/nydia/nydia.github.io/2022/10/01/tech-tools/README/index.html">
+<meta property="og:site_name" content="nydia">
+<meta property="og:description" content="常用技术工具 身份证生成器  常用在线技术工具 身份证生成器 windows系统官方使用文档  常用技术网址 https:&#x2F;&#x2F;www.deepl.com&#x2F;translator 专业技术翻译网站 https:&#x2F;&#x2F;www.websequencediagrams.com 在线序列图 http:&#x2F;&#x2F;bestcbooks.com&#x2F; 计算机书籍控 https:&#x2F;&#x2F;leetcode-cn.com&#x2F; 力扣（算法）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://qn.images.lhqmm.com/wikis/tools-logo.png">
+<meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
+<meta property="article:modified_time" content="2022-10-01T13:59:38.459Z">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qn.images.lhqmm.com/wikis/tools-logo.png"><link rel="shortcut icon" href="/nydia/nydia.github.io/img/favicon.png"><link rel="canonical" href="https://github.com/nydia/nydia.github.io/2022/10/01/tech-tools/README/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/nydia/nydia.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/nydia/nydia.github.io/',
+  algolia: undefined,
+  localSearch: {"path":"/nydia/nydia.github.io/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '工具',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-01 21:59:38'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
-
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
-
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/nydia/nydia.github.io/archives/"><div class="headline">Articles</div><div class="length-num">50</div></a><a href="/nydia/nydia.github.io/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/nydia/nydia.github.io/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://qn.images.lhqmm.com/wikis/tools-logo.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/nydia/nydia.github.io/">nydia</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">工具</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-10-01T13:59:38.459Z" title="Updated 2022-10-01 21:59:38">2022-10-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/nydia/nydia.github.io/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="工具"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="常用技术工具"><a href="#常用技术工具" class="headerlink" title="常用技术工具"></a>常用技术工具</h1><ol>
+<li><a target="_blank" rel="noopener" href="http://sfz.uzuzuz.com/">身份证生成器</a></li>
+</ol>
+<h1 id="常用在线技术工具"><a href="#常用在线技术工具" class="headerlink" title="常用在线技术工具"></a>常用在线技术工具</h1><ol>
+<li><a target="_blank" rel="noopener" href="http://sfz.uzuzuz.com/">身份证生成器</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/">windows系统官方使用文档</a></li>
+</ol>
+<h2 id="常用技术网址"><a href="#常用技术网址" class="headerlink" title="常用技术网址"></a>常用技术网址</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.deepl.com/translator">https://www.deepl.com/translator 专业技术翻译网站</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.websequencediagrams.com/">https://www.websequencediagrams.com 在线序列图</a></li>
+<li><a target="_blank" rel="noopener" href="http://bestcbooks.com/">http://bestcbooks.com/</a> 计算机书籍控</li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/">https://leetcode-cn.com/</a> 力扣（算法）</li>
+<li><a target="_blank" rel="noopener" href="https://dev.tencent.com/">https://dev.tencent.com</a> 腾讯云开发</li>
+<li><a target="_blank" rel="noopener" href="https://coding.net/">https://coding.net/</a> 码市</li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions">https://stackoverflow.com/questions</a> 问题搜索博客</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhang89xiao/article/details/79084481">https://blog.csdn.net/zhang89xiao/article/details/79084481</a> 2017 开源中国评比的前100个优秀开源项目</li>
+<li><a target="_blank" rel="noopener" href="http://debugx5.qq.com/">http://debugx5.qq.com</a> 清除Android的微信&amp;公众号缓存</li>
+<li><a target="_blank" rel="noopener" href="https://gitbook.cn/">https://gitbook.cn</a> gitbook一个基于微信的只是分享</li>
+<li><a target="_blank" rel="noopener" href="https://www.eolinker.com/">https://www.eolinker.com</a> API管理</li>
+<li><a target="_blank" rel="noopener" href="https://developer.android.google.cn/">https://developer.android.google.cn/</a>  android开发者社区</li>
+<li><a target="_blank" rel="noopener" href="http://www.logosc.cn/">http://www.logosc.cn/</a> 在线logo生成</li>
+<li><a target="_blank" rel="noopener" href="https://pandao.github.io/editor.md/">https://pandao.github.io/editor.md/</a> 开源的markdown编辑器</li>
+<li><a target="_blank" rel="noopener" href="http://itchat.readthedocs.io/zh/latest/">http://itchat.readthedocs.io/zh/latest/</a> itchat Pyton微信接口</li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009420701">https://segmentfault.com/a/1190000009420701</a></li>
+<li><a target="_blank" rel="noopener" href="https://code.ziqiangxuetang.com/django/django-tutorial.html">https://code.ziqiangxuetang.com/django/django-tutorial.html</a> 自强学堂Django学习</li>
+<li><a target="_blank" rel="noopener" href="http://mustache.github.io/">http://mustache.github.io/</a> mustache官网</li>
+<li><a href="https://github.com/janl/mustache.js">https://github.com/janl/mustache.js</a>  js里面运用mustache</li>
+<li><a target="_blank" rel="noopener" href="http://www.sucaihuo.com/">http://www.sucaihuo.com/</a> 素材火官网（素材网站）</li>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/">https://docs.docker.com</a> docker 官网</li>
+<li><a target="_blank" rel="noopener" href="https://www.rfc-editor.org/errata_search.php?rfc=5789">https://www.rfc-editor.org/errata_search.php?rfc=5789</a> RFC网站</li>
+<li><a target="_blank" rel="noopener" href="https://pay.weixin.qq.com/wiki/doc/api/index.html">https://pay.weixin.qq.com/wiki/doc/api/index.html</a> 普通商户微信支付</li>
+<li><a target="_blank" rel="noopener" href="http://qydev.weixin.qq.com/wiki/index.php">http://qydev.weixin.qq.com/wiki/index.php</a> 企业号微信支付</li>
+<li><a target="_blank" rel="noopener" href="https://caniuse.com/">https://caniuse.com</a> 查看css的兼容性（不是太准确）</li>
+<li><a target="_blank" rel="noopener" href="http://nipponcolors.com/#sumire">http://nipponcolors.com/#sumire</a> 日本的一个视觉网站</li>
+<li><a target="_blank" rel="noopener" href="http://swlabs.co/madmin/code/ui-treeview.html">http://swlabs.co/madmin/code/ui-treeview.html</a> bootstrap3模板</li>
+<li><a target="_blank" rel="noopener" href="https://deuhd.ru/">https://deuhd.ru/</a>  俄罗斯出品的解锁加密影片   DeUHD</li>
+<li><a target="_blank" rel="noopener" href="https://pay.weixin.qq.com/wiki/doc/api/index.html">https://pay.weixin.qq.com/wiki/doc/api/index.html</a> 微信支付开发文档</li>
+<li><a target="_blank" rel="noopener" href="https://developer.android.com/">https://developer.android.com</a> android官网，需用VPN工具（lantern）才能打开</li>
+<li><a href="https://github.com/otale/tale/wiki">https://github.com/otale/tale/wiki</a> tale使用</li>
+<li><a target="_blank" rel="noopener" href="https://supermind.nl/submin/current">https://supermind.nl/submin/current</a>  subversion web管理submin  下载地址</li>
+<li><a href="https://github.com/jemalloc/jemalloc/releases/">https://github.com/jemalloc/jemalloc/releases/</a>  jemalloc 下载地址</li>
+<li><a target="_blank" rel="noopener" href="http://www.cssmoban.com/tags.asp?n=Bootstrap">http://www.cssmoban.com/tags.asp?n=Bootstrap</a>  模板之家，静态网站</li>
+<li><a target="_blank" rel="noopener" href="https://www.gitlab.com.cn/installation/#centos-7">https://www.gitlab.com.cn/installation/#centos-7</a>  gitlab 安装官方文档</li>
+<li><a target="_blank" rel="noopener" href="https://www.getlantern.org/en_US/">https://www.getlantern.org/en_US/</a> 蓝灯官网  vpn软件</li>
+<li><a target="_blank" rel="noopener" href="https://h5.baidu.com/">https://h5.baidu.com</a>  百度的H5编辑</li>
+<li>支持一键导入 PSD、简单上传操作、在线编辑，全自动完成从 PSD 到 H5 页面雏型的转换</li>
+<li><a target="_blank" rel="noopener" href="http://cli.im/">http://cli.im/</a> 草料二维码生成</li>
+<li><a target="_blank" rel="noopener" href="http://www.lanrenzhijia.com/">http://www.lanrenzhijia.com/</a> 懒人之家   js&#x2F;css素材</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=201715%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD">https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=201715微信小程序下载</a></li>
+<li>rabbitmq</li>
+<li><a target="_blank" rel="noopener" href="http://www.rabbitmq.com/releases/erlang/">http://www.rabbitmq.com/releases/erlang/</a></li>
+<li><a href="ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/">ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/</a>  pcre</li>
+<li><a href="https://github.com/nuysoft/Mock/wiki/Getting-Started">https://github.com/nuysoft/Mock/wiki/Getting-Started</a> mock.js</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432</a> 微信公众号开发</li>
+<li><a href="mailto:&#49;&#48;&#50;&#56;&#55;&#x38;&#x37;&#55;&#x36;&#48;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;">&#49;&#48;&#50;&#56;&#55;&#x38;&#x37;&#55;&#x36;&#48;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;</a>&#x2F;1988090591hua</li>
+<li><a target="_blank" rel="noopener" href="http://www.xmlpull.org/">http://www.xmlpull.org/</a> xml解析</li>
+<li><a target="_blank" rel="noopener" href="http://mvnrepository.com/artifact">http://mvnrepository.com/artifact</a> jar maven地址</li>
+<li><a target="_blank" rel="noopener" href="http://lbs.amap.com/api/javascript-api/example/district-search/city-drop-down-list">http://lbs.amap.com/api/javascript-api/example/district-search/city-drop-down-list</a>  高德地图接口</li>
+<li><a target="_blank" rel="noopener" href="http://developer.jasig.org/cas/">http://developer.jasig.org/cas/</a> cas下载</li>
+<li><a target="_blank" rel="noopener" href="http://jingyan.baidu.com/article/9989c746064d46f648ecfe9a.html">http://jingyan.baidu.com/article/9989c746064d46f648ecfe9a.html</a> 如何在oracle下载jdk历史版本</li>
+<li><a target="_blank" rel="noopener" href="https://sourceforge.net/projects/artifactory/">https://sourceforge.net/projects/artifactory/</a>  artifactory maven仓库构建 （用Nexus也行）</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/wiki/home/">https://mp.weixin.qq.com/wiki/home/</a>  微信公众号开发文档</li>
+<li><a target="_blank" rel="noopener" href="http://www.ui.cn/">http://www.ui.cn/</a>  中国UI</li>
+<li><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html">http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html</a> java</li>
+<li>静态网站源码</li>
+<li><a target="_blank" rel="noopener" href="http://www.17sucai.com/">http://www.17sucai.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.getpostman.com/apps">https://www.getpostman.com/apps</a> 接口调试软件postman网站</li>
+<li><a target="_blank" rel="noopener" href="http://www.dedecms.com/">http://www.dedecms.com/</a>  织梦静态网站模版</li>
+<li><a target="_blank" rel="noopener" href="http://help.dedecms.com/v53/">http://help.dedecms.com/v53/</a></li>
+<li><a target="_blank" rel="noopener" href="https://notepad-plus-plus.org/download/v7.3.html">https://notepad-plus-plus.org/download/v7.3.html</a> notepad++编辑器</li>
+<li><a href="https://github.com/thx/RAP.wiki.git">https://github.com/thx/RAP.wiki.git</a> 可视化接口管理工具 RAP（淘宝开发）</li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/fancylovejava/article/details/45787729/">http://blog.csdn.net/fancylovejava/article/details/45787729/</a> android的UI（炫酷的）</li>
+<li><a target="_blank" rel="noopener" href="https://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/">https://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/</a>  universal-usb-installer制作U盘装linux</li>
+<li><a target="_blank" rel="noopener" href="http://jingyan.baidu.com/article/fec4bce20e344cf2618d8b37.html">http://jingyan.baidu.com/article/fec4bce20e344cf2618d8b37.html</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/VVingerfly/p/5217723.html">http://www.cnblogs.com/VVingerfly/p/5217723.html</a></li>
+<li><a target="_blank" rel="noopener" href="http://python.usyiyi.cn/django/intro/install.html">http://python.usyiyi.cn/django/intro/install.html</a> django文档</li>
+<li><a target="_blank" rel="noopener" href="http://materializecss.com/">http://materializecss.com/</a>   是基于谷歌Material Design Language(MDL)设计语言所构建的一套CSS&#x2F;HTML库</li>
+<li><a href="https://github.com/Dogfalo/materialize">https://github.com/Dogfalo/materialize</a>  materialize源码</li>
+<li><a target="_blank" rel="noopener" href="http://materializecss.com/showcase.html">http://materializecss.com/showcase.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://xituqu.com/640.html">https://xituqu.com/640.html</a>  稀土区， 静态资源。</li>
+<li><a target="_blank" rel="noopener" href="http://www.qrcode.com/en/">http://www.qrcode.com/en/</a> 二维码官网</li>
+<li><a target="_blank" rel="noopener" href="http://wenku.baidu.com/link?url=iq1lNyYmNdxXjr8mJHVLAwcLuuU_v4_AaZyY9AE9VqhvZnLRQuk6Dda1ILKoGrL1ZqWgd0ArqK1NzDFDn9Q2r3P1jOpKyxuSLlk4uDwGZv7">http://wenku.baidu.com/link?url=iq1lNyYmNdxXjr8mJHVLAwcLuuU_v4_AaZyY9AE9VqhvZnLRQuk6Dda1ILKoGrL1ZqWgd0ArqK1NzDFDn9Q2r3P1jOpKyxuSLlk4uDwGZv7</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.myexception.cn/other/1847324.html">http://www.myexception.cn/other/1847324.html</a>   海蜘蛛软路由</li>
+<li><a target="_blank" rel="noopener" href="http://www.cygwin.com/">http://www.cygwin.com/</a> cygwin是windows平台上的posix系统模拟环境</li>
+<li><a target="_blank" rel="noopener" href="http://redisdoc.com/">http://redisdoc.com/</a>  redis命令</li>
+<li><a target="_blank" rel="noopener" href="https://redisdesktop.com/download">https://redisdesktop.com/download</a> redis可视化管理工具</li>
+<li><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/">http://www.w3school.com.cn/</a>  w3school教程</li>
+<li><a target="_blank" rel="noopener" href="http://summernote.org/">http://summernote.org/</a>   summernote富文本</li>
+<li><a target="_blank" rel="noopener" href="http://www.open-open.com/">http://www.open-open.com</a>  open开放技术网站</li>
+<li><a target="_blank" rel="noopener" href="http://www.oschina.net/">http://www.oschina.net/</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.csdn.net/">http://www.csdn.net</a></li>
+<li><a target="_blank" rel="noopener" href="http://vdisk.weibo.com/s/sUdlABIlyjroS">http://vdisk.weibo.com/s/sUdlABIlyjroS</a> 新浪书籍网址</li>
+<li><a target="_blank" rel="noopener" href="http://tool.oschina.net/apidocs/">http://tool.oschina.net/apidocs/</a>  在线api文档</li>
+<li><a target="_blank" rel="noopener" href="https://www.processon.com/diagrams">https://www.processon.com/diagrams</a>   在线画图工具ProcessOn</li>
+<li><a target="_blank" rel="noopener" href="http://madmin.swlabs.co/">http://madmin.swlabs.co/</a> bootstrap后台模板        </li>
+<li><a target="_blank" rel="noopener" href="http://issues.wenzhixin.net.cn/bootstrap-table/">http://issues.wenzhixin.net.cn/bootstrap-table/</a>  boostrap table参考    </li>
+<li><a target="_blank" rel="noopener" href="http://issues.wenzhixin.net.cn/bootstrap-table/#methods/scrollTo.html">http://issues.wenzhixin.net.cn/bootstrap-table/#methods/scrollTo.html</a>  boostrap 固定表头的tabl   </li>
+<li><a target="_blank" rel="noopener" href="http://www.runoob.com/try/demo_source/bootstrap-glyph-customization.htm">http://www.runoob.com/try/demo_source/bootstrap-glyph-customization.htm</a>  bootstrap的icon图标</li>
+<li><a target="_blank" rel="noopener" href="http://repo.spring.io/release/org/springframework/spring/">http://repo.spring.io/release/org/springframework/spring/</a> spring官网 jar包下载</li>
+<li><a target="_blank" rel="noopener" href="http://www.gooseeker.com/cn/node/">http://www.gooseeker.com/cn/node/</a>  搜客  开源网络爬虫</li>
+<li><a target="_blank" rel="noopener" href="https://curl.haxx.se/download.html">https://curl.haxx.se/download.html</a>  curl 工具下载 安装前先安装  <a target="_blank" rel="noopener" href="http://slproweb.com/products/Win32OpenSSL.html">http://slproweb.com/products/Win32OpenSSL.html</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.mongovue.com/">http://www.mongovue.com/</a>  mongodb 可视化工具 mongovue 下载</li>
+<li><a target="_blank" rel="noopener" href="https://www.mongodb.org/dl/win32">https://www.mongodb.org/dl/win32</a>  mongodb软件下载</li>
+<li><a target="_blank" rel="noopener" href="https://www.mongodb.com/">https://www.mongodb.com</a>  mongodb 下载</li>
+<li><a target="_blank" rel="noopener" href="https://archive.apache.org/dist/maven/maven-3/">https://archive.apache.org/dist/maven/maven-3/</a> 各种版本maven下载</li>
+<li><a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a>  maven 官网，下载地址， 里面有maven对应的jdk版本</li>
+<li><a target="_blank" rel="noopener" href="http://www.boyunjian.com/">http://www.boyunjian.com/</a>  拔云剑   源码网站  </li>
+<li><a target="_blank" rel="noopener" href="http://www.21cto.com/">http://www.21cto.com/</a>  21CTO社区</li>
+<li><a target="_blank" rel="noopener" href="http://36kr.com/">http://36kr.com/</a> 创业者咨询</li>
+<li><a target="_blank" rel="noopener" href="http://36kr.com/p/5045631.html">http://36kr.com/p/5045631.html</a>  产品经理」和「功能经理」的区别</li>
+<li><a target="_blank" rel="noopener" href="http://www.jikexueyuan.com/">http://www.jikexueyuan.com/</a>      极客学习网站</li>
+<li><a target="_blank" rel="noopener" href="http://maven.oschina.net/">http://maven.oschina.net</a>  开源中国Maven库</li>
+<li><a target="_blank" rel="noopener" href="http://note.youdao.com/">http://note.youdao.com/</a>  有道云笔记</li>
+<li><a target="_blank" rel="noopener" href="http://www.open-open.com/">http://www.open-open.com</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jiagoushuo.com/">http://www.jiagoushuo.com/</a>  架构说</li>
+<li><a target="_blank" rel="noopener" href="http://www.hx95.com/">http://www.hx95.com/</a>   黑客网站</li>
+<li><a target="_blank" rel="noopener" href="http://abbr.dict.cn/Statistics/Stats">http://abbr.dict.cn/Statistics/Stats</a>  英文简称网站</li>
+<li><a target="_blank" rel="noopener" href="http://bbs.9ria.com/thread-44875-1-1.html">http://bbs.9ria.com/thread-44875-1-1.html</a>   flex学习</li>
+<li><a target="_blank" rel="noopener" href="http://www.cn-java.com/www1/?action-login">http://www.cn-java.com/www1/?action-login</a> java学习：中文java技术网</li>
+<li><a target="_blank" rel="noopener" href="http://www.docin.com/list.html">http://www.docin.com/list.html</a>  豆丁学习</li>
+<li><a target="_blank" rel="noopener" href="http://home.51cto.com/index.php?s=/space/5084129">http://home.51cto.com/index.php?s=/space/5084129</a>  51CTO首页</li>
+<li><a target="_blank" rel="noopener" href="http://ishare.iask.sina.com.cn/download/explain.php?fileid=22242016">http://ishare.iask.sina.com.cn/download/explain.php?fileid=22242016</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.56.com/u74/v_ODM2MDUxNjc.html">http://www.56.com/u74/v_ODM2MDUxNjc.html</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cn-java.com/www1/struts.php">http://www.cn-java.com/www1/struts.php</a>   中文Java技术网</li>
+<li><a target="_blank" rel="noopener" href="http://115.com/">http://115.com/</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.apache.org/dist/httpd/binaries/win32/">http://www.apache.org/dist/httpd/binaries/win32/</a>  apache  下载地址</li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/">www.cnblogs.com</a>    博客园</li>
+<li><a target="_blank" rel="noopener" href="http://engineeredweb.com/blog/09/12/preloading-images-jquery-and-javascript/">http://engineeredweb.com/blog/09/12/preloading-images-jquery-and-javascript/</a> jquery 国外网址</li>
+<li><a target="_blank" rel="noopener" href="https://code.google.com/">https://code.google.com</a>              google代码集</li>
+<li><a target="_blank" rel="noopener" href="http://www.2cto.com/">http://www.2cto.com</a></li>
+<li><a target="_blank" rel="noopener" href="http://struts.apache.org/release/2.0.x/index.html">http://struts.apache.org/release/2.0.x/index.html</a>   struts2 官网</li>
+<li><a target="_blank" rel="noopener" href="http://www.linuxidc.com/">http://www.linuxidc.com</a></li>
+<li><a href="https://github.com/jobbole/awesome-python-cn">https://github.com/jobbole/awesome-python-cn</a>  python 学习汇总网站</li>
+</ul>
+<h2 id="资源库"><a href="#资源库" class="headerlink" title="资源库"></a>资源库</h2><ol>
+<li>无敌全能综合导航站</li>
+</ol>
+<ul>
+<li>虫部落（聚合搜索平台）<br><a target="_blank" rel="noopener" href="https://search.chongbuluo.com/">https://search.chongbuluo.com</a></li>
+<li>科塔学术（专业学术导航）<br><a target="_blank" rel="noopener" href="https://site.sciping.com/">https://site.sciping.com</a></li>
+<li>码力全开（设计资源导航）<br><a target="_blank" rel="noopener" href="https://design.maliquankai.com/">https://design.maliquankai.com</a></li>
+<li>SeeSeed（设计资源导航2）<br><a target="_blank" rel="noopener" href="https://www.seeseed.com/">https://www.seeseed.com</a></li>
+<li>书享家（电子书资源导航）<br><a target="_blank" rel="noopener" href="http://shuxiangjia.cn/">http://shuxiangjia.cn</a></li>
+<li>HiPPTer（PPT资源导航）<br><a target="_blank" rel="noopener" href="https://www.hippter.com/">https://www.hippter.com</a></li>
+</ul>
+<ol start="2">
+<li>学习资源</li>
+</ol>
+<ul>
+<li>哔哩哔哩（直接吹爆）<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/">https://www.bilibili.com</a></li>
+<li>第一教程网（课程学习资源）<br><a target="_blank" rel="noopener" href="https://www.diyijc.com/">https://www.diyijc.com</a></li>
+<li>北大教材（精品学习教材）<br><a target="_blank" rel="noopener" href="https://pup6.yunzhan365.com/bookcase/jmyr/index.html">https://pup6.yunzhan365.com/bookcase/jmyr/index.html</a></li>
+<li>考试酷（百万题库网站）<br><a target="_blank" rel="noopener" href="https://www.examcoo.com/index/ku">https://www.examcoo.com/index/ku</a></li>
+<li>外语慕课平台（外语学习好渠道）<br><a target="_blank" rel="noopener" href="https://moocs.unipus.cn/">https://moocs.unipus.cn</a></li>
+</ul>
+<ol start="3">
+<li>图片视频资源</li>
+</ol>
+<ul>
+<li>Wallhaven（宝藏壁纸网站）<br><a target="_blank" rel="noopener" href="https://wallhaven.cc/">https://wallhaven.cc</a></li>
+<li>Unsplash（优质图片资源）<br><a target="_blank" rel="noopener" href="https://unsplash.com/">https://unsplash.com</a></li>
+<li>Videvo（精品视频图片资源）<br><a target="_blank" rel="noopener" href="https://www.videvo.net/">https://www.videvo.net</a></li>
+<li>Pixabay（图片视频音频图形插画）<br><a target="_blank" rel="noopener" href="https://pixabay.com/">https://pixabay.com</a></li>
+<li>Pexels（老牌图库网站）<br><a target="_blank" rel="noopener" href="https://www.pexels.com/zh-cn">https://www.pexels.com/zh-cn</a></li>
+</ul>
+<ol start="4">
+<li>稀缺宝藏资源</li>
+</ol>
+<ul>
+<li>千米游戏（全是爷青回游戏）<br><a target="_blank" rel="noopener" href="https://www.yikm.net/">https://www.yikm.net</a></li>
+<li>AirPano（云旅游-巨爽）<br><a target="_blank" rel="noopener" href="https://www.airpano.org.cn/">https://www.airpano.org.cn</a></li>
+<li>Upanso（优质度盘搜索）<br><a target="_blank" rel="noopener" href="https://upanso.com/">https://upanso.com</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://github.com/nydia/nydia.github.io">nydia</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/nydia/nydia.github.io/2022/10/01/tech-tools/README/">https://github.com/nydia/nydia.github.io/2022/10/01/tech-tools/README/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/nydia/nydia.github.io/tags/%E5%B7%A5%E5%85%B7/">工具</a></div><div class="post_share"><div class="social-share" data-image="http://qn.images.lhqmm.com/wikis/tools-logo.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/nydia/nydia.github.io/2022/10/01/interview/README/"><img class="prev-cover" src="http://qn.images.lhqmm.com/wikis/%E9%9D%A2%E8%AF%95.png" onerror="onerror=null;src='/nydia/nydia.github.io/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">题库</div></div></a></div><div class="next-post pull-right"><a href="/nydia/nydia.github.io/2022/10/01/books/architect/README/"><img class="next-cover" src="http://qn.images.lhqmm.com/wikis/book.png" onerror="onerror=null;src='/nydia/nydia.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">架构师书单</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">nydia</div><div class="author-info__description">开源，协作，共享，进步</div></div><div class="card-info-data site-data is-center"><a href="/nydia/nydia.github.io/archives/"><div class="headline">Articles</div><div class="length-num">50</div></a><a href="/nydia/nydia.github.io/tags/"><div class="headline">Tags</div><div class="length-num">49</div></a><a href="/nydia/nydia.github.io/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><a id="card-info-btn" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">常用技术工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%9C%A8%E7%BA%BF%E6%8A%80%E6%9C%AF%E5%B7%A5%E5%85%B7"><span class="toc-number">2.</span> <span class="toc-text">常用在线技术工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF%E7%BD%91%E5%9D%80"><span class="toc-number">2.1.</span> <span class="toc-text">常用技术网址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%BA%93"><span class="toc-number">2.2.</span> <span class="toc-text">资源库</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/hello-world/" title="Hello World"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/hello-world/" title="Hello World">Hello World</a><time datetime="2022-10-01T15:10:34.170Z" title="Created 2022-10-01 23:10:34">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/flutter/flutter/" title="Flutter"><img src="http://qn.images.lhqmm.com/wikis/flutter.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="Flutter"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/flutter/flutter/" title="Flutter">Flutter</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/index/index/" title="目录"><img src="http://qn.images.lhqmm.com/wikis/list.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="目录"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/index/index/" title="目录">目录</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/interview/README/" title="题库"><img src="http://qn.images.lhqmm.com/wikis/%E9%9D%A2%E8%AF%95.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="题库"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/interview/README/" title="题库">题库</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/nydia/nydia.github.io/2022/10/01/tech-tools/README/" title="工具"><img src="http://qn.images.lhqmm.com/wikis/tools-logo.png" onerror="this.onerror=null;this.src='/nydia/nydia.github.io/img/404.jpg'" alt="工具"/></a><div class="content"><a class="title" href="/nydia/nydia.github.io/2022/10/01/tech-tools/README/" title="工具">工具</a><time datetime="2022-10-01T09:52:56.000Z" title="Created 2022-10-01 17:52:56">2022-10-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By nydia</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/nydia/nydia.github.io/js/utils.js"></script><script src="/nydia/nydia.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/nydia/nydia.github.io/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
