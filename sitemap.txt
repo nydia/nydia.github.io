@@ -47,7 +47,6 @@ https://nydia.github.io/2022/10/01/rocketmq-docs/cn/dledger/quick_start/
 https://nydia.github.io/2022/10/01/rocketmq-docs/cn/dledger/deploy_guide/
 https://nydia.github.io/2022/10/01/rocketmq-docs/cn/client/java/API_Reference_DefaultMQProducer/
 https://nydia.github.io/2022/10/01/rocketmq-docs/cn/acl/user_guide/
-https://nydia.github.io/2022/10/01/hello-world/
 https://nydia.github.io/
 https://nydia.github.io/tags/Flutter/
 https://nydia.github.io/tags/%E5%B8%B8%E7%94%A8%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/
