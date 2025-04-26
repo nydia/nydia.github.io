@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nydia.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="The system configurationThis section focuses on the configuration of the system (JVM&#x2F;OS) 1 JVM OptionsThe latest released version of JDK 1.8 is recommended. Set the same Xms and Xmx value to prev">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The system configuration">
+<meta property="og:url" content="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Configuration_System/index.html">
+<meta property="og:site_name" content="Talk is cheap,show me the code">
+<meta property="og:description" content="The system configurationThis section focuses on the configuration of the system (JVM&#x2F;OS) 1 JVM OptionsThe latest released version of JDK 1.8 is recommended. Set the same Xms and Xmx value to prev">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
+<meta property="article:modified_time" content="2025-04-20T06:53:17.099Z">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="The system configuration">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Configuration_System/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>The system configuration | Talk is cheap,show me the code</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Talk is cheap,show me the code" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Talk is cheap,show me the code</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">开源，协作，共享，进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Configuration_System/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          The system configuration
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="The-system-configuration"><a href="#The-system-configuration" class="headerlink" title="The system configuration"></a>The system configuration</h1><p>This section focuses on the configuration of the system (JVM&#x2F;OS)</p>
+<h2 id="1-JVM-Options"><a href="#1-JVM-Options" class="headerlink" title="1 JVM Options"></a><strong>1 JVM Options</strong></h2><p>The latest released version of JDK 1.8 is recommended. Set the same Xms and Xmx value to prevent the JVM from resizing the heap for better performance. A simple JVM configuration is as follows:</p>
+<pre><code>-server -Xms8g -Xmx8g -Xmn4g
+</code></pre>
+<p>Direct ByteBuffer memory size setting. Full GC will be triggered when the Direct ByteBuffer up to the specified size:</p>
+<pre><code>-XX:MaxDirectMemorySize=15g
+</code></pre>
+<p>If you don’t care about the boot time of RocketMQ broker, pre-touch the Java heap to make sure that every page will be allocated during JVM initialization is a better choice. Those who don’t care about the boot time can enable it:</p>
+<pre><code>-XX:+AlwaysPreTouch
+</code></pre>
+<p>Disable biased locking maybe reduce JVM pauses:</p>
+<pre><code>-XX:-UseBiasedLocking
+</code></pre>
+<p>As for garbage collection, G1 collector with JDK 1.8 is recommended:</p>
+<pre><code>-XX:+UseG1GC -XX:G1HeapRegionSize=16m 
+-XX:G1ReservePercent=25
+-XX:InitiatingHeapOccupancyPercent=30
+</code></pre>
+<p>These GC options looks a little aggressive, but it’s proved to have good performance in our production environment</p>
+<p>Don’t set a too small value for -XX:MaxGCPauseMillis, otherwise JVM will use a small young generation to achieve this goal which will cause very frequent minor GC.So use rolling GC log file is recommended:</p>
+<pre><code>-XX:+UseGCLogFileRotation 
+-XX:NumberOfGCLogFiles=5 
+-XX:GCLogFileSize=30m
+</code></pre>
+<p>If write GC file will increase latency of broker, consider redirect GC log file to a memory file system:</p>
+<pre><code>-Xloggc:/dev/shm/mq_gc_%p.log123
+</code></pre>
+<h2 id="2-Linux-Kernel-Parameters"><a href="#2-Linux-Kernel-Parameters" class="headerlink" title="2 Linux Kernel Parameters"></a>2 Linux Kernel Parameters</h2><p>There is a os.sh script that lists a lot of kernel parameters in folder bin which can be used for production use with minor changes. Below parameters need attention, and more details please refer to documentation for &#x2F;proc&#x2F;sys&#x2F;vm&#x2F;*.</p>
+<ul>
+<li><p><strong>vm.extra_free_kbytes</strong>, tells the VM to keep extra free memory between the threshold where background reclaim (kswapd) kicks in, and the threshold where direct reclaim (by allocating processes) kicks in. RocketMQ uses this parameter to avoid high latency in memory allocation. (It is specific to the kernel version）</p>
+</li>
+<li><p><strong>vm.min_free_kbytes</strong>, if you set this to lower than 1024KB, your system will become subtly broken, and prone to deadlock under high loads.</p>
+</li>
+<li><p><strong>vm.max_map_count</strong>, limits the maximum number of memory map areas a process may have. RocketMQ will use mmap to load CommitLog and ConsumeQueue, so set a bigger value for this parameter is recommended.</p>
+</li>
+<li><p><strong>vm.swappiness</strong>, define how aggressive the kernel will swap memory pages. Higher values will increase agressiveness, lower values decrease the amount of swap. 10 is recommended for this value to avoid swap latency.</p>
+</li>
+<li><p><strong>File descriptor limits</strong>, RocketMQ needs open file descriptors for files(CommitLog and ConsumeQueue) and network connections. We recommend setting  655350 for file descriptors.</p>
+</li>
+<li><p><strong>Disk scheduler</strong>, the deadline I&#x2F;O scheduler is recommended for RocketMQ, which attempts to provide a guaranteed latency for requests.</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/The-system-configuration/" rel="tag"># The system configuration</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/en/Configuration_Client/" rel="prev" title="Client Configuration">
+      <i class="fa fa-chevron-left"></i> Client Configuration
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/cn/acl/user_guide/" rel="next" title="权限控制">
+      权限控制 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#The-system-configuration"><span class="nav-number">1.</span> <span class="nav-text">The system configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JVM-Options"><span class="nav-number">1.1.</span> <span class="nav-text">1 JVM Options</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Linux-Kernel-Parameters"><span class="nav-number">1.2.</span> <span class="nav-text">2 Linux Kernel Parameters</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nydia</p>
+  <div class="site-description" itemprop="description">开源，协作，共享，进步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nydia</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

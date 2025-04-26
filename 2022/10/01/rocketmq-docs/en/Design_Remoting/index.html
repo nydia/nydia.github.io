@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nydia.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="RocketMQ message queue cluster mainly includes four roles: NameServer, Broker (Master&#x2F;Slave), Producer and Consumer. The basic communication process is as follows:(1) After Broker start-up, it ne">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RocketMQ message">
+<meta property="og:url" content="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Design_Remoting/index.html">
+<meta property="og:site_name" content="Talk is cheap,show me the code">
+<meta property="og:description" content="RocketMQ message queue cluster mainly includes four roles: NameServer, Broker (Master&#x2F;Slave), Producer and Consumer. The basic communication process is as follows:(1) After Broker start-up, it ne">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_3.png">
+<meta property="og:image" content="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_4.png">
+<meta property="og:image" content="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_5.png">
+<meta property="og:image" content="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_6.png">
+<meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
+<meta property="article:modified_time" content="2025-04-20T06:53:17.100Z">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="RocketMQ message">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_3.png">
+
+<link rel="canonical" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Design_Remoting/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>RocketMQ message | Talk is cheap,show me the code</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Talk is cheap,show me the code" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Talk is cheap,show me the code</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">开源，协作，共享，进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Design_Remoting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RocketMQ message
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>RocketMQ message queue cluster mainly includes four roles: NameServer, Broker (Master&#x2F;Slave), Producer and Consumer. The basic communication process is as follows:<br>(1) After Broker start-up, it needs to complete one operation: register itself to NameServer, and then report Topic routing information to NameServer at regular intervals of 30 seconds.<br>(2) When message Producer sends a message as a client, it needs to obtain routing information from the local cache TopicPublishInfoTable according to the Topic of the message. If not, it will be retrieved from NameServer and update to local cache, at the same time, Producer will retrieve routing information from NameServer every 30 seconds by default.<br>(3) Message Producer chooses a queue to send the message according to the routing information obtained in 2); Broker receives the message and records it in disk as the receiver of the message.<br>(4) After message Consumer gets the routing information according to 2) and complete the load balancing of the client, then select one or several message queues to pull messages and consume them.</p>
+<p>From 1) ~ 3) above, we can see that both Producer, Broker and NameServer communicate with each other(only part of MQ communication is mentioned here), so how to design a good network communication module is very important in MQ. It will determine the overall messaging capability and final performance of the RocketMQ cluster.</p>
+<p>rocketmq-remoting module is the module responsible for network communication in RocketMQ message queue. It is relied on and referenced by almost all other modules (such as rocketmq-client,rocketmq-broker,rocketmq-namesrv) that need network communication. In order to realize the efficient data request and reception between the client and the server, the RocketMQ message queue defines the communication protocol and extends the communication module on the basis of Netty.</p>
+<h3 id="1-Remoting-Communication-Class-Structure"><a href="#1-Remoting-Communication-Class-Structure" class="headerlink" title="1 Remoting Communication Class Structure"></a>1 Remoting Communication Class Structure</h3><p><img src="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_3.png"></p>
+<h3 id="2-Protocol-Design-and-Code"><a href="#2-Protocol-Design-and-Code" class="headerlink" title="2 Protocol Design and Code"></a>2 Protocol Design and Code</h3><p>When a message is sent between Client and Server, a protocol convention is needed for the message sent, so it is necessary to customize the message protocol of RocketMQ. At the same time, in order to efficiently transmit messages and read the received messages, it is necessary to encode and decode the messages. In RocketMQ, the RemotingCommand class encapsulates all data content in the process of message transmission, which includes not only all data structures, but also encoding and decoding operations.</p>
+<table>
+<thead>
+<tr>
+<th>Header field</th>
+<th>Type</th>
+<th>Request desc</th>
+<th>Response desc</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>int</td>
+<td>Request  code. answering business processing is different according to different requests code</td>
+<td>Response code. 0 means success, and non-zero means errors.</td>
+</tr>
+<tr>
+<td>language</td>
+<td>LanguageCode</td>
+<td>Language implemented by the requester</td>
+<td>Language implemented by the responder</td>
+</tr>
+<tr>
+<td>version</td>
+<td>int</td>
+<td>Version of Request Equation</td>
+<td>Version of Response Equation</td>
+</tr>
+<tr>
+<td>opaque</td>
+<td>int</td>
+<td>Equivalent to reqeustId, the different request identification codes on the same connection correspond to those in the response message</td>
+<td>The response returns directly without modification</td>
+</tr>
+<tr>
+<td>flag</td>
+<td>int</td>
+<td>Sign, used to distinguish between ordinary RPC or oneway RPC</td>
+<td>Sign, used to distinguish between ordinary RPC or oneway RPC</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>String</td>
+<td>Transfer custom text information</td>
+<td>Transfer custom text information</td>
+</tr>
+<tr>
+<td>extFields</td>
+<td>HashMap&lt;String, String&gt;</td>
+<td>Request custom extension information</td>
+<td>Response custom extension information</td>
+</tr>
+<tr>
+<td><img src="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_4.png"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>From the above figure, the transport content can be divided into four parts:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p> (1) Message length: total length, four bytes of storage, occupying an int type; </p>
+<p>(2) Serialization type header length: occupying an int type. The first byte represents the serialization type, and the last three bytes represent the header length；</p>
+<p>(3) Header data: serialized header data;</p>
+<p>(4) Message body data: binary byte data content of message body;</p>
+<h3 id="3-Message-Communication-Mode-and-Procedure"><a href="#3-Message-Communication-Mode-and-Procedure" class="headerlink" title="3 Message Communication Mode and Procedure"></a>3 Message Communication Mode and Procedure</h3><p>There are three main ways to support communication in RocketMQ message queue: synchronous (sync), asynchronous (async), one-way (oneway). The “one-way” communication mode is relatively simple and is generally used in sending heartbeat packets without paying attention to its Response. Here, mainly introduce the asynchronous communication flow of RocketMQ.<br><img src="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_5.png"></p>
+<h3 id="4-Reactor-Multithread-Design"><a href="#4-Reactor-Multithread-Design" class="headerlink" title="4 Reactor Multithread Design"></a>4 Reactor Multithread Design</h3><p>The RPC communication of RocketMQ uses Netty component as the underlying communication library, and also follows the Reactor multithread model. At the same time, some extensions and optimizations are made on it.<br><img src="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_6.png"><br>Above block diagram can roughly understand the Reactor multi-thread model of NettyRemotingServer in RocketMQ. A Reactor main thread (eventLoopGroupBoss, is 1 above) is responsible for listening to TCP network connection requests, establishing connections, creating SocketChannel, and registering on selector. The source code of RocketMQ automatically selects NIO and Epoll according to the type of OS. Then listen to real network data. After you get the network data, you throw it to the Worker thread pool (eventLoopGroupSelector, is the “N” above, the default is 3 in the source code). You need to do SSL verification, codec, idle check, network connection management before you really execute the business logic. These tasks to defaultEventExecutorGroup (that is, “M1” above, the default set to 8 in the source code) to do. The processing business operations are executed in the business thread pool. According to the RomotingCommand business request code, the corresponding processor is found in the processorTable local cache variable and encapsulated into the task, and then submitted to the corresponding business processor processing thread pool for execution (sendMessageExecutor,). Take sending a message, for example, the “M2” above. The thread pool continues to increase in several steps from entry to business logic, which is related to the complexity of each step. The more complex the thread pool is, the wider the concurrent channel is required.</p>
+<table>
+<thead>
+<tr>
+<th>Number of thread</th>
+<th>Name of thread</th>
+<th>Desc of thread</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>NettyBoss_%d</td>
+<td>Reactor Main thread</td>
+</tr>
+<tr>
+<td>N</td>
+<td>NettyServerEPOLLSelector_%d_%d</td>
+<td>Reactor thread pool</td>
+</tr>
+<tr>
+<td>M1</td>
+<td>NettyServerCodecThread_%d</td>
+<td>Worker thread pool</td>
+</tr>
+<tr>
+<td>M2</td>
+<td>RemotingExecutorThread_%d</td>
+<td>bussiness processor thread pool</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/RocketMQ-message/" rel="tag"># RocketMQ message</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/en/Design_Store/" rel="prev" title="Message Storage">
+      <i class="fa fa-chevron-left"></i> Message Storage
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/en/Design_LoadBlancing/" rel="next" title="Load Balancing">
+      Load Balancing <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Remoting-Communication-Class-Structure"><span class="nav-number">1.</span> <span class="nav-text">1 Remoting Communication Class Structure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Protocol-Design-and-Code"><span class="nav-number">2.</span> <span class="nav-text">2 Protocol Design and Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Message-Communication-Mode-and-Procedure"><span class="nav-number">3.</span> <span class="nav-text">3 Message Communication Mode and Procedure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Reactor-Multithread-Design"><span class="nav-number">4.</span> <span class="nav-text">4 Reactor Multithread Design</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nydia</p>
+  <div class="site-description" itemprop="description">开源，协作，共享，进步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nydia</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

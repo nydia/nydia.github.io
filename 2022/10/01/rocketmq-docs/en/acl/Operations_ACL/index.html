@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nydia.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Access control listOverviewThis document focuses on how to quickly deploy and use a RocketMQ cluster that supports the privilege control feature. 1. Access control featuresAccess Control (ACL) mainly">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Access control list">
+<meta property="og:url" content="https://nydia.github.io/2022/10/01/rocketmq-docs/en/acl/Operations_ACL/index.html">
+<meta property="og:site_name" content="Talk is cheap,show me the code">
+<meta property="og:description" content="Access control listOverviewThis document focuses on how to quickly deploy and use a RocketMQ cluster that supports the privilege control feature. 1. Access control featuresAccess Control (ACL) mainly">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
+<meta property="article:modified_time" content="2025-04-20T06:53:17.101Z">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="Access control list">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/acl/Operations_ACL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Access control list | Talk is cheap,show me the code</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Talk is cheap,show me the code" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Talk is cheap,show me the code</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">开源，协作，共享，进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/acl/Operations_ACL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Access control list
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Access-control-list"><a href="#Access-control-list" class="headerlink" title="Access control list"></a>Access control list</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>This document focuses on how to quickly deploy and use a RocketMQ cluster that supports the privilege control feature.</p>
+<h2 id="1-Access-control-features"><a href="#1-Access-control-features" class="headerlink" title="1. Access control features"></a>1. Access control features</h2><p>Access Control (ACL) mainly provides Topic resource level user access control for RocketMQ.If you want to enable RocketMQ permission control, you can inject the AccessKey and SecretKey signatures through the RPCHook on the Client side.And then, the corresponding permission control attributes (including Topic access rights, IP whitelist and AccessKey and SecretKey signature) are set in the configuration file of distribution&#x2F;conf&#x2F;plain_acl.yml.The Broker side will check the permissions owned by the AccessKey, and if the verification fails, an exception is thrown;<br>The source code about ACL on the Client side can be find in <strong>org.apache.rocketmq.example.simple.AclClient.java</strong>  </p>
+<h2 id="2-Access-control-definition-and-attribute-values"><a href="#2-Access-control-definition-and-attribute-values" class="headerlink" title="2. Access control definition and attribute values"></a>2. Access control definition and attribute values</h2><h3 id="2-1-Access-control-definition"><a href="#2-1-Access-control-definition" class="headerlink" title="2.1 Access control definition"></a>2.1 Access control definition</h3><p>The definition of Topic resource access control for RocketMQ is mainly as shown in the following table.</p>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>explanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DENY</td>
+<td>permission deny</td>
+</tr>
+<tr>
+<td>ANY</td>
+<td>PUB or SUB permission</td>
+</tr>
+<tr>
+<td>PUB</td>
+<td>Publishing permission</td>
+</tr>
+<tr>
+<td>SUB</td>
+<td>Subscription permission</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-Main-properties"><a href="#2-2-Main-properties" class="headerlink" title="2.2 Main properties"></a>2.2 Main properties</h3><table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+<th>explanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>globalWhiteRemoteAddresses</td>
+<td>string</td>
+<td>Global IP whitelist,example:<br>*; <br>192.168.*.*; <br>192.168.0.1</td>
+</tr>
+<tr>
+<td>accessKey</td>
+<td>string</td>
+<td>Access Key</td>
+</tr>
+<tr>
+<td>secretKey</td>
+<td>string</td>
+<td>Secret Key</td>
+</tr>
+<tr>
+<td>whiteRemoteAddress</td>
+<td>string</td>
+<td>User IP whitelist,example:<br>*; <br>192.168.*.*; <br>192.168.0.1</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>true;false</td>
+<td>Whether an administrator account</td>
+</tr>
+<tr>
+<td>defaultTopicPerm</td>
+<td>DENY;PUB;SUB;PUB|SUB</td>
+<td>Default Topic permission</td>
+</tr>
+<tr>
+<td>defaultGroupPerm</td>
+<td>DENY;PUB;SUB;PUB|SUB</td>
+<td>Default ConsumerGroup permission</td>
+</tr>
+<tr>
+<td>topicPerms</td>
+<td>topic&#x3D;permission</td>
+<td>Topic only permission</td>
+</tr>
+<tr>
+<td>groupPerms</td>
+<td>group&#x3D;permission</td>
+<td>ConsumerGroup only permission</td>
+</tr>
+</tbody></table>
+<p>For details, please refer to the <strong>distribution&#x2F;conf&#x2F;plain_acl.yml</strong> configuration file.</p>
+<h2 id="3-Cluster-deployment-with-permission-control"><a href="#3-Cluster-deployment-with-permission-control" class="headerlink" title="3. Cluster deployment with permission control"></a>3. Cluster deployment with permission control</h2><p>After defining the permission attribute in the <strong>distribution&#x2F;conf&#x2F;plain_acl.yml</strong> configuration file as described above, open the <strong>aclEnable</strong> switch variable to enable the ACL feature of the RocketMQ cluster.The configuration file of the ACL feature enabled on the broker is as follows:</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">brokerClusterName</span>=<span class="string">DefaultCluster</span></span><br><span class="line"><span class="attr">brokerName</span>=<span class="string">broker-a</span></span><br><span class="line"><span class="attr">brokerId</span>=<span class="string">0</span></span><br><span class="line"><span class="attr">deleteWhen</span>=<span class="string">04</span></span><br><span class="line"><span class="attr">fileReservedTime</span>=<span class="string">48</span></span><br><span class="line"><span class="attr">brokerRole</span>=<span class="string">ASYNC_MASTER</span></span><br><span class="line"><span class="attr">flushDiskType</span>=<span class="string">ASYNC_FLUSH</span></span><br><span class="line"><span class="attr">storePathRootDir</span>=<span class="string">/data/rocketmq/rootdir-a-m</span></span><br><span class="line"><span class="attr">storePathCommitLog</span>=<span class="string">/data/rocketmq/commitlog-a-m</span></span><br><span class="line"><span class="attr">autoCreateSubscriptionGroup</span>=<span class="string">true</span></span><br><span class="line"><span class="comment">## if acl is open,the flag will be true</span></span><br><span class="line"><span class="attr">aclEnable</span>=<span class="string">true</span></span><br><span class="line"><span class="attr">listenPort</span>=<span class="string">10911</span></span><br><span class="line"><span class="attr">brokerIP1</span>=<span class="string">XX.XX.XX.XX1</span></span><br><span class="line"><span class="attr">namesrvAddr</span>=<span class="string">XX.XX.XX.XX:9876</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-Main-process-of-access-control"><a href="#4-Main-process-of-access-control" class="headerlink" title="4. Main process of access control"></a>4. Main process of access control</h2><p>The main ACL process is divided into two parts, including privilege resolution and privilege check.</p>
+<h3 id="4-1-Privilege-resolution"><a href="#4-1-Privilege-resolution" class="headerlink" title="4.1 Privilege resolution"></a>4.1 Privilege resolution</h3><p>The Broker side parses the client’s RequestCommand request and obtains the attribute field that needs to be authenticated.<br>main attributes:<br> (1) AccessKey:Similar to the user name, on behalf of the user entity, the permission data corresponds to it;<br> (2) Signature:The client obtains the string according to the signature of the SecretKey, and the server uses the SecretKey to perform signature verification.</p>
+<h3 id="4-2-Privilege-check"><a href="#4-2-Privilege-check" class="headerlink" title="4.2 Privilege check"></a>4.2 Privilege check</h3><p>The check logic of the right side of the broker is mainly divided into the following steps:<br> (1) Check if the global IP whitelist is hit; if yes, the check passes; otherwise, go to step (2);<br> (2) Check if the user IP whitelist is hit; if yes, the check passes; otherwise, go to step (3);<br> (3) Check the signature, if the verification fails, throw an exception; if the verification passes, go to step (4);<br> (4) Check the permissions required by the user request and the permissions owned by the user; if not, throw an exception;  </p>
+<p>The verification of the required permissions of the user requires attention to the following points:<br> (1) Special requests such as UPDATE_AND_CREATE_TOPIC can only be operated by the admin account;<br> (2) For a resource, if there is explicit configuration permission, the configured permission is used; if there is no explicit configuration permission, the default permission is adopted;</p>
+<h2 id="5-Hot-loading-modified-Access-control"><a href="#5-Hot-loading-modified-Access-control" class="headerlink" title="5. Hot loading modified Access control"></a>5. Hot loading modified Access control</h2><p>The default implementation of RocketrMQ’s permission control store is based on the yml configuration file. Users can dynamically modify the properties defined by the permission control without restarting the Broker service node.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Access-control-list/" rel="tag"># Access control list</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/cn/client/java/API_Reference_DefaultMQProducer/" rel="prev" title="DefaultMQProducer">
+      <i class="fa fa-chevron-left"></i> DefaultMQProducer
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/cn/dledger/quick_start/" rel="next" title="Dledger快速搭建">
+      Dledger快速搭建 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Access-control-list"><span class="nav-number">1.</span> <span class="nav-text">Access control list</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Access-control-features"><span class="nav-number">1.2.</span> <span class="nav-text">1. Access control features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Access-control-definition-and-attribute-values"><span class="nav-number">1.3.</span> <span class="nav-text">2. Access control definition and attribute values</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Access-control-definition"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 Access control definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Main-properties"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2 Main properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Cluster-deployment-with-permission-control"><span class="nav-number">1.4.</span> <span class="nav-text">3. Cluster deployment with permission control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Main-process-of-access-control"><span class="nav-number">1.5.</span> <span class="nav-text">4. Main process of access control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Privilege-resolution"><span class="nav-number">1.5.1.</span> <span class="nav-text">4.1 Privilege resolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Privilege-check"><span class="nav-number">1.5.2.</span> <span class="nav-text">4.2 Privilege check</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Hot-loading-modified-Access-control"><span class="nav-number">1.6.</span> <span class="nav-text">5. Hot loading modified Access control</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nydia</p>
+  <div class="site-description" itemprop="description">开源，协作，共享，进步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nydia</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

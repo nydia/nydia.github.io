@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nydia.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Example for Ordered MessagesRocketMQ provides ordered messages using FIFO order. All related messages need to be sent into the same message queue in an orderly manner. The following demonstrates order">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Example for Ordered Messages">
+<meta property="og:url" content="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Example_Orderly/index.html">
+<meta property="og:site_name" content="Talk is cheap,show me the code">
+<meta property="og:description" content="Example for Ordered MessagesRocketMQ provides ordered messages using FIFO order. All related messages need to be sent into the same message queue in an orderly manner. The following demonstrates order">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
+<meta property="article:modified_time" content="2025-04-20T06:53:17.100Z">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="Example for Ordered Messages">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Example_Orderly/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Example for Ordered Messages | Talk is cheap,show me the code</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Talk is cheap,show me the code" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Talk is cheap,show me the code</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">开源，协作，共享，进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Example_Orderly/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Example for Ordered Messages
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Example-for-Ordered-Messages"><a href="#Example-for-Ordered-Messages" class="headerlink" title="Example for Ordered Messages"></a>Example for Ordered Messages</h1><p>RocketMQ provides ordered messages using FIFO order. All related messages need to be sent into the same message queue in an orderly manner.</p>
+<p>The following demonstrates ordered messages by ensuring order of create, pay, send and finish steps of sales order process.</p>
+<h2 id="1-produce-ordered-messages"><a href="#1-produce-ordered-messages" class="headerlink" title="1 produce ordered messages"></a>1 produce ordered messages</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.apache.rocketmq.example.order2</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.producer.DefaultMQProducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.producer.MessageQueueSelector;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.producer.SendResult;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.common.message.Message;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.common.message.MessageQueue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* ordered messages producer</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Producer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">DefaultMQProducer</span> <span class="variable">producer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultMQProducer</span>(<span class="string">&quot;please_rename_unique_group_name&quot;</span>);</span><br><span class="line">        producer.setNamesrvAddr(<span class="string">&quot;127.0.0.1:9876&quot;</span>);</span><br><span class="line">        producer.start();</span><br><span class="line">        String[] tags = <span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;TagA&quot;</span>, <span class="string">&quot;TagC&quot;</span>, <span class="string">&quot;TagD&quot;</span>&#125;;</span><br><span class="line">        <span class="comment">// sales orders list</span></span><br><span class="line">        List&lt;OrderStep&gt; orderList = <span class="keyword">new</span> <span class="title class_">Producer</span>().buildOrders();</span><br><span class="line"></span><br><span class="line">        <span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">        <span class="type">SimpleDateFormat</span> <span class="variable">sdf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">dateStr</span> <span class="operator">=</span> sdf.format(date);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// generate message timestamp</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">body</span> <span class="operator">=</span> dateStr + <span class="string">&quot; Hello RocketMQ &quot;</span> + orderList.get(i);</span><br><span class="line">            <span class="type">Message</span> <span class="variable">msg</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Message</span>(<span class="string">&quot;TopicTest&quot;</span>, tags[i % tags.length], <span class="string">&quot;KEY&quot;</span> + i, body.getBytes());</span><br><span class="line"></span><br><span class="line">            <span class="type">SendResult</span> <span class="variable">sendResult</span> <span class="operator">=</span> producer.send(msg, <span class="keyword">new</span> <span class="title class_">MessageQueueSelector</span>() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> MessageQueue <span class="title function_">select</span><span class="params">(List&lt;MessageQueue&gt; mqs, Message msg, Object arg)</span> &#123;</span><br><span class="line">                    <span class="type">Long</span> <span class="variable">id</span> <span class="operator">=</span> (Long) arg;  <span class="comment">//message queue is selected by #salesOrderID</span></span><br><span class="line">                    <span class="type">long</span> <span class="variable">index</span> <span class="operator">=</span> id % mqs.size();</span><br><span class="line">                    <span class="keyword">return</span> mqs.get((<span class="type">int</span>) index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, orderList.get(i).getOrderId());</span><br><span class="line"></span><br><span class="line">            System.out.println(String.format(<span class="string">&quot;SendResult status:%s, queueId:%d, body:%s&quot;</span>,</span><br><span class="line">                    sendResult.getSendStatus(),</span><br><span class="line">                    sendResult.getMessageQueue().getQueueId(),</span><br><span class="line">                    body));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        producer.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * each sales order step</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">OrderStep</span> &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">long</span> orderId;</span><br><span class="line">        <span class="keyword">private</span> String desc;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="type">long</span> <span class="title function_">getOrderId</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> orderId;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setOrderId</span><span class="params">(<span class="type">long</span> orderId)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.orderId = orderId;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">getDesc</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> desc;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setDesc</span><span class="params">(String desc)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.desc = desc;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;OrderStep&#123;&quot;</span> +</span><br><span class="line">                    <span class="string">&quot;orderId=&quot;</span> + orderId +</span><br><span class="line">                    <span class="string">&quot;, desc=&#x27;&quot;</span> + desc + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                    <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * to generate ten OrderStep objects for three sales orders:</span></span><br><span class="line"><span class="comment">     *  #SalesOrder &quot;15103111039L&quot;: create, pay, send, finish;</span></span><br><span class="line"><span class="comment">     *  #SalesOrder &quot;15103111065L&quot;: create, pay, finish;</span></span><br><span class="line"><span class="comment">     *  #SalesOrder &quot;15103117235L&quot;: create, pay, finish;</span></span><br><span class="line"><span class="comment">     */</span>    </span><br><span class="line">	<span class="keyword">private</span> List&lt;OrderStep&gt; <span class="title function_">buildOrders</span><span class="params">()</span> &#123;</span><br><span class="line">		</span><br><span class="line">        List&lt;OrderStep&gt; orderList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;OrderStep&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//create sales order with orderid=&quot;15103111039L&quot;</span></span><br><span class="line">        <span class="type">OrderStep</span> <span class="variable">orderDemo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OrderStep</span>();</span><br><span class="line">        orderDemo.setOrderId(<span class="number">15103111039L</span>);</span><br><span class="line">        orderDemo.setDesc(<span class="string">&quot;create&quot;</span>);</span><br><span class="line">        orderList.add(orderDemo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//create sales order with orderid=&quot;15103111065L&quot;</span></span><br><span class="line">        orderDemo = <span class="keyword">new</span> <span class="title class_">OrderStep</span>();</span><br><span class="line">        orderDemo.setOrderId(<span class="number">15103111065L</span>);</span><br><span class="line">        orderDemo.setDesc(<span class="string">&quot;create&quot;</span>);</span><br><span class="line">        orderList.add(orderDemo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//pay sales order #&quot;15103111039L&quot;</span></span><br><span class="line">        orderDemo = <span class="keyword">new</span> <span class="title class_">OrderStep</span>();</span><br><span class="line">        orderDemo.setOrderId(<span class="number">15103111039L</span>);</span><br><span class="line">        orderDemo.setDesc(<span class="string">&quot;pay&quot;</span>);</span><br><span class="line">        orderList.add(orderDemo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//create sales order with orderid=&quot;15103117235L&quot;</span></span><br><span class="line">        orderDemo = <span class="keyword">new</span> <span class="title class_">OrderStep</span>();</span><br><span class="line">        orderDemo.setOrderId(<span class="number">15103117235L</span>);</span><br><span class="line">        orderDemo.setDesc(<span class="string">&quot;create&quot;</span>);</span><br><span class="line">        orderList.add(orderDemo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//pay sales order #&quot;15103111065L&quot;</span></span><br><span class="line">        orderDemo = <span class="keyword">new</span> <span class="title class_">OrderStep</span>();</span><br><span class="line">        orderDemo.setOrderId(<span class="number">15103111065L</span>);</span><br><span class="line">        orderDemo.setDesc(<span class="string">&quot;pay&quot;</span>);</span><br><span class="line">        orderList.add(orderDemo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//pay sales order #&quot;15103117235L&quot;</span></span><br><span class="line">        orderDemo = <span class="keyword">new</span> <span class="title class_">OrderStep</span>();</span><br><span class="line">        orderDemo.setOrderId(<span class="number">15103117235L</span>);</span><br><span class="line">        orderDemo.setDesc(<span class="string">&quot;pay&quot;</span>);</span><br><span class="line">        orderList.add(orderDemo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//mark sales order #&quot;15103111065L&quot; as &quot;finish&quot;</span></span><br><span class="line">        orderDemo = <span class="keyword">new</span> <span class="title class_">OrderStep</span>();</span><br><span class="line">        orderDemo.setOrderId(<span class="number">15103111065L</span>);</span><br><span class="line">        orderDemo.setDesc(<span class="string">&quot;finish&quot;</span>);</span><br><span class="line">        orderList.add(orderDemo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//mark mark sales order #&quot;15103111039L&quot; as &quot;send&quot;</span></span><br><span class="line">        orderDemo = <span class="keyword">new</span> <span class="title class_">OrderStep</span>();</span><br><span class="line">        orderDemo.setOrderId(<span class="number">15103111039L</span>);</span><br><span class="line">        orderDemo.setDesc(<span class="string">&quot;send&quot;</span>);</span><br><span class="line">        orderList.add(orderDemo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">////mark sales order #&quot;15103117235L&quot; as &quot;finish&quot;</span></span><br><span class="line">        orderDemo = <span class="keyword">new</span> <span class="title class_">OrderStep</span>();</span><br><span class="line">        orderDemo.setOrderId(<span class="number">15103117235L</span>);</span><br><span class="line">        orderDemo.setDesc(<span class="string">&quot;finish&quot;</span>);</span><br><span class="line">        orderList.add(orderDemo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//mark sales order #&quot;15103111039L&quot; as &quot;finish&quot;</span></span><br><span class="line">        orderDemo = <span class="keyword">new</span> <span class="title class_">OrderStep</span>();</span><br><span class="line">        orderDemo.setOrderId(<span class="number">15103111039L</span>);</span><br><span class="line">        orderDemo.setDesc(<span class="string">&quot;finish&quot;</span>);</span><br><span class="line">        orderList.add(orderDemo);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> orderList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Consume-ordered-messages"><a href="#2-Consume-ordered-messages" class="headerlink" title="2 Consume ordered messages"></a>2 Consume ordered messages</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> org.apache.rocketmq.example.order2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyContext;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyStatus;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.consumer.listener.MessageListenerOrderly;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.common.consumer.ConsumeFromWhere;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.common.message.MessageExt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * consume messages in order</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerInOrder</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">DefaultMQPushConsumer</span> <span class="variable">consumer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultMQPushConsumer</span>(<span class="string">&quot;please_rename_unique_group_name_3&quot;</span>);</span><br><span class="line">        consumer.setNamesrvAddr(<span class="string">&quot;127.0.0.1:9876&quot;</span>);</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * when the consumer is first run, the start point of message queue where it can get messages will be set.</span></span><br><span class="line"><span class="comment">         * or if it is restarted, it will continue from the last place to get messages.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);</span><br><span class="line"></span><br><span class="line">        consumer.subscribe(<span class="string">&quot;TopicTest&quot;</span>, <span class="string">&quot;TagA || TagC || TagD&quot;</span>);</span><br><span class="line"></span><br><span class="line">        consumer.registerMessageListener(<span class="keyword">new</span> <span class="title class_">MessageListenerOrderly</span>() &#123;</span><br><span class="line"></span><br><span class="line">            <span class="type">Random</span> <span class="variable">random</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> ConsumeOrderlyStatus <span class="title function_">consumeMessage</span><span class="params">(List&lt;MessageExt&gt; msgs, ConsumeOrderlyContext context)</span> &#123;</span><br><span class="line">                context.setAutoCommit(<span class="literal">true</span>);</span><br><span class="line">                <span class="keyword">for</span> (MessageExt msg : msgs) &#123;</span><br><span class="line">                    <span class="comment">// one consumer for each message queue, and messages order are kept in a single message queue.</span></span><br><span class="line">                    System.out.println(<span class="string">&quot;consumeThread=&quot;</span> + Thread.currentThread().getName() + <span class="string">&quot;queueId=&quot;</span> + msg.getQueueId() + <span class="string">&quot;, content:&quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(msg.getBody()));</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.SECONDS.sleep(random.nextInt(<span class="number">10</span>));</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> ConsumeOrderlyStatus.SUCCESS;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        consumer.start();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;Consumer Started.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Example-for-Ordered-Messages/" rel="tag"># Example for Ordered Messages</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/en/Example_Simple/" rel="prev" title="Basic Sample">
+      <i class="fa fa-chevron-left"></i> Basic Sample
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/en/Example_OpenMessaging/" rel="next" title="OpenMessaging Example">
+      OpenMessaging Example <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-for-Ordered-Messages"><span class="nav-number">1.</span> <span class="nav-text">Example for Ordered Messages</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-produce-ordered-messages"><span class="nav-number">1.1.</span> <span class="nav-text">1 produce ordered messages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Consume-ordered-messages"><span class="nav-number">1.2.</span> <span class="nav-text">2 Consume ordered messages</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nydia</p>
+  <div class="site-description" itemprop="description">开源，协作，共享，进步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nydia</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nydia.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="基本概念 1 消息模型（Message Model）RocketMQ主要由 Producer、Broker、Consumer 三部分组成，其中Producer 负责生产消息，Consumer 负责消费消息，Broker 负责存储消息。Broker 在实际部署过程中对应一台服务器，每个 Broker 可以存储多个Topic的消息，每个Topic的消息也可以分片存储于不同的 Broker。Messag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基本概念">
+<meta property="og:url" content="https://nydia.github.io/2022/10/01/rocketmq-docs/cn/concept/index.html">
+<meta property="og:site_name" content="Talk is cheap,show me the code">
+<meta property="og:description" content="基本概念 1 消息模型（Message Model）RocketMQ主要由 Producer、Broker、Consumer 三部分组成，其中Producer 负责生产消息，Consumer 负责消费消息，Broker 负责存储消息。Broker 在实际部署过程中对应一台服务器，每个 Broker 可以存储多个Topic的消息，每个Topic的消息也可以分片存储于不同的 Broker。Messag">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
+<meta property="article:modified_time" content="2025-04-20T06:53:17.093Z">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="基本概念">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nydia.github.io/2022/10/01/rocketmq-docs/cn/concept/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>基本概念 | Talk is cheap,show me the code</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Talk is cheap,show me the code" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Talk is cheap,show me the code</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">开源，协作，共享，进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/cn/concept/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基本概念
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><hr>
+<h2 id="1-消息模型（Message-Model）"><a href="#1-消息模型（Message-Model）" class="headerlink" title="1 消息模型（Message Model）"></a>1 消息模型（Message Model）</h2><p>RocketMQ主要由 Producer、Broker、Consumer 三部分组成，其中Producer 负责生产消息，Consumer 负责消费消息，Broker 负责存储消息。Broker 在实际部署过程中对应一台服务器，每个 Broker 可以存储多个Topic的消息，每个Topic的消息也可以分片存储于不同的 Broker。Message Queue 用于存储消息的物理地址，每个Topic中的消息地址存储于多个 Message Queue 中。ConsumerGroup 由多个Consumer 实例构成。</p>
+<h2 id="2-消息生产者（Producer）"><a href="#2-消息生产者（Producer）" class="headerlink" title="2 消息生产者（Producer）"></a>2 消息生产者（Producer）</h2><p> 负责生产消息，一般由业务系统负责生产消息。一个消息生产者会把业务应用系统里产生的消息发送到broker服务器。RocketMQ提供多种发送方式，同步发送、异步发送、顺序发送、单向发送。同步和异步方式均需要Broker返回确认信息，单向发送不需要。</p>
+<h2 id="3-消息消费者（Consumer）"><a href="#3-消息消费者（Consumer）" class="headerlink" title="3 消息消费者（Consumer）"></a>3 消息消费者（Consumer）</h2><p> 负责消费消息，一般是后台系统负责异步消费。一个消息消费者会从Broker服务器拉取消息、并将其提供给应用程序。从用户应用的角度而言提供了两种消费形式：拉取式消费、推动式消费。</p>
+<h2 id="4-主题（Topic）"><a href="#4-主题（Topic）" class="headerlink" title="4 主题（Topic）"></a>4 主题（Topic）</h2><p>  表示一类消息的集合，每个主题包含若干条消息，每条消息只能属于一个主题，是RocketMQ进行消息订阅的基本单位。</p>
+<h2 id="5-代理服务器（Broker-Server）"><a href="#5-代理服务器（Broker-Server）" class="headerlink" title="5 代理服务器（Broker Server）"></a>5 代理服务器（Broker Server）</h2><p>消息中转角色，负责存储消息、转发消息。代理服务器在RocketMQ系统中负责接收从生产者发送来的消息并存储、同时为消费者的拉取请求作准备。代理服务器也存储消息相关的元数据，包括消费者组、消费进度偏移和主题和队列消息等。</p>
+<h2 id="6-名字服务（Name-Server）"><a href="#6-名字服务（Name-Server）" class="headerlink" title="6 名字服务（Name Server）"></a>6 名字服务（Name Server）</h2><p> 名称服务充当路由消息的提供者。生产者或消费者能够通过名字服务查找各主题相应的Broker IP列表。多个Namesrv实例组成集群，但相互独立，没有信息交换。</p>
+<h2 id="7-拉取式消费（Pull-Consumer）"><a href="#7-拉取式消费（Pull-Consumer）" class="headerlink" title="7 拉取式消费（Pull Consumer）"></a>7 拉取式消费（Pull Consumer）</h2><p>  Consumer消费的一种类型，应用通常主动调用Consumer的拉消息方法从Broker服务器拉消息、主动权由应用控制。一旦获取了批量消息，应用就会启动消费过程。</p>
+<h2 id="8-推动式消费（Push-Consumer）"><a href="#8-推动式消费（Push-Consumer）" class="headerlink" title="8 推动式消费（Push Consumer）"></a>8 推动式消费（Push Consumer）</h2><p> Consumer消费的一种类型，该模式下Broker收到数据后会主动推送给消费端，该消费模式一般实时性较高。</p>
+<h2 id="9-生产者组（Producer-Group）"><a href="#9-生产者组（Producer-Group）" class="headerlink" title="9 生产者组（Producer Group）"></a>9 生产者组（Producer Group）</h2><p>  同一类Producer的集合，这类Producer发送同一类消息且发送逻辑一致。如果发送的是事物消息且原始生产者在发送之后崩溃，则Broker服务器会联系同一生产者组的其他生产者实例以提交或回溯消费。</p>
+<h2 id="10-消费者组（Consumer-Group）"><a href="#10-消费者组（Consumer-Group）" class="headerlink" title="10 消费者组（Consumer Group）"></a>10 消费者组（Consumer Group）</h2><p>  同一类Consumer的集合，这类Consumer通常消费同一类消息且消费逻辑一致。消费者组使得在消息消费方面，实现负载均衡和容错的目标变得非常容易。要注意的是，消费者组的消费者实例必须订阅完全相同的Topic。RocketMQ 支持两种消息模式：集群消费（Clustering）和广播消费（Broadcasting）。</p>
+<h2 id="11-集群消费（Clustering）"><a href="#11-集群消费（Clustering）" class="headerlink" title="11 集群消费（Clustering）"></a>11 集群消费（Clustering）</h2><p>集群消费模式下,相同Consumer Group的每个Consumer实例平均分摊消息。</p>
+<h2 id="12-广播消费（Broadcasting）"><a href="#12-广播消费（Broadcasting）" class="headerlink" title="12 广播消费（Broadcasting）"></a>12 广播消费（Broadcasting）</h2><p>广播消费模式下，相同Consumer Group的每个Consumer实例都接收全量的消息。</p>
+<h2 id="13-普通顺序消息（Normal-Ordered-Message）"><a href="#13-普通顺序消息（Normal-Ordered-Message）" class="headerlink" title="13 普通顺序消息（Normal Ordered Message）"></a>13 普通顺序消息（Normal Ordered Message）</h2><p>普通顺序消费模式下，消费者通过同一个消费队列收到的消息是有顺序的，不同消息队列收到的消息则可能是无顺序的。</p>
+<h2 id="14-严格顺序消息（Strictly-Ordered-Message）"><a href="#14-严格顺序消息（Strictly-Ordered-Message）" class="headerlink" title="14 严格顺序消息（Strictly Ordered Message）"></a>14 严格顺序消息（Strictly Ordered Message）</h2><p>严格顺序消息模式下，消费者收到的所有消息均是有顺序的。</p>
+<h2 id="15-消息（Message）"><a href="#15-消息（Message）" class="headerlink" title="15 消息（Message）"></a>15 消息（Message）</h2><p>消息系统所传输信息的物理载体，生产和消费数据的最小单位，每条消息必须属于一个主题。RocketMQ中每个消息拥有唯一的Message ID，且可以携带具有业务标识的Key。系统提供了通过Message ID和Key查询消息的功能。</p>
+<h2 id="16-标签（Tag）"><a href="#16-标签（Tag）" class="headerlink" title="16 标签（Tag）"></a>16 标签（Tag）</h2><p> 为消息设置的标志，用于同一主题下区分不同类型的消息。来自同一业务单元的消息，可以根据不同业务目的在同一主题下设置不同标签。标签能够有效地保持代码的清晰度和连贯性，并优化RocketMQ提供的查询系统。消费者可以根据Tag实现对不同子主题的不同消费逻辑，实现更好的扩展性。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" rel="tag"># 基本概念</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/cn/design/" rel="prev" title="设计(design)">
+      <i class="fa fa-chevron-left"></i> 设计(design)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/cn/best_practice/" rel="next" title="最佳实践">
+      最佳实践 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9E%8B%EF%BC%88Message-Model%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1 消息模型（Message Model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B6%88%E6%81%AF%E7%94%9F%E4%BA%A7%E8%80%85%EF%BC%88Producer%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2 消息生产者（Producer）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B6%88%E6%81%AF%E6%B6%88%E8%B4%B9%E8%80%85%EF%BC%88Consumer%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3 消息消费者（Consumer）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%B8%BB%E9%A2%98%EF%BC%88Topic%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">4 主题（Topic）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Broker-Server%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">5 代理服务器（Broker Server）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%90%8D%E5%AD%97%E6%9C%8D%E5%8A%A1%EF%BC%88Name-Server%EF%BC%89"><span class="nav-number">1.6.</span> <span class="nav-text">6 名字服务（Name Server）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%8B%89%E5%8F%96%E5%BC%8F%E6%B6%88%E8%B4%B9%EF%BC%88Pull-Consumer%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">7 拉取式消费（Pull Consumer）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%8E%A8%E5%8A%A8%E5%BC%8F%E6%B6%88%E8%B4%B9%EF%BC%88Push-Consumer%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">8 推动式消费（Push Consumer）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%94%9F%E4%BA%A7%E8%80%85%E7%BB%84%EF%BC%88Producer-Group%EF%BC%89"><span class="nav-number">1.9.</span> <span class="nav-text">9 生产者组（Producer Group）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84%EF%BC%88Consumer-Group%EF%BC%89"><span class="nav-number">1.10.</span> <span class="nav-text">10 消费者组（Consumer Group）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E9%9B%86%E7%BE%A4%E6%B6%88%E8%B4%B9%EF%BC%88Clustering%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">11 集群消费（Clustering）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E5%B9%BF%E6%92%AD%E6%B6%88%E8%B4%B9%EF%BC%88Broadcasting%EF%BC%89"><span class="nav-number">1.12.</span> <span class="nav-text">12 广播消费（Broadcasting）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E6%99%AE%E9%80%9A%E9%A1%BA%E5%BA%8F%E6%B6%88%E6%81%AF%EF%BC%88Normal-Ordered-Message%EF%BC%89"><span class="nav-number">1.13.</span> <span class="nav-text">13 普通顺序消息（Normal Ordered Message）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E4%B8%A5%E6%A0%BC%E9%A1%BA%E5%BA%8F%E6%B6%88%E6%81%AF%EF%BC%88Strictly-Ordered-Message%EF%BC%89"><span class="nav-number">1.14.</span> <span class="nav-text">14 严格顺序消息（Strictly Ordered Message）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-%E6%B6%88%E6%81%AF%EF%BC%88Message%EF%BC%89"><span class="nav-number">1.15.</span> <span class="nav-text">15 消息（Message）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-%E6%A0%87%E7%AD%BE%EF%BC%88Tag%EF%BC%89"><span class="nav-number">1.16.</span> <span class="nav-text">16 标签（Tag）</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nydia</p>
+  <div class="site-description" itemprop="description">开源，协作，共享，进步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nydia</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

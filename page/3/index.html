@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nydia.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="开源，协作，共享，进步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Talk is cheap,show me the code">
+<meta property="og:url" content="https://nydia.github.io/page/3/index.html">
+<meta property="og:site_name" content="Talk is cheap,show me the code">
+<meta property="og:description" content="开源，协作，共享，进步">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="开源">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nydia.github.io/page/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Talk is cheap,show me the code</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Talk is cheap,show me the code" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Talk is cheap,show me the code</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">开源，协作，共享，进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Design_Filter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/en/Design_Filter/" class="post-title-link" itemprop="url">Message Filter</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Message-Filter"><a href="#Message-Filter" class="headerlink" title="Message Filter"></a>Message Filter</h1><p>RocketMQ - a distributed message queue, is different with all other MQ middleware, on the way of filtering messages. It’s do the filter when the messages are subscribed via consumer side.RocketMQ do it lies in the separate storage mechanism that Producer side writing messages and Consomer subscribe messages, Consumer side will get an index from a logical message queue ConsumeQueue when subscribing, then read message entity from CommitLog using the index. So in the end, it is still impossible to get around its storage structure.The storage structure of ConsumeQueue is as follows, and there is a 8-byte Message Tag hashcode, The message filter based on Tag value is just used this Message Tag hash-code.</p>
+<p><img src="/images/rocketmq_design_7.png"></p>
+<p>The RocketMQ has two mainly filter types:</p>
+<ul>
+<li><p>Tag filtering: Consumer can specify not only the message topic but also the message tag values, when subscribing. Multiple tag values need to be separated by ‘||’. When consumer subscribing a message, it builds the subscription request into a <code>SubscriptionData</code> object and sends a pull message request to the Broker side. Before the Broker side reads data from the RocketMQ file storage layer - Store, it will construct a <code>MessageFilter</code> using the <code>SubscriptionData</code> object and then pass it to the Store. Store get a record from <code>ConsumeQueue</code>, and it will filter the message by the saved tag hashcode, it is unable to filter the messages exactly in the server side because of only the hashcode will be used when filtering, Therefore, after the Consumer pulls the message, it also needs to compare the original tag string of the message. If the original tag string is not same with the expected, the message will be ignored.</p>
+</li>
+<li><p>SQL92 filtering: This filter behavior is almost same with the above <code>Tag filtering</code> method. The only difference is on the way how Store works. The rocketmq-filter module is responsible for the construction and execution of the real SQL expression. Executing an SQL expression every time a filter is executed affects efficiency, so RocketMQ uses BloomFilter to avoid doing it every time. The expression context of SQL92 is a property of the message.</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Design_Query/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/en/Design_Query/" class="post-title-link" itemprop="url">Message Queries</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Message-Queries"><a href="#Message-Queries" class="headerlink" title="Message Queries"></a>Message Queries</h1><p>RocketMQ supports message queries by two dimensions, which are “Query Message by Message Id” and “Query Message by Message Key”.</p>
+<h2 id="1-Query-Message-by-Message-Id"><a href="#1-Query-Message-by-Message-Id" class="headerlink" title="1. Query Message by Message Id"></a>1. Query Message by Message Id</h2><p>The MessageId in RocketMQ has a total length of 16 bytes, including the broker address (IP address and port) and CommitLog offset. In RocketMQ, the specific approach is that the Client resolves the Broker’s address (IP address and port) and the CommitLog’s offset address from the MessageId. Then both of them are encapsulated into an RPC request, and finally it will be sent through the communication layer (business request code: VIEW_MESSAGE_BY_ID). The Broker reads a message by using the CommitLog offset and size to find the real message in the CommitLog and then return, which is how QueryMessageProcessor works.</p>
+<h2 id="2-Query-Message-by-Message-Id"><a href="#2-Query-Message-by-Message-Id" class="headerlink" title="2. Query Message by Message Id"></a>2. Query Message by Message Id</h2><p>“Query Messages by Message Key” is mainly based on RocketMQ’s IndexFile. The logical structure of the IndexFile is similar to the implementation of HashMap in JDK. The specific structure of the IndexFile is as follows:</p>
+<p><img src="/images/rocketmq_design_message_query.png"></p>
+<p>The IndexFile provides the user with the querying service by “Querying Messages by Message Key”. The IndexFile is stored in $HOME\store\index${fileName}, and the file name is named after the timestamp at the time of creation. The file size is fixed, which is 420,000,040 bytes (40+5million*4+20million*20). If the UNIQ_KEY is set in the properties of the message, then the “topic + ‘#’ + UNIQ_KEY” will be used as the index. Likewise, if the KEYS is set in the properties of the message (multiple KEYs should be separated by spaces), then the “topic + ‘#’ + KEY” will be used as the index.</p>
+<p>The index data contains four fields, Key Hash, CommitLog offset, Timestamp and NextIndex offset, for a total of 20 Bytes. The NextIndex offset of the index data will point to the previous index data if the Key Hash of the index data is the same as that of the previous index data. If a hash conflict occurs, then the NextIndex offset can be used as the field to string all conflicting indexes in a linked list. What the Timestamp records is the time difference between two storeTimestamps, instead of a specific time. The structure of the entire IndexFile is shown in the graph. The Header is used to store some general statistics, which needs 40 bytes. The Slot Table of 4*5million bytes does not save the real index data, but saves the header of the singly linked list corresponding to each slot. The Index Linked List of 20*20million is the real index data, that is, an Index File can hold 20million indexes.</p>
+<p>The specific method of “Query Message by Message Key” is that the topic and message key are used to find the record in the IndexFile, and then read the message from the file of CommitLog according to the CommitLog offset in this record.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Design_LoadBlancing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/en/Design_LoadBlancing/" class="post-title-link" itemprop="url">Load Balancing</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Load-Balancing"><a href="#Load-Balancing" class="headerlink" title="Load Balancing"></a>Load Balancing</h2><p>Load balancing in RocketMQ is accomplished on Client side. Specifically, it can be divided into load balancing at Producer side when sending messages and load balancing at Constumer side when subscribing messages.</p>
+<h3 id="1-Producer-Load-Balancing"><a href="#1-Producer-Load-Balancing" class="headerlink" title="1 Producer Load Balancing"></a>1 Producer Load Balancing</h3><p>When the Producer sends a message, it will first find the specified TopicPublishInfo according to Topic. After getting the routing information of TopicPublishInfo, the RocketMQ client will select a queue (MessageQueue) from the messageQueue List in TopicPublishInfo  to send the message by default.Specific fault-tolerant strategies are defined in the MQFaultStrategy class.<br>Here is a sendLatencyFaultEnable switch variable, which, if turned on, filters out the Broker agent of not available on the basis of randomly gradually increasing modular arithmetic selection. The so-called “latencyFault Tolerance” refers to a certain period of time to avoid previous failures. For example, if the latency of the last request exceeds 550 Lms, it will evade 3000 Lms; if it exceeds 1000L, it will evade 60000 L; if it is closed, it will choose a queue (MessageQueue) to send messages by randomly gradually increasing modular arithmetic, and the latencyFault Tolerance mechanism is the key to achieve high availability of message sending.</p>
+<h3 id="2-Consumer-Load-Balancing"><a href="#2-Consumer-Load-Balancing" class="headerlink" title="2 Consumer Load Balancing"></a>2 Consumer Load Balancing</h3><p>In RocketMQ, the two consumption modes (Push&#x2F;Pull) on the Consumer side are both based on the pull mode to get the message, while in the Push mode it is only a kind of encapsulation of the pull mode, which is essentially implemented as the message pulling thread after pulling a batch of messages from the server. After submitting to the message consuming thread pool, it continues to try again to pull the message to the server. If the message is not pulled, the pull is delayed and continues. In both pull mode based consumption patterns (Push&#x2F;Pull), the Consumer needs to know which message queue - queue from the Broker side to get the message. Therefore, it is necessary to do load balancing on the Consumer side, that is, which Consumer consumption is allocated to the same ConsumerGroup by more than one MessageQueue on the Broker side.</p>
+<p> 1， Heartbeat Packet Sending on Consumer side<br>After Consumer is started, it continuously sends heartbeat packets to all Broker instances in the RocketMQ cluster via timing task (which contains the message consumption group name, subscription relationship collection,Message communication mode and the value of the client id,etc). After receiving the heartbeat message from Consumer, Broker side maintains it in Consumer Manager’s local caching variable—consumerTable, At the same time, the encapsulated client network channel information is stored in the local caching variable—channelInfoTable, which can provide metadata information for the later load balancing of Consumer.<br>2，Core Class for Load Balancing on Consumer side—RebalanceImpl<br>Starting the MQClientInstance instance in the startup process of the Consumer instance will complete the start of the load balancing service thread-RebalanceService (executed every 20 s). By looking at the source code, we can find that the run () method of the RebalanceService thread calls the rebalanceByTopic () method of the RebalanceImpl class, which is the core of the Consumer end load balancing. Here, rebalanceByTopic () method will do different logical processing depending on whether the consumer communication type is “broadcast mode” or “cluster mode”. Here we mainly look at the main processing flow in cluster mode:<br>(1) Get the message consumption queue set (mqSet) under the Topic from the local cache variable—topicSubscribeInfoTable of the rebalanceImpl instance.<br>(2) Call mQClientFactory. findConsumerIdList () method to send a RPC communication request to Broker side to obtain the consumer Id list under the consumer group based on the parameters of topic and consumer group (consumer table constructed by Broker side based on the heartbeat data reported by the front consumer side responds and returns, business request code: GET_CONSUMER_LIST_BY_GROUP);<br>(3) First, the message consumption queue and the consumer Id under Topic are sorted, then the message queue to be pulled is calculated by using the message queue allocation strategy algorithm (default: the average allocation algorithm of the message queue). The average allocation algorithm here is similar to the paging algorithm. It ranks all MessageQueues like records. It ranks all consumers like pages. It calculates the average size of each page and the range of each page record. Finally, it traverses the whole range and calculates the records that the current consumer should allocate to (MessageQueue here).<br><img src="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_8.png" alt="Image text"><br>(4) Then, the updateProcessQueueTableInRebalance () method is invoked, which first compares the allocated message queue set (mqSet) with processQueueTable for filtering.<br><img src="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_9.png" alt="Image text"></p>
+<ul>
+<li>The red part of the processQueueTable annotation in the figure above<br>indicates that it is not included with the assigned message queue set<br>mqSet. Set the Dropped attribute to true for these queues, and then<br>check whether these queues can remove the processQueueTable cache<br>variable or not. The removeUnnecessaryMessageQueue () method is<br>executed here, that is, check every 1s to see if the locks of the<br>current consumption processing queue can be retrieved and return true<br>if they are retrieved. If the lock of the current consumer processing<br>queue is still not available after waiting for 1s, it returns false.<br>If true is returned, the corresponding Entry is removed from the<br>processQueueTable cache variable.</li>
+<li>The green section in processQueueTable above represents the<br>intersection with the assigned message queue set mqSet. Determine<br>whether the ProcessQueue has expired, regardless of Pull mode, if it<br>is Push mode, set the Dropped attribute to true, and call the<br>removeUnnecessaryMessageQueue () method to try to remove Entry as<br>above;</li>
+</ul>
+<p>Finally, a ProcessQueue object is created for each MessageQueue in the filtered message queue set (mqSet) and stored in the processQueueTable queue of RebalanceImpl (where the computePullFromWhere (MessageQueue mq) method of the RebalanceImpl instance is invoked to obtain the next progress consumption value offset of the MessageQueue object, which is then populated into the attribute of pullRequest object to be created next time.), and create pull request object—pullRequest to add to pull list—pullRequestList, and finally execute dispatchPullRequest () method. PullRequest object of Pull message is put into the blocking queue pullRequestQueue of PullMessageService service thread in turn, and the request of Pull message is sent to Broker end after the service thread takes out. Among them, we can focus on the contrast, RebalancePushImpl and RebalancePullImpl two implementation classes dispatchPullRequest () method is different, the method in RebalancePullImpl class is empty, thus answering the last question in the previous article.</p>
+<p>The core design idea of message consumption queue is that a message consumption queue can only be consumed by one consumer in the same consumer group at the same time, and a message consumer can consume multiple message queues at the same time.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Design_Remoting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/en/Design_Remoting/" class="post-title-link" itemprop="url">RocketMQ message</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>RocketMQ message queue cluster mainly includes four roles: NameServer, Broker (Master&#x2F;Slave), Producer and Consumer. The basic communication process is as follows:<br>(1) After Broker start-up, it needs to complete one operation: register itself to NameServer, and then report Topic routing information to NameServer at regular intervals of 30 seconds.<br>(2) When message Producer sends a message as a client, it needs to obtain routing information from the local cache TopicPublishInfoTable according to the Topic of the message. If not, it will be retrieved from NameServer and update to local cache, at the same time, Producer will retrieve routing information from NameServer every 30 seconds by default.<br>(3) Message Producer chooses a queue to send the message according to the routing information obtained in 2); Broker receives the message and records it in disk as the receiver of the message.<br>(4) After message Consumer gets the routing information according to 2) and complete the load balancing of the client, then select one or several message queues to pull messages and consume them.</p>
+<p>From 1) ~ 3) above, we can see that both Producer, Broker and NameServer communicate with each other(only part of MQ communication is mentioned here), so how to design a good network communication module is very important in MQ. It will determine the overall messaging capability and final performance of the RocketMQ cluster.</p>
+<p>rocketmq-remoting module is the module responsible for network communication in RocketMQ message queue. It is relied on and referenced by almost all other modules (such as rocketmq-client,rocketmq-broker,rocketmq-namesrv) that need network communication. In order to realize the efficient data request and reception between the client and the server, the RocketMQ message queue defines the communication protocol and extends the communication module on the basis of Netty.</p>
+<h3 id="1-Remoting-Communication-Class-Structure"><a href="#1-Remoting-Communication-Class-Structure" class="headerlink" title="1 Remoting Communication Class Structure"></a>1 Remoting Communication Class Structure</h3><p><img src="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_3.png"></p>
+<h3 id="2-Protocol-Design-and-Code"><a href="#2-Protocol-Design-and-Code" class="headerlink" title="2 Protocol Design and Code"></a>2 Protocol Design and Code</h3><p>When a message is sent between Client and Server, a protocol convention is needed for the message sent, so it is necessary to customize the message protocol of RocketMQ. At the same time, in order to efficiently transmit messages and read the received messages, it is necessary to encode and decode the messages. In RocketMQ, the RemotingCommand class encapsulates all data content in the process of message transmission, which includes not only all data structures, but also encoding and decoding operations.</p>
+<table>
+<thead>
+<tr>
+<th>Header field</th>
+<th>Type</th>
+<th>Request desc</th>
+<th>Response desc</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>int</td>
+<td>Request  code. answering business processing is different according to different requests code</td>
+<td>Response code. 0 means success, and non-zero means errors.</td>
+</tr>
+<tr>
+<td>language</td>
+<td>LanguageCode</td>
+<td>Language implemented by the requester</td>
+<td>Language implemented by the responder</td>
+</tr>
+<tr>
+<td>version</td>
+<td>int</td>
+<td>Version of Request Equation</td>
+<td>Version of Response Equation</td>
+</tr>
+<tr>
+<td>opaque</td>
+<td>int</td>
+<td>Equivalent to reqeustId, the different request identification codes on the same connection correspond to those in the response message</td>
+<td>The response returns directly without modification</td>
+</tr>
+<tr>
+<td>flag</td>
+<td>int</td>
+<td>Sign, used to distinguish between ordinary RPC or oneway RPC</td>
+<td>Sign, used to distinguish between ordinary RPC or oneway RPC</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>String</td>
+<td>Transfer custom text information</td>
+<td>Transfer custom text information</td>
+</tr>
+<tr>
+<td>extFields</td>
+<td>HashMap&lt;String, String&gt;</td>
+<td>Request custom extension information</td>
+<td>Response custom extension information</td>
+</tr>
+<tr>
+<td><img src="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_4.png"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>From the above figure, the transport content can be divided into four parts:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p> (1) Message length: total length, four bytes of storage, occupying an int type; </p>
+<p>(2) Serialization type header length: occupying an int type. The first byte represents the serialization type, and the last three bytes represent the header length；</p>
+<p>(3) Header data: serialized header data;</p>
+<p>(4) Message body data: binary byte data content of message body;</p>
+<h3 id="3-Message-Communication-Mode-and-Procedure"><a href="#3-Message-Communication-Mode-and-Procedure" class="headerlink" title="3 Message Communication Mode and Procedure"></a>3 Message Communication Mode and Procedure</h3><p>There are three main ways to support communication in RocketMQ message queue: synchronous (sync), asynchronous (async), one-way (oneway). The “one-way” communication mode is relatively simple and is generally used in sending heartbeat packets without paying attention to its Response. Here, mainly introduce the asynchronous communication flow of RocketMQ.<br><img src="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_5.png"></p>
+<h3 id="4-Reactor-Multithread-Design"><a href="#4-Reactor-Multithread-Design" class="headerlink" title="4 Reactor Multithread Design"></a>4 Reactor Multithread Design</h3><p>The RPC communication of RocketMQ uses Netty component as the underlying communication library, and also follows the Reactor multithread model. At the same time, some extensions and optimizations are made on it.<br><img src="https://github.com/apache/rocketmq/raw/develop/docs/cn/image/rocketmq_design_6.png"><br>Above block diagram can roughly understand the Reactor multi-thread model of NettyRemotingServer in RocketMQ. A Reactor main thread (eventLoopGroupBoss, is 1 above) is responsible for listening to TCP network connection requests, establishing connections, creating SocketChannel, and registering on selector. The source code of RocketMQ automatically selects NIO and Epoll according to the type of OS. Then listen to real network data. After you get the network data, you throw it to the Worker thread pool (eventLoopGroupSelector, is the “N” above, the default is 3 in the source code). You need to do SSL verification, codec, idle check, network connection management before you really execute the business logic. These tasks to defaultEventExecutorGroup (that is, “M1” above, the default set to 8 in the source code) to do. The processing business operations are executed in the business thread pool. According to the RomotingCommand business request code, the corresponding processor is found in the processorTable local cache variable and encapsulated into the task, and then submitted to the corresponding business processor processing thread pool for execution (sendMessageExecutor,). Take sending a message, for example, the “M2” above. The thread pool continues to increase in several steps from entry to business logic, which is related to the complexity of each step. The more complex the thread pool is, the wider the concurrent channel is required.</p>
+<table>
+<thead>
+<tr>
+<th>Number of thread</th>
+<th>Name of thread</th>
+<th>Desc of thread</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>NettyBoss_%d</td>
+<td>Reactor Main thread</td>
+</tr>
+<tr>
+<td>N</td>
+<td>NettyServerEPOLLSelector_%d_%d</td>
+<td>Reactor thread pool</td>
+</tr>
+<tr>
+<td>M1</td>
+<td>NettyServerCodecThread_%d</td>
+<td>Worker thread pool</td>
+</tr>
+<tr>
+<td>M2</td>
+<td>RemotingExecutorThread_%d</td>
+<td>bussiness processor thread pool</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Design_Store/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/en/Design_Store/" class="post-title-link" itemprop="url">Message Storage</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Message-Storage"><a href="#Message-Storage" class="headerlink" title="Message Storage"></a>Message Storage</h1><p><img src="/images/rocketmq_storage_arch.png"></p>
+<p>Message storage is the most complicated and important part of RocketMQ. This section will describe the three aspects of RocketMQ:</p>
+<ul>
+<li>Message storage architecture</li>
+<li>PageCache and memory mapping</li>
+<li>RocketMQ’s two different disk flushing methods.</li>
+</ul>
+<h2 id="1-Message-Storage-Architecture"><a href="#1-Message-Storage-Architecture" class="headerlink" title="1 Message Storage Architecture"></a>1 Message Storage Architecture</h2><p>The message storage architecture diagram consists of 3 files related to message storage: <code>CommitLog</code> file, <code>ConsumeQueue</code> file, and <code>IndexFile</code>.</p>
+<ul>
+<li><code>CommitLog</code>：The <code>CommitLog</code> file stores message body and metadata sent by producer, and the message content is not fixed length. The default size of one <code>CommitLog</code> file is 1G, the length of the file name is 20 digits, the left side is zero padded, and the remaining is the starting offset. For example, <code>00000000000000000000</code> represents the first file, the starting offset is 0, and the file size is 1G&#x3D;1073741824, when the first <code>CommitLog</code> file is full, the second <code>CommitLog</code> file is <code>00000000001073741824</code>, the starting offset is 1073741824, and so on. The message is mainly appended to the log file sequentially. When one <code>CommitLog</code> file is full, the next will be written.</li>
+<li><code>ConsumeQueue</code>: The <code>ConsumeQueue</code> is used to improve the performance of message consumption. Since RocketMQ uses topic-based subscription mode, message consumption is specific to the topic. Traversing the commitlog file to retrieve messages of one topic is very inefficient. The consumer can find the messages to be consumed according to the <code>ConsumeQueue</code>. The <code>ConsumeQueue</code>(logic consume queue) as an index of the consuming message stores the starting physical offset <code>offset</code> in <code>CommitLog</code> of the specified topic, the message size <code>size</code> and the hash code of the message tag. The <code>ConsumeQueue</code> file can be regarded as a topic-based <code>CommitLog</code> index file, so the consumequeue folder is organized as follows: <code>topic/queue/file</code> three-layer organization structure, the specific storage path is <code>$HOME/store/consumequeue/&#123;topic&#125;/&#123;queueId &#125;/&#123;fileName&#125;</code>. The consumequeue file uses a fixed-length design, each entry occupies 20 bytes, which is an 8-byte commitlog physical offset, a 4-byte message length, and an 8-byte tag hashcode. One consumequeue file consists of 0.3 million entries, each entry can be randomly accessed like an array, each <code>ConsumeQueue</code> file’s size is about 5.72MB.</li>
+<li><code>IndexFile</code>: The <code>IndexFile</code> provides a way to query messages by key or time interval. The path of the <code>IndexFile</code> is <code>$HOME/store/index/$&#123;fileName&#125;</code>, the file name <code>fileName</code> is named after the timestamp when it was created. One IndexFile’s size is about 400M, and it can store 2000W indexes. The underlying storage of <code>IndexFile</code> is designed to implement the <code>HashMap</code> structure in the file system, so RocketMQ’s index file is a hash index.</li>
+</ul>
+<p>From the above architecture of the RocketMQ message storage, we can see RocketMQ uses a hybrid storage structure, that is, all the queues in an instance of the broker share a single log file <code>CommitLog</code> to store messages. RocketMQ’s hybrid storage structure(messages of multiple topics are stored in one CommitLog) uses a separate storage structure for the data and index parts for Producer and Consumer respectively. The Producer sends the message to the Broker, then the Broker persists the message to the CommitLog file synchronously or asynchronously. As long as the message is persisted to the CommitLog on the disk, the message sent by the Producer will not be lost. Because of this, Consumer will definitely have the opportunity to consume this message. When no message can be pulled, the consumer can wait for the next pull. And the server also supports the long polling mode: if a pull request pulls no messages, the Broker can wait for 30 seconds, as long as new message arrives in this interval, it will be returned directly to the consumer. Here, RocketMQ’s specific approach is using Broker’s background service thread <code>ReputMessageService</code> to continuously dispatch requests and asynchronously build ConsumeQueue (Logical Queue) and IndexFile data.</p>
+<h2 id="2-PageCache-and-Memory-Map"><a href="#2-PageCache-and-Memory-Map" class="headerlink" title="2 PageCache and Memory Map"></a>2 PageCache and Memory Map</h2><p>PageCache is a cache of files by the operating system to speed up the reading and writing of files. In general, the speed of sequential read and write files is almost the same as the speed of read and write memory. The main reason is that the OS uses a portion of the memory as PageCache to optimize the performance of the read and write operations. For data writing, the OS will first write to the Cache, and then the <code>pdflush</code> kernel thread asynchronously flush the data in the Cache to the physical disk. For data reading, if it can not hit the page cache when reading a file at a time, the OS will read the file from the physical disk and prefetch the data files of other neighboring blocks sequentially.</p>
+<p>In RocketMQ, the logic consumption queue <code>ConsumeQueue</code> stores less data and is read sequentially. With the help of prefetch of the page cache mechanism, the read performance of the <code>ConsumeQueue</code> file is almost close to the memory read, even in the case of message accumulation, it does not affect performance. But for the log data file <code>CommitLog</code>, it will generate many random access reads when reading the message content, which seriously affects the performance. If you choose the appropriate IO scheduling algorithm, such as setting the IO scheduling algorithm to “Deadline” (when the block storage uses SSD), the performance of random reads will also be improved.</p>
+<p>In addition, RocketMQ mainly reads and writes files through <code>MappedByteBuffer</code>. <code>MappedByteBuffer</code> uses the <code>FileChannel</code> model in NIO to directly map the physical files on the disk to the memory address in user space (<code>Mmap</code> method reduces the performance overhead of traditional IO copying disk file data back and forth between the buffer in kernel space and the buffer in user space), it converts the file operation into direct memory address manipulation, which greatly improves the efficiency of reading and writing files (Because of the need to use the memory mapping mechanism, RocketMQ’s file storage is fixed-length, making it easy to map the entire file to memory at a time).</p>
+<h2 id="3-Message-Disk-Flush"><a href="#3-Message-Disk-Flush" class="headerlink" title="3 Message Disk Flush"></a>3 Message Disk Flush</h2><p><img src="/images/rocketmq_storage_flush.png"></p>
+<ul>
+<li>synchronous flush: As shown above, the RocketMQ’s Broker will return a successful <code>ACK</code> response to the Producer after the message is truly persisted to disk. Synchronous flushing is a good guarantee for the reliability of MQ messages, but it will have a big impact on performance. Generally, it is suitable for financial business applications.</li>
+<li>asynchronous flush: Asynchronous flushing can take full advantage of the PageCache of the OS, as long as the message is written to the PageCache, the successful <code>ACK</code> can be returned to the Producer. The message flushing is performed by the background asynchronous thread, which reduces the read and write delay and improves the performance and throughput of the MQ.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Design_Trancation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/en/Design_Trancation/" class="post-title-link" itemprop="url">Transaction Message</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Transaction-Message"><a href="#Transaction-Message" class="headerlink" title="Transaction Message"></a>Transaction Message</h1><h2 id="1-Transaction-Message"><a href="#1-Transaction-Message" class="headerlink" title="1 Transaction Message"></a>1 Transaction Message</h2><p>Apache RocketMQ supports distributed transaction message from version 4.3.0. RocketMQ implements transaction message by using the protocol of 2PC(two-phase commit), in addition adding a compensation logic to handle timeout-case or failure-case of commit-phase, as shown below.</p>
+<p><img src="/../cn/image/rocketmq_design_10.png"></p>
+<h3 id="1-1-The-Process-of-RocketMQ-Transaction-Message"><a href="#1-1-The-Process-of-RocketMQ-Transaction-Message" class="headerlink" title="1.1 The Process of RocketMQ Transaction Message"></a>1.1 The Process of RocketMQ Transaction Message</h3><p>The picture above shows the overall architecture of transaction message, including the sending of message(commit-request phase), the sending of commit&#x2F;rollback(commit phase) and the compensation process.</p>
+<p>1 The sending of message and Commit&#x2F;Rollback.<br>  (1) Sending the message(named Half message in RocketMQ)<br>  (2) The server responds the writing result(success or failure) of Half message.<br>  (3) Handle local transaction according to the result(local transaction won’t be executed when the result is failure).<br>  (4) Sending Commit&#x2F;Rollback to broker according to the result of local transaction(Commit will generate message index and make the message visible to consumers).</p>
+<p>2 Compensation process<br>  (1) For a transaction message without a Commit&#x2F;Rollback (means the message in the pending status), a “back-check” request is initiated from the broker.<br>  (2) The Producer receives the “back-check” request and checks the status of the local transaction corresponding to the “back-check” message.<br>  (3) Redo Commit or Rollback based on local transaction status.<br>The compensation phase is used to resolve the timeout or failure case of the message Commit or Rollback.</p>
+<h3 id="1-2-The-design-of-RocketMQ-Transaction-Message"><a href="#1-2-The-design-of-RocketMQ-Transaction-Message" class="headerlink" title="1.2 The design of RocketMQ Transaction Message"></a>1.2 The design of RocketMQ Transaction Message</h3><p>1 Transaction message is invisible to users in first phase(commit-request phase)   </p>
+<p>  Upon on the main process of transaction message, the message of first phase is invisible to the user. This is also the biggest difference from normal message. So how do we write the message while making it invisible to the user? And below is the solution of RocketMQ: if the message is a Half message, the topic and queueId of the original message will be backed up, and then changes the topic to RMQ_SYS_TRANS_HALF_TOPIC. Since the consumer group does not subscribe to the topic, the consumer cannot consume the Half message. Then RocketMQ starts a timing task, pulls the message for RMQ_SYS_TRANS_HALF_TOPIC, obtains a channel according to producer group and sends a back-check to query local transaction status, and decide whether to submit or roll back the message according to the status.  </p>
+<p>  In RocketMQ, the storage structure of the message in the broker is as follows. Each message has corresponding index information. The Consumer reads the content of the message through the secondary index of the ConsumeQueue. The flow is as follows:</p>
+<p><img src="/../cn/image/rocketmq_design_11.png"></p>
+<p>  The specific implementation strategy of RocketMQ is: if the transaction message is written, topic and queueId of the message are replaced, and the original topic and queueId are stored in the properties of the message. Because the replace of the topic, the message will not be forwarded to the Consumer Queue of the original topic, and the consumer cannot perceive the existence of the message and will not consume it. In fact, changing the topic is the conventional method of RocketMQ(just recall the implementation mechanism of the delay message).</p>
+<p>2 Commit&#x2F;Rollback operation and introduction of Op message  </p>
+<p>  After finishing writing a message that is invisible to the user in the first phase, here comes two cases in the second phase. One is Commit operation, after which the message needs to be visible to the user; the other one is Rollback operation, after which the first phase message(Half message) needs to be revoked. For the case of Rollback, since first-phase message itself is invisible to the user, there is no need to actually revoke the message (in fact, RocketMQ can’t actually delete a message because it is a sequential-write file). But still some operation needs to be done to identity the final status of the message, to differ it from pending status message. To do this, the concept of “Op message” is introduced, which means the message has a certain status(Commit or Rollback). If a transaction message does not have a corresponding Op message, the status of the transaction is still undetermined (probably the second-phase failed). By introducing the Op message, the RocketMQ records an Op message for every Half message regardless it is Commit or Rollback. The only difference between Commit and Rollback is that when it comes to Commit, the index of the Half message is created before the Op message is written.</p>
+<p>3 How Op message stored and the correspondence between Op message and Half message  </p>
+<p>  RocketMQ writes the Op message to a specific system topic(RMQ_SYS_TRANS_OP_HALF_TOPIC) which will be created via the method - TransactionalMessageUtil.buildOpTopic(); this topic is an internal Topic (like the topic of RMQ_SYS_TRANS_HALF_TOPIC) and will not be consumed by the user. The content of the Op message is the physical offset of the corresponding Half message. Through the Op message we can index to the Half message for subsequent check-back operation.</p>
+<p><img src="/../cn/image/rocketmq_design_12.png"></p>
+<p>4 Index construction of Half messages  </p>
+<p>  When performing Commit operation of the second phase, the index of the Half message needs to be built. Since the Half message is written to a special topic(RMQ_SYS_TRANS_HALF_TOPIC) in the first phase of 2PC, so it needs to be read out from the special topic when building index, and replace the topic and queueId with the real target topic and queueId, and then write through a normal message that is visible to the user. Therefore, in conclusion, the second phase recovers a complete normal message using the content of the Half message stored in the first phase, and then goes through the message-writing process.</p>
+<p>5 How to handle the message failed in the second phase？</p>
+<p>  If commit&#x2F;rollback phase fails, for example, a network problem causes the Commit to fail when you do Commit. Then certain strategy is required to make sure the message finally commit. RocketMQ uses a compensation mechanism called “back-check”. The broker initiates a back-check request for the message in pending status, and sends the request to the corresponding producer side (the same producer group as the producer group who sent the Half message). The producer checks the status of local transaction and redo Commit or Rollback. The broker performs the back-check by comparing the RMQ_SYS_TRANS_HALF_TOPIC messages and the RMQ_SYS_TRANS_OP_HALF_TOPIC messages and advances the checkpoint(recording those transaction messages that the status are certain).</p>
+<p>  RocketMQ does not back-check the status of transaction messages endlessly. The default time is 15. If the transaction status is still unknown after 15 times, RocketMQ will roll back the message by default.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Example_Batch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/en/Example_Batch/" class="post-title-link" itemprop="url">Batch Message Sample</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Batch-Message-Sample"><a href="#Batch-Message-Sample" class="headerlink" title="Batch Message Sample"></a>Batch Message Sample</h1><hr>
+<p>Sending messages in batch improves performance of delivering small messages. Messages of the same batch should have: same topic, same waitStoreMsgOK and no schedule support. You can send messages up to 4MiB at a time, but if you need to send a larger message, it is recommended to divide the larger messages into multiple small messages of no more than 1MiB.</p>
+<h3 id="1-Send-Batch-Messages"><a href="#1-Send-Batch-Messages" class="headerlink" title="1 Send Batch Messages"></a>1 Send Batch Messages</h3><p>If you just send messages of no more than 4MiB at a time, it is easy to use batch:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">topic</span> <span class="operator">=</span> <span class="string">&quot;BatchTest&quot;</span>;</span><br><span class="line">List&lt;Message&gt; messages = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">messages.add(<span class="keyword">new</span> <span class="title class_">Message</span>(topic, <span class="string">&quot;TagA&quot;</span>, <span class="string">&quot;OrderID001&quot;</span>, <span class="string">&quot;Hello world 0&quot;</span>.getBytes()));</span><br><span class="line">messages.add(<span class="keyword">new</span> <span class="title class_">Message</span>(topic, <span class="string">&quot;TagA&quot;</span>, <span class="string">&quot;OrderID002&quot;</span>, <span class="string">&quot;Hello world 1&quot;</span>.getBytes()));</span><br><span class="line">messages.add(<span class="keyword">new</span> <span class="title class_">Message</span>(topic, <span class="string">&quot;TagA&quot;</span>, <span class="string">&quot;OrderID003&quot;</span>, <span class="string">&quot;Hello world 2&quot;</span>.getBytes()));</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    producer.send(messages);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">    <span class="comment">//handle the error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-Split-into-Lists"><a href="#2-Split-into-Lists" class="headerlink" title="2 Split into Lists"></a>2 Split into Lists</h3><p>The complexity only grow when you send large batch and you may not sure if it exceeds the size limit (4MiB). At this time, you’d better split the lists:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ListSplitter</span> <span class="keyword">implements</span> <span class="title class_">Iterator</span>&lt;List&lt;Message&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">SIZE_LIMIT</span> <span class="operator">=</span> <span class="number">1000</span> * <span class="number">1000</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> List&lt;Message&gt; messages;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> currIndex;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ListSplitter</span><span class="params">(List&lt;Message&gt; messages)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.messages = messages;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> currIndex &lt; messages.size();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> List&lt;Message&gt; <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">nextIndex</span> <span class="operator">=</span> currIndex;</span><br><span class="line">        <span class="type">int</span> <span class="variable">totalSize</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (; nextIndex &lt; messages.size(); nextIndex++) &#123;</span><br><span class="line">            <span class="type">Message</span> <span class="variable">message</span> <span class="operator">=</span> messages.get(nextIndex);</span><br><span class="line">            <span class="type">int</span> <span class="variable">tmpSize</span> <span class="operator">=</span> message.getTopic().length() + message.getBody().length;</span><br><span class="line">            Map&lt;String, String&gt; properties = message.getProperties();</span><br><span class="line">            <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : properties.entrySet()) &#123;</span><br><span class="line">                tmpSize += entry.getKey().length() + entry.getValue().length();</span><br><span class="line">            &#125;</span><br><span class="line">            tmpSize = tmpSize + <span class="number">20</span>; <span class="comment">//for log overhead</span></span><br><span class="line">            <span class="keyword">if</span> (tmpSize &gt; SIZE_LIMIT) &#123;</span><br><span class="line">                <span class="comment">//it is unexpected that single message exceeds the SIZE_LIMIT</span></span><br><span class="line">                <span class="comment">//here just let it go, otherwise it will block the splitting process</span></span><br><span class="line">                <span class="keyword">if</span> (nextIndex - currIndex == <span class="number">0</span>) &#123;</span><br><span class="line">                   <span class="comment">//if the next sublist has no element, add this one and then break, otherwise just break</span></span><br><span class="line">                   nextIndex++;  </span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (tmpSize + totalSize &gt; SIZE_LIMIT) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                totalSize += tmpSize;</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;Message&gt; subList = messages.subList(currIndex, nextIndex);</span><br><span class="line">        currIndex = nextIndex;</span><br><span class="line">        <span class="keyword">return</span> subList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// then you could split the large list into small ones:</span></span><br><span class="line"><span class="type">ListSplitter</span> <span class="variable">splitter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListSplitter</span>(messages);</span><br><span class="line"><span class="keyword">while</span> (splitter.hasNext()) &#123;</span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line">       List&lt;Message&gt;  listItem = splitter.next();</span><br><span class="line">       producer.send(listItem);</span><br><span class="line">   &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">       e.printStackTrace();</span><br><span class="line">       <span class="comment">// handle the error</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Example_Delay/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/en/Example_Delay/" class="post-title-link" itemprop="url">Schedule example</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Schedule-example"><a href="#Schedule-example" class="headerlink" title="Schedule example"></a>Schedule example</h1><h3 id="1-Start-consumer-to-wait-for-incoming-subscribed-messages"><a href="#1-Start-consumer-to-wait-for-incoming-subscribed-messages" class="headerlink" title="1 Start consumer to wait for incoming subscribed messages"></a>1 Start consumer to wait for incoming subscribed messages</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.common.message.MessageExt;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ScheduledMessageConsumer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// Instantiate message consumer</span></span><br><span class="line">        <span class="type">DefaultMQPushConsumer</span> <span class="variable">consumer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultMQPushConsumer</span>(<span class="string">&quot;ExampleConsumer&quot;</span>);</span><br><span class="line">        <span class="comment">// Subscribe topics</span></span><br><span class="line">        consumer.subscribe(<span class="string">&quot;TestTopic&quot;</span>, <span class="string">&quot;*&quot;</span>);</span><br><span class="line">        <span class="comment">// Register message listener</span></span><br><span class="line">        consumer.registerMessageListener(<span class="keyword">new</span> <span class="title class_">MessageListenerConcurrently</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> ConsumeConcurrentlyStatus <span class="title function_">consumeMessage</span><span class="params">(List&lt;MessageExt&gt; messages, ConsumeConcurrentlyContext context)</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (MessageExt message : messages) &#123;</span><br><span class="line">                    <span class="comment">// Print approximate delay time period</span></span><br><span class="line">                    System.out.println(<span class="string">&quot;Receive message[msgId=&quot;</span> + message.getMsgId() + <span class="string">&quot;] &quot;</span></span><br><span class="line">                                       + (System.currentTimeMillis() - message.getStoreTimestamp()) + <span class="string">&quot;ms later&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> ConsumeConcurrentlyStatus.CONSUME_SUCCESS;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">// Launch consumer</span></span><br><span class="line">        consumer.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Send-scheduled-messages"><a href="#2-Send-scheduled-messages" class="headerlink" title="2 Send scheduled messages"></a>2 Send scheduled messages</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.rocketmq.client.producer.DefaultMQProducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.rocketmq.common.message.Message;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ScheduledMessageProducer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// Instantiate a producer to send scheduled messages</span></span><br><span class="line">        <span class="type">DefaultMQProducer</span> <span class="variable">producer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultMQProducer</span>(<span class="string">&quot;ExampleProducerGroup&quot;</span>);</span><br><span class="line">        <span class="comment">// Launch producer</span></span><br><span class="line">        producer.start();</span><br><span class="line">        <span class="type">int</span> <span class="variable">totalMessagesToSend</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; totalMessagesToSend; i++) &#123;</span><br><span class="line">            <span class="type">Message</span> <span class="variable">message</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Message</span>(<span class="string">&quot;TestTopic&quot;</span>, (<span class="string">&quot;Hello scheduled message &quot;</span> + i).getBytes());</span><br><span class="line">            <span class="comment">// This message will be delivered to consumer 10 seconds later.</span></span><br><span class="line">            message.setDelayTimeLevel(<span class="number">3</span>);</span><br><span class="line">            <span class="comment">// Send the message</span></span><br><span class="line">            producer.send(message);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Shutdown producer after use.</span></span><br><span class="line">        producer.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Verification"><a href="#3-Verification" class="headerlink" title="3 Verification"></a>3 Verification</h3><p>You should see messages are consumed about 10 seconds later than their storing time. </p>
+<h3 id="4-Use-scenarios-for-scheduled-messages"><a href="#4-Use-scenarios-for-scheduled-messages" class="headerlink" title="4 Use scenarios for scheduled messages"></a>4 Use scenarios for scheduled messages</h3><p>For example, in e-commerce, if an order is submitted, a delay message can be sent, and the status of the order can be checked after 1 hour. If the order is still unpaid, the order can be cancelled and the inventory released.</p>
+<h3 id="5-Restrictions-on-the-use-of-scheduled-messages"><a href="#5-Restrictions-on-the-use-of-scheduled-messages" class="headerlink" title="5 Restrictions on the use of scheduled messages"></a>5 Restrictions on the use of scheduled messages</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// org/apache/rocketmq/store/config/MessageStoreConfig.java</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="type">String</span> <span class="variable">messageDelayLevel</span> <span class="operator">=</span> <span class="string">&quot;1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Nowadays RocketMq does not support any time delay. It needs to set several fixed delay levels, which correspond to level 1 to 18 from 1s to 2h. Message consumption failure will enter the delay message queue. Message sending time is related to the set delay level and the number of retries.</p>
+<p> See <code>SendMessageProcessor.java</code> </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Example_Filter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/en/Example_Filter/" class="post-title-link" itemprop="url">Filter Exampleexample</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Filter-Example"><a href="#Filter-Example" class="headerlink" title="Filter Example"></a>Filter Example</h1><hr>
+<p>In most cases, tag is a simple and useful design to select messages you want. For example:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DefaultMQPushConsumer</span> <span class="variable">consumer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultMQPushConsumer</span>(<span class="string">&quot;CID_EXAMPLE&quot;</span>);</span><br><span class="line">consumer.subscribe(<span class="string">&quot;TOPIC&quot;</span>, <span class="string">&quot;TAGA || TAGB || TAGC&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>The consumer will recieve messages that contains TAGA or TAGB or TAGC. But the limitation is that one message only can have one tag, and this may not work for sophisticated scenarios. In this case, you can use SQL expression to filter out messages.<br>SQL feature could do some calculation through the properties you put in when sending messages. Under the grammars defined by RocketMQ, you can implement some interesting logic. Here is an example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">------------</span><br><span class="line">| message  |</span><br><span class="line">|----------|  a &gt; 5 AND b = &#x27;abc&#x27;</span><br><span class="line">| a = 10   |  --------------------&gt; Gotten</span><br><span class="line">| b = &#x27;abc&#x27;|</span><br><span class="line">| c = true |</span><br><span class="line">------------</span><br><span class="line">------------</span><br><span class="line">| message  |</span><br><span class="line">|----------|   a &gt; 5 AND b = &#x27;abc&#x27;</span><br><span class="line">| a = 1    |  --------------------&gt; Missed</span><br><span class="line">| b = &#x27;abc&#x27;|</span><br><span class="line">| c = true |</span><br><span class="line">------------</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-Grammars"><a href="#1-Grammars" class="headerlink" title="1 Grammars"></a>1 Grammars</h2><p>RocketMQ only defines some basic grammars to support this feature. You could also extend it easily.</p>
+<ul>
+<li>Numeric comparison, like <strong>&gt;</strong>, <strong>&gt;&#x3D;</strong>, <strong>&lt;</strong>, <strong>&lt;&#x3D;</strong>, <strong>BETWEEN</strong>, <strong>&#x3D;</strong>;</li>
+<li>Character comparison, like <strong>&#x3D;</strong>, <strong>&lt;&gt;</strong>, <strong>IN</strong>;</li>
+<li><strong>IS NULL</strong> or <strong>IS NOT NULL</strong>;</li>
+<li>Logical <strong>AND</strong>, <strong>OR</strong>, <strong>NOT</strong>;</li>
+</ul>
+<p>Constant types are:</p>
+<ul>
+<li>Numeric, like <strong>123, 3.1415</strong>;</li>
+<li>Character, like <strong>‘abc’</strong>, must be made with single quotes;</li>
+<li><strong>NULL</strong>, special constant;</li>
+<li>Boolean, <strong>TRUE</strong> or <strong>FALSE</strong>;</li>
+</ul>
+<h2 id="2-Usage-constraints"><a href="#2-Usage-constraints" class="headerlink" title="2 Usage constraints"></a>2 Usage constraints</h2><p>Only push consumer could select messages by SQL92. The interface is:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void subscribe(finalString topic, final MessageSelector messageSelector)</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Producer-example"><a href="#3-Producer-example" class="headerlink" title="3 Producer example"></a>3 Producer example</h2><p>You can put properties in message through method putUserProperty when sending.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DefaultMQProducer</span> <span class="variable">producer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultMQProducer</span>(<span class="string">&quot;please_rename_unique_group_name&quot;</span>);</span><br><span class="line">producer.start();</span><br><span class="line"><span class="type">Message</span> <span class="variable">msg</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Message</span>(<span class="string">&quot;TopicTest&quot;</span>,</span><br><span class="line">   tag,</span><br><span class="line">   (<span class="string">&quot;Hello RocketMQ &quot;</span> + i).getBytes(RemotingHelper.DEFAULT_CHARSET)</span><br><span class="line">);</span><br><span class="line"><span class="comment">// Set some properties.</span></span><br><span class="line">msg.putUserProperty(<span class="string">&quot;a&quot;</span>, String.valueOf(i));</span><br><span class="line"><span class="type">SendResult</span> <span class="variable">sendResult</span> <span class="operator">=</span> producer.send(msg);</span><br><span class="line"></span><br><span class="line">producer.shutdown();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Consumer-example"><a href="#4-Consumer-example" class="headerlink" title="4 Consumer example"></a>4 Consumer example</h2><p>Use <code>MessageSelector.bySql</code> to select messages through SQL when consuming.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DefaultMQPushConsumer</span> <span class="variable">consumer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultMQPushConsumer</span>(<span class="string">&quot;please_rename_unique_group_name_4&quot;</span>);</span><br><span class="line"><span class="comment">// only subsribe messages have property a, also a &gt;=0 and a &lt;= 3</span></span><br><span class="line">consumer.subscribe(<span class="string">&quot;TopicTest&quot;</span>, MessageSelector.bySql(<span class="string">&quot;a between 0 and 3&quot;</span>);</span><br><span class="line">consumer.registerMessageListener(<span class="keyword">new</span> <span class="title class_">MessageListenerConcurrently</span>() &#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> ConsumeConcurrentlyStatus <span class="title function_">consumeMessage</span><span class="params">(List&lt;MessageExt&gt; msgs, ConsumeConcurrentlyContext context)</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> ConsumeConcurrentlyStatus.CONSUME_SUCCESS;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;);</span><br><span class="line">consumer.start();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Example_OpenMessaging/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/en/Example_OpenMessaging/" class="post-title-link" itemprop="url">OpenMessaging Example</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="OpenMessaging-Example"><a href="#OpenMessaging-Example" class="headerlink" title="OpenMessaging Example"></a>OpenMessaging Example</h1><p><a target="_blank" rel="noopener" href="https://openmessaging.github.io/">OpenMessaging</a>, which includes the establishment of industry guidelines and messaging, streaming specifications to provide a common framework for finance, ecommerce, IoT and big-data area. The design principles are the cloud-oriented, simplicity, flexibility, and language independent in distributed heterogeneous environments. Conformance to these specifications will make it possible to develop a heterogeneous messaging applications across all major platforms and operating systems.</p>
+<p>RocketMQ provides a partial implementation of OpenMessaging 0.1.0-alpha, the following examples demonstrate how to access RocketMQ based on OpenMessaging.</p>
+<h2 id="OMSProducer"><a href="#OMSProducer" class="headerlink" title="OMSProducer"></a>OMSProducer</h2><p>The following example shows how to send message to RocketMQ broker in synchronous, asynchronous, or one-way transmissions.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">public class OMSProducer &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory</span><br><span class="line">            .getMessagingAccessPoint(&quot;openmessaging:rocketmq://IP1:9876,IP2:9876/namespace&quot;);</span><br><span class="line"></span><br><span class="line">        final Producer producer = messagingAccessPoint.createProducer();</span><br><span class="line"></span><br><span class="line">        messagingAccessPoint.startup();</span><br><span class="line">        System.out.printf(&quot;MessagingAccessPoint startup OK%n&quot;);</span><br><span class="line"></span><br><span class="line">        producer.startup();</span><br><span class="line">        System.out.printf(&quot;Producer startup OK%n&quot;);</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line">            Message message = producer.createBytesMessageToTopic(&quot;OMS_HELLO_TOPIC&quot;, &quot;OMS_HELLO_BODY&quot;.getBytes(Charset.forName(&quot;UTF-8&quot;)));</span><br><span class="line">            SendResult sendResult = producer.send(message);</span><br><span class="line">            System.out.printf(&quot;Send sync message OK, msgId: %s%n&quot;, sendResult.messageId());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line">            final Promise&lt;SendResult&gt; result = producer.sendAsync(producer.createBytesMessageToTopic(&quot;OMS_HELLO_TOPIC&quot;, &quot;OMS_HELLO_BODY&quot;.getBytes(Charset.forName(&quot;UTF-8&quot;))));</span><br><span class="line">            result.addListener(new PromiseListener&lt;SendResult&gt;() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void operationCompleted(Promise&lt;SendResult&gt; promise) &#123;</span><br><span class="line">                    System.out.printf(&quot;Send async message OK, msgId: %s%n&quot;, promise.get().messageId());</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                @Override</span><br><span class="line">                public void operationFailed(Promise&lt;SendResult&gt; promise) &#123;</span><br><span class="line">                    System.out.printf(&quot;Send async message Failed, error: %s%n&quot;, promise.getThrowable().getMessage());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line">            producer.sendOneway(producer.createBytesMessageToTopic(&quot;OMS_HELLO_TOPIC&quot;, &quot;OMS_HELLO_BODY&quot;.getBytes(Charset.forName(&quot;UTF-8&quot;))));</span><br><span class="line">            System.out.printf(&quot;Send oneway message OK%n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        producer.shutdown();</span><br><span class="line">        messagingAccessPoint.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="OMSPullConsumer"><a href="#OMSPullConsumer" class="headerlink" title="OMSPullConsumer"></a>OMSPullConsumer</h2><p>Use OMS PullConsumer to poll messages from a specified queue.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class OMSPullConsumer &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory</span><br><span class="line">            .getMessagingAccessPoint(&quot;openmessaging:rocketmq://IP1:9876,IP2:9876/namespace&quot;);</span><br><span class="line"></span><br><span class="line">        final PullConsumer consumer = messagingAccessPoint.createPullConsumer(&quot;OMS_HELLO_TOPIC&quot;,</span><br><span class="line">            OMS.newKeyValue().put(NonStandardKeys.CONSUMER_GROUP, &quot;OMS_CONSUMER&quot;));</span><br><span class="line"></span><br><span class="line">        messagingAccessPoint.startup();</span><br><span class="line">        System.out.printf(&quot;MessagingAccessPoint startup OK%n&quot;);</span><br><span class="line">        </span><br><span class="line">        consumer.startup();</span><br><span class="line">        System.out.printf(&quot;Consumer startup OK%n&quot;);</span><br><span class="line"></span><br><span class="line">        Message message = consumer.poll();</span><br><span class="line">        if (message != null) &#123;</span><br><span class="line">            String msgId = message.headers().getString(MessageHeader.MESSAGE_ID);</span><br><span class="line">            System.out.printf(&quot;Received one message: %s%n&quot;, msgId);</span><br><span class="line">            consumer.ack(msgId);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        consumer.shutdown();</span><br><span class="line">        messagingAccessPoint.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="OMSPushConsumer"><a href="#OMSPushConsumer" class="headerlink" title="OMSPushConsumer"></a>OMSPushConsumer</h2><p>Attaches OMS PushConsumer to a specified queue and consumes messages by MessageListener</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class OMSPushConsumer &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory</span><br><span class="line">            .getMessagingAccessPoint(&quot;openmessaging:rocketmq://IP1:9876,IP2:9876/namespace&quot;);</span><br><span class="line"></span><br><span class="line">        final PushConsumer consumer = messagingAccessPoint.</span><br><span class="line">            createPushConsumer(OMS.newKeyValue().put(NonStandardKeys.CONSUMER_GROUP, &quot;OMS_CONSUMER&quot;));</span><br><span class="line"></span><br><span class="line">        messagingAccessPoint.startup();</span><br><span class="line">        System.out.printf(&quot;MessagingAccessPoint startup OK%n&quot;);</span><br><span class="line"></span><br><span class="line">        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                consumer.shutdown();</span><br><span class="line">                messagingAccessPoint.shutdown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;));</span><br><span class="line">        </span><br><span class="line">        consumer.attachQueue(&quot;OMS_HELLO_TOPIC&quot;, new MessageListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onMessage(final Message message, final ReceivedMessageContext context) &#123;</span><br><span class="line">                System.out.printf(&quot;Received one message: %s%n&quot;, message.headers().getString(MessageHeader.MESSAGE_ID));</span><br><span class="line">                context.ack();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nydia</p>
+  <div class="site-description" itemprop="description">开源，协作，共享，进步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nydia</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

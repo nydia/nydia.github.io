@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nydia.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Frequently Asked QuestionsThe following questions are frequently asked with regard to the RocketMQ project in general. 1 General Why did we create rocketmq project instead of selecting other products?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Frequently Asked Questions">
+<meta property="og:url" content="https://nydia.github.io/2022/10/01/rocketmq-docs/en/FAQ/index.html">
+<meta property="og:site_name" content="Talk is cheap,show me the code">
+<meta property="og:description" content="Frequently Asked QuestionsThe following questions are frequently asked with regard to the RocketMQ project in general. 1 General Why did we create rocketmq project instead of selecting other products?">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
+<meta property="article:modified_time" content="2025-04-20T06:53:17.100Z">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="Frequently Asked Questions">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/FAQ/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Frequently Asked Questions | Talk is cheap,show me the code</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Talk is cheap,show me the code" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Talk is cheap,show me the code</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">开源，协作，共享，进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/FAQ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Frequently Asked Questions
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Frequently-Asked-Questions"><a href="#Frequently-Asked-Questions" class="headerlink" title="Frequently Asked Questions"></a>Frequently Asked Questions</h1><p>The following questions are frequently asked with regard to the RocketMQ project in general.</p>
+<h2 id="1-General"><a href="#1-General" class="headerlink" title="1 General"></a>1 General</h2><ol>
+<li><p>Why did we create rocketmq project instead of selecting other products?</p>
+<p>Please refer to <a target="_blank" rel="noopener" href="http://rocketmq.apache.org/docs/motivation">Why RocketMQ</a></p>
+</li>
+<li><p>Do I have to install other softeware, such as zookeeper, to use RocketMQ?</p>
+<p>No. RocketMQ can run independently.</p>
+</li>
+</ol>
+<h2 id="2-Usage"><a href="#2-Usage" class="headerlink" title="2 Usage"></a>2 Usage</h2><h3 id="1-Where-does-the-newly-created-Consumer-ID-start-consuming-messages"><a href="#1-Where-does-the-newly-created-Consumer-ID-start-consuming-messages" class="headerlink" title="1. Where does the newly created Consumer ID start consuming messages?"></a>1. Where does the newly created Consumer ID start consuming messages?</h3><p>&amp;#8195;1) If the topic sends a message within three days, then the consumer start consuming messages from the first message saved in the server.</p>
+<p>&amp;#8195;2) If the topic sends a message three days ago, the consumer starts to consume messages from the latest message in the server, in other words, starting from the tail of message queue.</p>
+<p>&amp;#8195;3) If such consumer is rebooted, then it starts to consume messages from the last consumption location.</p>
+<h3 id="2-How-to-reconsume-message-when-consumption-fails"><a href="#2-How-to-reconsume-message-when-consumption-fails" class="headerlink" title="2. How to reconsume message when consumption fails?"></a>2. How to reconsume message when consumption fails?</h3><p>&amp;#8195;1) Cluster consumption pattern, The consumer business logic code returns Action.ReconsumerLater, NULL, or throws an exception, if a message failed to be consumed, it will retry for up to 16 times, after that, the message would be descarded.</p>
+<p>&amp;#8195;2) Broadcast consumption patternThe broadcaset consumption still ensures that a message is consumered at least once, but no resend option is provided.</p>
+<h3 id="3-How-to-query-the-failed-message-if-there-is-a-consumption-failure"><a href="#3-How-to-query-the-failed-message-if-there-is-a-consumption-failure" class="headerlink" title="3. How to query the failed message if there is a consumption failure?"></a>3. How to query the failed message if there is a consumption failure?</h3><p>&amp;#8195;1) Using topic query by time, you can query messages within a period of time.</p>
+<p>&amp;#8195;2) Using Topic and Message Id to accurately query the message.</p>
+<p>&amp;#8195;3) Using Topic and Message Key accurately query a class of messages with the same Message Key.</p>
+<h3 id="4-Are-messages-delivered-exactly-once"><a href="#4-Are-messages-delivered-exactly-once" class="headerlink" title="4. Are messages delivered exactly once?"></a>4. Are messages delivered exactly once?</h3><p>RocketMQ ensures that all messages are delivered at least once. In most cases, the messages are not repeated.</p>
+<h3 id="5-How-to-add-a-new-broker"><a href="#5-How-to-add-a-new-broker" class="headerlink" title="5. How to add a new broker?"></a>5. How to add a new broker?</h3><p>&amp;#8195;1) Start up a new broker and register it to the same list of name servers.</p>
+<p>&amp;#8195;2) By default, only internal system topics and consumer groups are created automatically. If you would like to have your business topic and consumer groups on the new node, please replicate them from the existing broker. Admin tool and command lines are provided to handle this.</p>
+<h2 id="3-Configuration-related"><a href="#3-Configuration-related" class="headerlink" title="3 Configuration related"></a>3 Configuration related</h2><p>The following answers are all default values and can be modified by configuration.</p>
+<h3 id="1-How-long-are-the-messages-saved-on-the-server"><a href="#1-How-long-are-the-messages-saved-on-the-server" class="headerlink" title="1. How long are the messages saved on the server?"></a>1. How long are the messages saved on the server?</h3><p>Stored messages will be saved for up to 3 days, and messages that are not consumed for more than 3 days will be deleted.</p>
+<h3 id="2-What-is-the-size-limit-for-message-Body"><a href="#2-What-is-the-size-limit-for-message-Body" class="headerlink" title="2. What is the size limit for message Body?"></a>2. What is the size limit for message Body?</h3><p>Generally 256KB.</p>
+<h3 id="3-How-to-set-the-number-of-consumer-threads"><a href="#3-How-to-set-the-number-of-consumer-threads" class="headerlink" title="3. How to set the number of consumer threads?"></a>3. How to set the number of consumer threads?</h3><p>When you start Consumer, set a ConsumeThreadNums property, example is as follows:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">consumer.setConsumeThreadMin(20);</span><br><span class="line">consumer.setConsumeThreadMax(20);</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Errors"><a href="#4-Errors" class="headerlink" title="4 Errors"></a>4 Errors</h2><h3 id="1-If-you-start-a-producer-or-consumer-failed-and-the-error-message-is-producer-group-or-consumer-repeat"><a href="#1-If-you-start-a-producer-or-consumer-failed-and-the-error-message-is-producer-group-or-consumer-repeat" class="headerlink" title="1. If you start a producer or consumer failed and the error message is producer group or consumer repeat."></a>1. If you start a producer or consumer failed and the error message is producer group or consumer repeat.</h3><p>Reason：Using the same Producer &#x2F;Consumer Group to launch multiple instances of Producer&#x2F;Consumer in the same JVM may cause the client fail to start.</p>
+<p>Solution: Make sure that a JVM corresponding to one Producer &#x2F;Consumer Group starts only with one Producer&#x2F;Consumer instance.</p>
+<h3 id="2-Consumer-failed-to-start-loading-json-file-in-broadcast-mode"><a href="#2-Consumer-failed-to-start-loading-json-file-in-broadcast-mode" class="headerlink" title="2. Consumer failed to start loading json file in broadcast mode."></a>2. Consumer failed to start loading json file in broadcast mode.</h3><p>Reason: Fastjson version is too low to allow the broadcast consumer to load local offsets.json, causing the consumer boot failure. Damaged fastjson file can also cause the same problem.</p>
+<p>Solution: Fastjson version has to be upgraded to rocketmq client dependent version to ensure that the local offsets.json can be loaded. By default offsets.json file is in &#x2F;home&#x2F;{user}&#x2F;.rocketmq_offsets. Or check the integrity of fastjson.</p>
+<h3 id="3-What-is-the-impact-of-a-broker-crash"><a href="#3-What-is-the-impact-of-a-broker-crash" class="headerlink" title="3. What is the impact of a broker crash."></a>3. What is the impact of a broker crash.</h3><p>&amp;#8195;1) Master crashes</p>
+<p>Messages can no longer be sent to this broker set, but if you have another broker set available, messages can still be sent given the topic is present. Messages can still be consumed from slaves.</p>
+<p>&amp;#8195;2) Some slave crash</p>
+<p>As long as there is another working slave, there will be no impact on sending messages. There will also be no impact on consuming messages except when the consumer group is set to consume from this slave preferably. By default, comsumer group consumes from master.</p>
+<p>&amp;#8195;3) All slaves crash</p>
+<p>There will be no impact on sending messages to master, but, if the master is SYNC_MASTER, producer will get a SLAVE_NOT_AVAILABLE indicating that the message is not sent to any slaves. There will also be no impact on consuming messages except that if the consumer group is set to consume from slave preferably. By default, comsumer group consumes from master.</p>
+<h3 id="4-Producer-complains-“No-Topic-Route-Info”-how-to-diagnose"><a href="#4-Producer-complains-“No-Topic-Route-Info”-how-to-diagnose" class="headerlink" title="4. Producer complains “No Topic Route Info”, how to diagnose?"></a>4. Producer complains “No Topic Route Info”, how to diagnose?</h3><p>This happens when you are trying to send messages to a topic whose routing info is not available to the producer.</p>
+<p>&amp;#8195;1) Make sure that the producer can connect to a name server and is capable of fetching routing meta info from it.</p>
+<p>&amp;#8195;2) Make sure that name servers do contain routing meta info of the topic. You may query the routing meta info from name server through topicRoute using admin tools or web console.</p>
+<p>&amp;#8195;3) Make sure that your brokers are sending heartbeats to the same list of name servers your producer is connecting to.</p>
+<p>&amp;#8195;4) Make sure that the topic’s permssion is 6(rw-), or at least 2(-w-).</p>
+<p>If you can’t find this topic, create it on a broker via admin tools command updateTopic or web console.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Frequently-Asked-Questions/" rel="tag"># Frequently Asked Questions</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/en/Feature/" rel="prev" title="Features">
+      <i class="fa fa-chevron-left"></i> Features
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/en/Example_Transaction/" rel="next" title="Transaction Message Example">
+      Transaction Message Example <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Frequently-Asked-Questions"><span class="nav-number">1.</span> <span class="nav-text">Frequently Asked Questions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-General"><span class="nav-number">1.1.</span> <span class="nav-text">1 General</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Usage"><span class="nav-number">1.2.</span> <span class="nav-text">2 Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Where-does-the-newly-created-Consumer-ID-start-consuming-messages"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. Where does the newly created Consumer ID start consuming messages?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-How-to-reconsume-message-when-consumption-fails"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. How to reconsume message when consumption fails?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-How-to-query-the-failed-message-if-there-is-a-consumption-failure"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. How to query the failed message if there is a consumption failure?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Are-messages-delivered-exactly-once"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. Are messages delivered exactly once?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-How-to-add-a-new-broker"><span class="nav-number">1.2.5.</span> <span class="nav-text">5. How to add a new broker?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Configuration-related"><span class="nav-number">1.3.</span> <span class="nav-text">3 Configuration related</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-How-long-are-the-messages-saved-on-the-server"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. How long are the messages saved on the server?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-What-is-the-size-limit-for-message-Body"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. What is the size limit for message Body?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-How-to-set-the-number-of-consumer-threads"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. How to set the number of consumer threads?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Errors"><span class="nav-number">1.4.</span> <span class="nav-text">4 Errors</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-If-you-start-a-producer-or-consumer-failed-and-the-error-message-is-producer-group-or-consumer-repeat"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. If you start a producer or consumer failed and the error message is producer group or consumer repeat.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Consumer-failed-to-start-loading-json-file-in-broadcast-mode"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. Consumer failed to start loading json file in broadcast mode.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-What-is-the-impact-of-a-broker-crash"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. What is the impact of a broker crash.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Producer-complains-%E2%80%9CNo-Topic-Route-Info%E2%80%9D-how-to-diagnose"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. Producer complains “No Topic Route Info”, how to diagnose?</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nydia</p>
+  <div class="site-description" itemprop="description">开源，协作，共享，进步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nydia</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

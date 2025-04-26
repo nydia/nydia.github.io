@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nydia.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Features1 Subscribe and PublishMessage publication refers to that a producer sends messages to a topic; Message subscription means a consumer follows a topic with certain tags and then consumes data f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Features">
+<meta property="og:url" content="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Feature/index.html">
+<meta property="og:site_name" content="Talk is cheap,show me the code">
+<meta property="og:description" content="Features1 Subscribe and PublishMessage publication refers to that a producer sends messages to a topic; Message subscription means a consumer follows a topic with certain tags and then consumes data f">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
+<meta property="article:modified_time" content="2025-04-20T06:53:17.101Z">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="Features">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Feature/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Features | Talk is cheap,show me the code</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Talk is cheap,show me the code" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Talk is cheap,show me the code</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">开源，协作，共享，进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Feature/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Features
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h1><h2 id="1-Subscribe-and-Publish"><a href="#1-Subscribe-and-Publish" class="headerlink" title="1 Subscribe and Publish"></a>1 Subscribe and Publish</h2><p>Message publication refers to that a producer sends messages to a topic; Message subscription means a consumer follows a topic with certain tags and then consumes data from that topic.</p>
+<h2 id="2-Message-Ordering"><a href="#2-Message-Ordering" class="headerlink" title="2 Message Ordering"></a>2 Message Ordering</h2><p>Message ordering refers to that a group of messages can be consumed orderly as they are published. For example, an order generates three messages: order creation, order payment, and order completion. It only makes sense to consume them in their generated order, but orders can be consumed in parallel at the same time. RocketMQ can strictly guarantee these messages are in order.</p>
+<p>Orderly message is divided into global orderly message and partitioned orderly message. Global order means that all messages under a certain topic must be in order, partitioned order only requires each group of messages are consumed orderly.</p>
+<ul>
+<li>Global message ordering:<br>For a given Topic, all messages are published and consumed in strict first-in-first-out (FIFO) order.<br>Applicable scenario: the performance requirement is not high, and all messages are published and consumed according to FIFO principle strictly.</li>
+<li>Partitioned message ordering:<br>For a given Topic, all messages are partitioned according to sharding key. Messages within the same partition are published and consumed in strict FIFO order. Sharding key is the key field to distinguish message’s partition, which is a completely different concept from the key of ordinary messages.<br>Applicable scenario: high performance requirement, with sharding key as the partition field, messages within the same partition are published and consumed according to FIFO principle strictly.</li>
+</ul>
+<h2 id="3-Message-Filter"><a href="#3-Message-Filter" class="headerlink" title="3 Message Filter"></a>3 Message Filter</h2><p>Consumers of RocketMQ can filter messages based on tags as well as supporting for user-defined attribute filtering. Message filter is currently implemented on the Broker side, with the advantage of reducing the network transmission of useless messages for Consumer and the disadvantage of increasing the burden on the Broker and relatively complex implementation.</p>
+<h2 id="4-Message-Reliability"><a href="#4-Message-Reliability" class="headerlink" title="4 Message Reliability"></a>4 Message Reliability</h2><p>RocketMQ supports high reliability of messages in several situations:<br>1 Broker shutdown normally<br>2 Broker abnormal crash<br>3 OS Crash<br>4 The machine is out of power, but it can be recovered immediately<br>5 The machine cannot be started up (the CPU, motherboard, memory and other key equipment may be damaged)<br>6 Disk equipment damaged</p>
+<p>In the four cases of 1), 2), 3), and 4) where the hardware resource can be recovered immediately, RocketMQ guarantees that the message will not be lost or a small amount of data will be lost (depending on whether the flush disk type is synchronous or asynchronous).</p>
+<p>5 ) and 6) are single point of failure and cannot be recovered. Once it happens, all messages on the single point will be lost. In both cases, RocketMQ ensures that 99% of the messages are not lost through asynchronous replication, but a very few number of messages may still be lost. Synchronous double write mode can completely avoid single point of failure, which will surely affect the performance and suitable for the occasion of high demand for message reliability, such as money related applications. Note: RocketMQ supports synchronous double writes since version 3.0.</p>
+<h2 id="5-At-Least-Once"><a href="#5-At-Least-Once" class="headerlink" title="5 At Least Once"></a>5 At Least Once</h2><p>At least Once refers to that every message will be delivered at least once. RocketMQ supports this feature because the Consumer pulls the message locally and does not send an ack back to the server until it has consumed it.</p>
+<h2 id="6-Backtracking-Consumption"><a href="#6-Backtracking-Consumption" class="headerlink" title="6 Backtracking Consumption"></a>6 Backtracking Consumption</h2><p>Backtracking consumption refers to that the Consumer has consumed the message successfully, but the business needs to consume again. To support this function, the message still needs to be retained after the Broker sends the message to the Consumer successfully. The re-consumption is normally based on time dimension. For example, after the recovery of the Consumer system failured, the data one hour ago needs to be re-consumed, then the Broker needs to provide a mechanism to reverse the consumption progress according to the time dimension. RocketMQ supports backtracking consumption by time trace, with the time dimension down to milliseconds.</p>
+<h2 id="7-Transactional-Message"><a href="#7-Transactional-Message" class="headerlink" title="7 Transactional Message"></a>7 Transactional Message</h2><p>RocketMQ transactional message refers to the fact that the application of a local transaction and the sending of a Message operation can be defined in a global transaction which means both succeed or failed simultaneously. RocketMQ transactional message provides distributed transaction functionality similar to X&#x2F;Open XA, enabling the ultimate consistency of distributed transactions through transactional message.</p>
+<h2 id="8-Scheduled-Message"><a href="#8-Scheduled-Message" class="headerlink" title="8 Scheduled Message"></a>8 Scheduled Message</h2><p>Scheduled message(delay queue) refers to that messages are not consumed immediately after they are sent to the broker, but waiting to be delivered to the real topic after a specific time.<br>The broker has a configuration item, <code>messageDelayLevel</code>, with default values “1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h”, 18 levels. Users can configure a custom <code>messageDelayLevel</code>. Note that <code>messageDelayLevel</code> is a broker’s property rather than a topic’s. When sending a message, just set the delayLevel level: msg.setDelayLevel(level). There are three types of levels:</p>
+<ul>
+<li>level &#x3D;&#x3D; 0, The message is not a delayed message</li>
+<li>1&lt;&#x3D;level&lt;&#x3D;maxLevel, Message delay specific time, such as level&#x3D;&#x3D;1, delay for 1s</li>
+<li>level &gt; maxLevel, than level&#x3D;&#x3D; maxLevel, such as level&#x3D;&#x3D;20, delay for 2h</li>
+</ul>
+<p>Scheduled messages are temporarily saved in a topic named SCHEDULE_TOPIC_XXXX, and saved in a specific queue according to delayTimeLevel, queueId &#x3D; delayTimeLevel - 1, that is, only messages with the same delay are saved in a queue, ensuring that messages with the same sending delay can be consumed orderly. The broker consumes SCHEDULE_TOPIC_XXXX on schedule and writes messages to the real topic.</p>
+<p>Note that Scheduled messages are counted both the first time they are written and the time they are scheduled to be written to the real topic, so both the send number and the TPS are increased.</p>
+<h2 id="9-Message-Retry"><a href="#9-Message-Retry" class="headerlink" title="9 Message Retry"></a>9 Message Retry</h2><p>When the Consumer fails to consume the message, a retry mechanism is needed to make the message to be consumed again. Consumer’s consume failure can usually be classified as follows:</p>
+<ul>
+<li>Due to the reasons of the message itself, such as deserialization failure, the message data itself cannot be processed (for example, the phone number of the current message is cancelled and cannot be charged), etc. This kind of error usually requires skipping this message and consuming others since immediately retry would be failed 99%, so it is better to provide a timed retry mechanism that retries after 10 seconds.</li>
+<li>Due to the reasons of dependent downstream application services are not available, such as db connection is not usable, perimeter network is not unreachable, etc. When this kind of error is encountered, consuming other messages will also result in an error even if the current failed message is skipped. In this case, it is recommended to sleep for 30s before consuming the next message, which will reduce the pressure on the broker to retry the message.</li>
+</ul>
+<p>RocketMQ will set up a retry queue named “%RETRY%+consumerGroup” for each consumer group(Note that the retry queue for this topic is for consumer groups, not for each topic) to temporarily save messages cannot be consumed by customer due to all kinds of reasons. Considering that it takes some time for the exception to recover, multiple retry levels are set for the retry queue, and each retry level has a corresponding re-deliver delay. The more retries, the greater the deliver delay. RocketMQ first save retry messages to the delay queue which topic is named “SCHEDULE_TOPIC_XXXX”, then background schedule task will save the messages to “%RETRY%+consumerGroup” retry queue according to their corresponding delay.</p>
+<h2 id="10-Message-Resend"><a href="#10-Message-Resend" class="headerlink" title="10 Message Resend"></a>10 Message Resend</h2><p>When a producer sends a message, the synchronous message will be resent if fails, the asynchronous message will retry and oneway message is without any guarantee. Message resend ensures that messages are sent successfully and without lost as much as possible, but it can lead to message duplication, which is an unavoidable problem in RocketMQ. Under normal circumstances, message duplication will not occur, but when there is a large number of messages and network jitter, message duplication will be a high-probability event. In addition, producer initiative messages resend and the consumer load changes will also result in duplicate messages. The message retry policy can be set as follows:</p>
+<ul>
+<li><code>retryTimesWhenSendFailed</code>: Synchronous message retry times when send failed, default value is 2, so the producer will try to send <code>retryTimesWhenSendFailed</code> + 1 times at most. To ensure that the message is not lost, producer will try sending the message to another broker instead of selecting the broker that failed last time. An exception will be thrown if it reaches the retry limit, and the client should guarantee that the message will not be lost. Messages will resend when RemotingException, MQClientException, and partial MQBrokerException occur.</li>
+<li><code>retryTimesWhenSendAsyncFailed</code>: Asynchronous message retry times when send failed, asynchronous retry sends message to the same broker instead of selecting another one and does not guarantee that the message wont lost.</li>
+<li><code>retryAnotherBrokerWhenNotStoreOK</code>: Message flush disk (master or slave) timeout or slave not available (return status is not SEND_OK), whether to try to send to another broker, default value is false. Very important messages can set to true.</li>
+</ul>
+<h2 id="11-Flow-Control"><a href="#11-Flow-Control" class="headerlink" title="11 Flow Control"></a>11 Flow Control</h2><p>Producer flow control, because broker processing capacity reaches a bottleneck; Consumer flow control, because the consumption capacity reaches a bottleneck.</p>
+<p>Producer flow control:</p>
+<ul>
+<li>When commitLog file locked time exceeds osPageCacheBusyTimeOutMills, default value of <code>osPageCacheBusyTimeOutMills</code> is 1000 ms, then return flow control.</li>
+<li>If <code>transientStorePoolEnable</code> &#x3D;&#x3D; true, and the broker is asynchronous flush disk type, and resources are insufficient in the transientStorePool, reject the current send request and return flow control.</li>
+<li>The broker checks the head request wait time of the send request queue every 10ms. If the wait time exceeds waitTimeMillsInSendQueue, which default value is 200ms, the current send request is rejected and the flow control is returned.</li>
+<li>The broker implements flow control by rejecting send requests.</li>
+</ul>
+<p>Consumer flow control:</p>
+<ul>
+<li>When consumer local cache messages number exceeds pullThresholdForQueue, default value is 1000. </li>
+<li>When consumer local cache messages size exceeds pullThresholdSizeForQueue, default value is 100MB. </li>
+<li>When consumer local cache messages span exceeds consumeConcurrentlyMaxSpan, default value is 2000.</li>
+</ul>
+<p>The result of consumer flow control is to reduce the pull frequency.</p>
+<h2 id="12-Dead-Letter-Queue"><a href="#12-Dead-Letter-Queue" class="headerlink" title="12 Dead Letter Queue"></a>12 Dead Letter Queue</h2><p>Dead letter queue is used to deal messages that cannot be consumed normally. When a message is consumed failed at first time, the message queue will automatically resend the message. If the consumption still fails after the maximum number retry, it indicates that the consumer cannot properly consume the message under normal circumstances. At this time, the message queue will not immediately abandon the message, but send it to the special queue corresponding to the consumer.</p>
+<p>RocketMQ defines the messages that could not be consumed under normal circumstances as Dead-Letter Messages, and the special queue in which the Dead-Letter Messages are saved as Dead-Letter Queues. In RocketMQ, the consumer instance can consume again by resending messages in the Dead-Letter Queue using console.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Features/" rel="tag"># Features</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/en/Operations_Broker/" rel="prev" title="Broker">
+      <i class="fa fa-chevron-left"></i> Broker
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/en/FAQ/" rel="next" title="Frequently Asked Questions">
+      Frequently Asked Questions <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Features"><span class="nav-number">1.</span> <span class="nav-text">Features</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Subscribe-and-Publish"><span class="nav-number">1.1.</span> <span class="nav-text">1 Subscribe and Publish</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Message-Ordering"><span class="nav-number">1.2.</span> <span class="nav-text">2 Message Ordering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Message-Filter"><span class="nav-number">1.3.</span> <span class="nav-text">3 Message Filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Message-Reliability"><span class="nav-number">1.4.</span> <span class="nav-text">4 Message Reliability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-At-Least-Once"><span class="nav-number">1.5.</span> <span class="nav-text">5 At Least Once</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Backtracking-Consumption"><span class="nav-number">1.6.</span> <span class="nav-text">6 Backtracking Consumption</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Transactional-Message"><span class="nav-number">1.7.</span> <span class="nav-text">7 Transactional Message</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Scheduled-Message"><span class="nav-number">1.8.</span> <span class="nav-text">8 Scheduled Message</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Message-Retry"><span class="nav-number">1.9.</span> <span class="nav-text">9 Message Retry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Message-Resend"><span class="nav-number">1.10.</span> <span class="nav-text">10 Message Resend</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Flow-Control"><span class="nav-number">1.11.</span> <span class="nav-text">11 Flow Control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Dead-Letter-Queue"><span class="nav-number">1.12.</span> <span class="nav-text">12 Dead Letter Queue</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nydia</p>
+  <div class="site-description" itemprop="description">开源，协作，共享，进步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nydia</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

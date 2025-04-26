@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nydia.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Consumer 1 Consumption process idempotentRocketMQ cannot avoid Exactly-Once, so if the business is very sensitive to consumption repetition, it is important to perform deduplication at the business le">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Consumer">
+<meta property="og:url" content="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Operations_Consumer/index.html">
+<meta property="og:site_name" content="Talk is cheap,show me the code">
+<meta property="og:description" content="Consumer 1 Consumption process idempotentRocketMQ cannot avoid Exactly-Once, so if the business is very sensitive to consumption repetition, it is important to perform deduplication at the business le">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
+<meta property="article:modified_time" content="2025-04-20T06:53:17.101Z">
+<meta property="article:author" content="nydia">
+<meta property="article:tag" content="Consumer">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Operations_Consumer/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Consumer | Talk is cheap,show me the code</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Talk is cheap,show me the code" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Talk is cheap,show me the code</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">开源，协作，共享，进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Operations_Consumer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Consumer
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h2><hr>
+<h3 id="1-Consumption-process-idempotent"><a href="#1-Consumption-process-idempotent" class="headerlink" title="1 Consumption process idempotent"></a>1 Consumption process idempotent</h3><p>RocketMQ cannot avoid Exactly-Once, so if the business is very sensitive to consumption repetition, it is important to perform deduplication at the business level. Deduplication can be done with a relational database. First, you need to determine the unique key of the message, which can be either msgId or a unique identifier field in the message content, such as the order Id. Determine if a unique key exists in the relational database before consumption. If it does not exist, insert it and consume it, otherwise skip it. (The actual process should consider the atomic problem, determine whether there is an attempt to insert, if the primary key conflicts, the insertion fails, skip directly)</p>
+<h3 id="2-Slow-message-processing"><a href="#2-Slow-message-processing" class="headerlink" title="2  Slow message processing"></a>2  Slow message processing</h3><h4 id="2-1-Increase-consumption-parallelism"><a href="#2-1-Increase-consumption-parallelism" class="headerlink" title="2.1 Increase consumption parallelism"></a>2.1 Increase consumption parallelism</h4><p>Most messages consumption behaviors are IO-intensive, That is, it may be to operate the database, or call RPC. The consumption speed of such consumption behavior lies in the throughput of the back-end database or the external system. By increasing the consumption parallelism, the total consumption throughput can be increased, but the degree of parallelism is increased to a certain extent. Instead it will fall.Therefore, the application must set a reasonable degree of parallelism. There are several ways to modify the degree of parallelism of consumption as follows:</p>
+<ul>
+<li>Under the same ConsumerGroup, increase the degree of parallelism by increasing the number of Consumer instances (note that the Consumer instance that exceeds the number of subscription queues is invalid). Can be done by adding machines, or by starting multiple processes on an existing machine.</li>
+<li>Improve the consumption parallel thread of a single Consumer by modifying the parameters consumeThreadMin and consumeThreadMax.</li>
+</ul>
+<h4 id="2-2-Batch-mode-consumption"><a href="#2-2-Batch-mode-consumption" class="headerlink" title="2.2 Batch mode consumption"></a>2.2 Batch mode consumption</h4><p>Some business processes can increase consumption throughput to a large extent if they support batch mode consumption. For example, order deduction application, it takes 1s to process one order at a time, and it takes only 2s to process 10 orders at a time. In this way, the throughput of consumption can be greatly improved. By setting the consumer’s consumeMessageBatchMaxSize to return a parameter, the default is 1, that is, only one message is consumed at a time, for example, set to N, then the number of messages consumed each time is less than or equal to N.</p>
+<h4 id="2-3-Skip-non-critical-messages"><a href="#2-3-Skip-non-critical-messages" class="headerlink" title="2.3 Skip non-critical messages"></a>2.3 Skip non-critical messages</h4><p>When a message is accumulated, if the consumption speed cannot keep up with the transmission speed, if the service does not require high data, you can choose to discard the unimportant message. For example, when the number of messages in a queue is more than 100,000 , try to discard some or all of the messages, so that you can quickly catch up with the speed of sending messages. The sample code is as follows:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ConsumeConcurrentlyStatus <span class="title function_">consumeMessage</span><span class="params">(</span></span><br><span class="line"><span class="params">        List&lt;MessageExt&gt; msgs,</span></span><br><span class="line"><span class="params">        ConsumeConcurrentlyContext context)</span>&#123;</span><br><span class="line">   <span class="type">long</span> <span class="variable">offest</span> <span class="operator">=</span> msgs.get(<span class="number">0</span>).getQueueOffset();</span><br><span class="line">   <span class="type">String</span> <span class="variable">maxOffset</span> <span class="operator">=</span>    </span><br><span class="line">               msgs.get(<span class="number">0</span>).getProperty(Message.PROPERTY_MAX_OFFSET);</span><br><span class="line">   <span class="type">long</span> <span class="variable">diff</span> <span class="operator">=</span> Long.parseLong(maxOffset) - offset;</span><br><span class="line">   <span class="keyword">if</span>(diff &gt; <span class="number">100000</span>)&#123;</span><br><span class="line">        <span class="comment">//TODO Special handling of message accumulation</span></span><br><span class="line">       <span class="keyword">return</span> ConsumeConcurrentlyStatus.CONSUME_SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//TODO Normal consumption process</span></span><br><span class="line">    <span class="keyword">return</span> ConcumeConcurrentlyStatus.CONSUME_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-Optimize-each-message-consumption-process"><a href="#2-4-Optimize-each-message-consumption-process" class="headerlink" title="2.4 Optimize each message consumption process"></a>2.4 Optimize each message consumption process</h4><p>For example, the consumption process of a message is as follows:</p>
+<ul>
+<li>Query from DB according to the message [data 1]</li>
+<li>Query from DB according to the message [data 2]</li>
+<li>Complex business calculations</li>
+<li>Insert [Data 3] into the DB</li>
+<li>Insert [Data 4] into the DB</li>
+</ul>
+<p>There are 4 interactions with the DB in the consumption process of this message. If it is calculated by 5ms each time, it takes a total of 20ms. If the business calculation takes 5ms, then the total time is 25ms, So if you can optimize 4 DB interactions to 2 times, the total time can be optimized to 15ms, which means the overall performance is increased by 40%. Therefore, if the application is sensitive to delay, the DB can be deployed on the SSD hard disk. Compared with the SCSI disk, the former RT will be much smaller.</p>
+<h3 id="3-Print-Log"><a href="#3-Print-Log" class="headerlink" title="3 Print Log"></a>3 Print Log</h3><p>If the amount of messages is small, it is recommended to print the message in the consumption entry method, consume time, etc., to facilitate subsequent troubleshooting.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ConsumeConcurrentlyStatus <span class="title function_">consumeMessage</span><span class="params">(</span></span><br><span class="line"><span class="params">          List&lt;MessageExt&gt; msgs,</span></span><br><span class="line"><span class="params">    ConsumeConcurrentlyContext context)</span>&#123;</span><br><span class="line">    log.info(<span class="string">&quot;RECEIVE_MSG_BEGIN: &quot;</span> + msgs.toString());</span><br><span class="line">    <span class="comment">//TODO Normal consumption process</span></span><br><span class="line">    <span class="keyword">return</span> ConsumeConcurrentlyStatus.CONSUME_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If you can print the time spent on each message, it will be more convenient when troubleshooting online problems such as slow consumption.</p>
+<h3 id="4-Other-consumption-suggestions"><a href="#4-Other-consumption-suggestions" class="headerlink" title="4 Other consumption suggestions"></a>4 Other consumption suggestions</h3><h4 id="4-1、Consumer-Group-and-Subscriptions"><a href="#4-1、Consumer-Group-and-Subscriptions" class="headerlink" title="4.1、Consumer Group and Subscriptions"></a>4.1、Consumer Group and Subscriptions</h4><p>The first thing you should be aware of is that different Consumer Group can consume the same topic independently, and each of them will have their own consuming offsets. Please make sure each Consumer within the same Group to subscribe the same topics.</p>
+<h4 id="4-2、Orderly"><a href="#4-2、Orderly" class="headerlink" title="4.2、Orderly"></a>4.2、Orderly</h4><p>The Consumer will lock each MessageQueue to make sure it is consumed one by one in order. This will cause a performance loss, but it is useful when you care about the order of the messages. It is not recommended to throw exceptions, you can return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT instead.</p>
+<h4 id="4-3、Concurrently"><a href="#4-3、Concurrently" class="headerlink" title="4.3、Concurrently"></a>4.3、Concurrently</h4><p>As the name tells, the Consumer will consume the messages concurrently. It is recommended to use this for good performance. It is not recommended to throw exceptions, you can return ConsumeConcurrentlyStatus.RECONSUME_LATER instead.</p>
+<h4 id="4-4、Consume-Status"><a href="#4-4、Consume-Status" class="headerlink" title="4.4、Consume Status"></a>4.4、Consume Status</h4><p>For MessageListenerConcurrently, you can return RECONSUME_LATER to tell the consumer that you can not consume it right now and want to reconsume it later. Then you can continue to consume other messages. For MessageListenerOrderly, because you care about the order, you can not jump over the message, but you can return SUSPEND_CURRENT_QUEUE_A_MOMENT to tell the consumer to wait for a moment.</p>
+<h4 id="4-5、Blocking"><a href="#4-5、Blocking" class="headerlink" title="4.5、Blocking"></a>4.5、Blocking</h4><p>It is not recommend to block the Listener, because it will block the thread pool, and eventually may stop the consuming process.</p>
+<h4 id="4-6、Thread-Number"><a href="#4-6、Thread-Number" class="headerlink" title="4.6、Thread Number"></a>4.6、Thread Number</h4><p>The consumer use a ThreadPoolExecutor to process consuming internally, so you can change it by setting setConsumeThreadMin or setConsumeThreadMax.</p>
+<h4 id="4-7、ConsumeFromWhere"><a href="#4-7、ConsumeFromWhere" class="headerlink" title="4.7、ConsumeFromWhere"></a>4.7、ConsumeFromWhere</h4><p>When a new Consumer Group is established, it will need to decide whether it needs to consume the historical messages which had already existed in the Broker. CONSUME_FROM_LAST_OFFSET will ignore the historical messages, and consume anything produced after that. CONSUME_FROM_FIRST_OFFSET will consume every message existed in the Broker. You can also use CONSUME_FROM_TIMESTAMP to consume messages produced after the specified timestamp.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Consumer/" rel="tag"># Consumer</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/en/Operations_Producer/" rel="prev" title="Producer">
+      <i class="fa fa-chevron-left"></i> Producer
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/01/rocketmq-docs/en/Operations_Broker/" rel="next" title="Broker">
+      Broker <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Consumer"><span class="nav-number">1.</span> <span class="nav-text">Consumer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Consumption-process-idempotent"><span class="nav-number">1.1.</span> <span class="nav-text">1 Consumption process idempotent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Slow-message-processing"><span class="nav-number">1.2.</span> <span class="nav-text">2  Slow message processing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Increase-consumption-parallelism"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Increase consumption parallelism</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-Batch-mode-consumption"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 Batch mode consumption</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-Skip-non-critical-messages"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 Skip non-critical messages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-Optimize-each-message-consumption-process"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 Optimize each message consumption process</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Print-Log"><span class="nav-number">1.3.</span> <span class="nav-text">3 Print Log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Other-consumption-suggestions"><span class="nav-number">1.4.</span> <span class="nav-text">4 Other consumption suggestions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1%E3%80%81Consumer-Group-and-Subscriptions"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1、Consumer Group and Subscriptions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2%E3%80%81Orderly"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2、Orderly</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3%E3%80%81Concurrently"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3、Concurrently</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4%E3%80%81Consume-Status"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.4、Consume Status</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5%E3%80%81Blocking"><span class="nav-number">1.4.5.</span> <span class="nav-text">4.5、Blocking</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6%E3%80%81Thread-Number"><span class="nav-number">1.4.6.</span> <span class="nav-text">4.6、Thread Number</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7%E3%80%81ConsumeFromWhere"><span class="nav-number">1.4.7.</span> <span class="nav-text">4.7、ConsumeFromWhere</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nydia</p>
+  <div class="site-description" itemprop="description">开源，协作，共享，进步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nydia</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
