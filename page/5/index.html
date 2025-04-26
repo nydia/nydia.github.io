@@ -150,123 +150,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/Troubleshoopting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="nydia">
-      <meta itemprop="description" content="开源，协作，共享，进步">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Talk is cheap,show me the code">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/01/rocketmq-docs/en/Troubleshoopting/" class="post-title-link" itemprop="url">Operation FAQ</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Operation-FAQ"><a href="#Operation-FAQ" class="headerlink" title="Operation FAQ"></a>Operation FAQ</h1><h2 id="1-RocketMQ’s-mqadmin-command-error"><a href="#1-RocketMQ’s-mqadmin-command-error" class="headerlink" title="1 RocketMQ’s mqadmin command error."></a>1 RocketMQ’s mqadmin command error.</h2><blockquote>
-<p> Problem: Sometimes after deploying the RocketMQ cluster, when you try to execute some commands of “mqadmin”, the following exception will appear：</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.apache.rocketmq.remoting.exception.RemotingConnectException: connect to &lt;<span class="literal">null</span>&gt; failed</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>Solution: Execute  <code>export NAMESRV_ADDR=ip:9876</code> (ip refers to the address of NameServer deployed in the cluster) on the VM that deploys the RocketMQ cluster.Then you will execute commands of “mqadmin” successfully.</p>
-<h2 id="2-The-inconsistent-version-of-RocketMQ-between-the-producer-and-consumer-leads-to-the-problem-that-message-can’t-be-consumed-normally"><a href="#2-The-inconsistent-version-of-RocketMQ-between-the-producer-and-consumer-leads-to-the-problem-that-message-can’t-be-consumed-normally" class="headerlink" title="2 The inconsistent version of RocketMQ between the producer and consumer leads to the problem that message can’t be consumed normally."></a>2 The inconsistent version of RocketMQ between the producer and consumer leads to the problem that message can’t be consumed normally.</h2><blockquote>
-<p>Problem: The same producer sends a message, consumer A can consume, but consumer B can’t consume, and the RocketMQ Console appears:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Not found the consumer group consume stats, because <span class="keyword">return</span> offset table is empty, maybe the consumer not consume any message</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>Solution: The jar package of RocketMQ, such as rocketmq-client, should be the same version on the consumer and producer.</p>
-<h2 id="3-When-adding-a-new-topic-consumer-group-historical-messages-can’t-be-consumed"><a href="#3-When-adding-a-new-topic-consumer-group-historical-messages-can’t-be-consumed" class="headerlink" title="3 When adding a new topic consumer group, historical messages can’t be consumed."></a>3 When adding a new topic consumer group, historical messages can’t be consumed.</h2><blockquote>
-<p>Problem: When a new consumer group of the same topic is started, the consumed message is the current offset message, and the historical message is not obtained.</p>
-</blockquote>
-<p>Solution: The default policy of rocketmq is to start from the end of the message queue and skip the historical message. If you want to consume historical message, you need to set: </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.apache.rocketmq.client.consumer.DefaultMQPushConsumer#setConsumeFromWhere</span><br></pre></td></tr></table></figure>
-
-<p>There are three common configurations: </p>
-<ul>
-<li>By default, a new subscription group starts to consume from the end of the queue for the first time, and then restarts and continue to consume from the last consume position, that is, to skip the historical message.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>A new subscription group starts to consume from the head of the queue for the first time, and then restarts and continue to consume from the last consume position, that is, to consume the historical message  that is not expired on Broker.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>A new subscription group starts to consume from the specified time point for the first time, and then restarts and continue to consume from the last consume position. It is used together with <code>consumer.setConsumeTimestamp()</code>. The default is half an hour ago.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_TIMESTAMP);</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-How-to-enable-reading-data-from-Slave"><a href="#4-How-to-enable-reading-data-from-Slave" class="headerlink" title="4 How to enable reading data from Slave"></a>4 How to enable reading data from Slave</h2><p>In some cases, the Consumer needs to reset the consume position to 1-2 days ago. At this time, on the Master Broker with limited memory, the CommitLog will carry a relatively heavy IO pressure, affecting the reading and writing of other messages on that Broker. You can enable <code>slaveReadEnable=true</code>. When Master Broker finds that the difference between the Consumer’s consume position and the latest value of CommitLog exceeds the percentage of machine’s memory (<code>accessMessageInMemoryMaxRatio=40%</code>), it will recommend Consumer  to read from Slave Broker and relieve Master Broker’s IO.</p>
-<h2 id="5-Performance"><a href="#5-Performance" class="headerlink" title="5 Performance"></a>5 Performance</h2><p>Asynchronous flush disk is recommended to use spin lock.</p>
-<p>Synchronous flush disk is recommended to use reentrant lock. Adjust the Broker configuration item <code>useReentrantLockWhenPutMessage</code>, and the default  value is false. </p>
-<p>Asynchronous flush disk is recommended to open <code>TransientStorePoolEnable</code> and close <code>transferMsgByHeap</code> to improve the efficiency of pulling message;</p>
-<p>Synchronous flush disk is recommended to increase the <code>sendMessageThreadPoolNums</code> appropriately. The specific configuration needs to be tested.</p>
-<h2 id="6-The-meaning-and-difference-between-msgId-and-offsetMsgId-in-RocketMQ"><a href="#6-The-meaning-and-difference-between-msgId-and-offsetMsgId-in-RocketMQ" class="headerlink" title="6 The meaning and difference between msgId and offsetMsgId in RocketMQ"></a>6 The meaning and difference between msgId and offsetMsgId in RocketMQ</h2><p>After sending message with RocketMQ, you will usually see the following log:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SendResult [sendStatus=SEND_OK, msgId=0A42333A0DC818B4AAC246C290FD0000, offsetMsgId=0A42333A00002A9F000000000134F1F5, messageQueue=MessageQueue [topic=topicTest1, BrokerName=mac.local, queueId=<span class="number">3</span>], queueOffset=<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>msgId，for the client, the msgId is generated by the producer instance. Specifically, the method <code>MessageClientIDSetter.createUniqIDBuffer()</code> is called to generate a unique Id.</li>
-<li>offsetMsgId, offsetMsgId is generated by the Broker server when writing a message ( string concating “IP address + port” and “CommitLog’s physical offset address”), and offsetMsgId is the messageId used to query in the RocketMQ console.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/architecture/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -281,7 +164,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/01/rocketmq-docs/en/architecture/" class="post-title-link" itemprop="url">Architecture design</a>
+            <a href="/2022/10/01/rocketmq-docs/en/architecture/" class="post-title-link" itemprop="url">RocketMQ Architecture design</a>
         </h2>
 
         <div class="post-meta">
@@ -298,7 +181,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+                <time title="Modified: 2025-04-26 20:58:37" itemprop="dateModified" datetime="2025-04-26T20:58:37+08:00">2025-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -393,7 +276,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/01/rocketmq-docs/en/best_practice/" class="post-title-link" itemprop="url">Best practices</a>
+            <a href="/2022/10/01/rocketmq-docs/en/best_practice/" class="post-title-link" itemprop="url">RocketMQ Best practices</a>
         </h2>
 
         <div class="post-meta">
@@ -410,7 +293,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+                <time title="Modified: 2025-04-26 20:58:45" itemprop="dateModified" datetime="2025-04-26T20:58:45+08:00">2025-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -545,7 +428,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/01/rocketmq-docs/en/design/" class="post-title-link" itemprop="url">Design</a>
+            <a href="/2022/10/01/rocketmq-docs/en/design/" class="post-title-link" itemprop="url">RocketMQ Design</a>
         </h2>
 
         <div class="post-meta">
@@ -562,7 +445,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+                <time title="Modified: 2025-04-26 21:00:28" itemprop="dateModified" datetime="2025-04-26T21:00:28+08:00">2025-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -648,128 +531,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/cn/msg_trace/user_guide/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="nydia">
-      <meta itemprop="description" content="开源，协作，共享，进步">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Talk is cheap,show me the code">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/01/rocketmq-docs/cn/msg_trace/user_guide/" class="post-title-link" itemprop="url">消息轨迹</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="消息轨迹"><a href="#消息轨迹" class="headerlink" title="消息轨迹"></a>消息轨迹</h1><hr>
-<h2 id="1-消息轨迹数据关键属性"><a href="#1-消息轨迹数据关键属性" class="headerlink" title="1. 消息轨迹数据关键属性"></a>1. 消息轨迹数据关键属性</h2><table>
-<thead>
-<tr>
-<th>Producer端</th>
-<th>Consumer端</th>
-<th>Broker端</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>生产实例信息</td>
-<td>消费实例信息</td>
-<td>消息的Topic</td>
-</tr>
-<tr>
-<td>发送消息时间</td>
-<td>投递时间,投递轮次</td>
-<td>消息存储位置</td>
-</tr>
-<tr>
-<td>消息是否发送成功</td>
-<td>消息是否消费成功</td>
-<td>消息的Key值</td>
-</tr>
-<tr>
-<td>发送耗时</td>
-<td>消费耗时</td>
-<td>消息的Tag值</td>
-</tr>
-</tbody></table>
-<h2 id="2-支持消息轨迹集群部署"><a href="#2-支持消息轨迹集群部署" class="headerlink" title="2. 支持消息轨迹集群部署"></a>2. 支持消息轨迹集群部署</h2><h3 id="2-1-Broker端配置文件"><a href="#2-1-Broker端配置文件" class="headerlink" title="2.1 Broker端配置文件"></a>2.1 Broker端配置文件</h3><p>这里贴出Broker端开启消息轨迹特性的properties配置文件内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">brokerClusterName=DefaultCluster</span><br><span class="line">brokerName=broker-a</span><br><span class="line">brokerId=0</span><br><span class="line">deleteWhen=04</span><br><span class="line">fileReservedTime=48</span><br><span class="line">brokerRole=ASYNC_MASTER</span><br><span class="line">flushDiskType=ASYNC_FLUSH</span><br><span class="line">storePathRootDir=/data/rocketmq/rootdir-a-m</span><br><span class="line">storePathCommitLog=/data/rocketmq/commitlog-a-m</span><br><span class="line">autoCreateSubscriptionGroup=true</span><br><span class="line">## if msg tracing is open,the flag will be true</span><br><span class="line">traceTopicEnable=true</span><br><span class="line">listenPort=10911</span><br><span class="line">brokerIP1=XX.XX.XX.XX1</span><br><span class="line">namesrvAddr=XX.XX.XX.XX:9876</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2-普通模式"><a href="#2-2-普通模式" class="headerlink" title="2.2 普通模式"></a>2.2 普通模式</h3><p>RocketMQ集群中每一个Broker节点均用于存储Client端收集并发送过来的消息轨迹数据。因此，对于RocketMQ集群中的Broker节点数量并无要求和限制。</p>
-<h3 id="2-3-物理IO隔离模式"><a href="#2-3-物理IO隔离模式" class="headerlink" title="2.3 物理IO隔离模式"></a>2.3 物理IO隔离模式</h3><p>对于消息轨迹数据量较大的场景，可以在RocketMQ集群中选择其中一个Broker节点专用于存储消息轨迹，使得用户普通的消息数据与消息轨迹数据的物理IO完全隔离，互不影响。在该模式下，RockeMQ集群中至少有两个Broker节点，其中一个Broker节点定义为存储消息轨迹数据的服务端。</p>
-<h3 id="2-4-启动开启消息轨迹的Broker"><a href="#2-4-启动开启消息轨迹的Broker" class="headerlink" title="2.4 启动开启消息轨迹的Broker"></a>2.4 启动开启消息轨迹的Broker</h3><p><code>nohup sh mqbroker -c ../conf/2m-noslave/broker-a.properties &amp;</code></p>
-<h2 id="3-保存消息轨迹的Topic定义"><a href="#3-保存消息轨迹的Topic定义" class="headerlink" title="3. 保存消息轨迹的Topic定义"></a>3. 保存消息轨迹的Topic定义</h2><p>RocketMQ的消息轨迹特性支持两种存储轨迹数据的方式：</p>
-<h3 id="3-1-系统级的TraceTopic"><a href="#3-1-系统级的TraceTopic" class="headerlink" title="3.1 系统级的TraceTopic"></a>3.1 系统级的TraceTopic</h3><p>在默认情况下，消息轨迹数据是存储于系统级的TraceTopic中(其名称为：<strong>RMQ_SYS_TRACE_TOPIC</strong>)。该Topic在Broker节点启动时，会自动创建出来（如上所叙，需要在Broker端的配置文件中将<strong>traceTopicEnable</strong>的开关变量设置为<strong>true</strong>）。</p>
-<h3 id="3-2-用户自定义的TraceTopic"><a href="#3-2-用户自定义的TraceTopic" class="headerlink" title="3.2 用户自定义的TraceTopic"></a>3.2 用户自定义的TraceTopic</h3><p>如果用户不准备将消息轨迹的数据存储于系统级的默认TraceTopic，也可以自己定义并创建用户级的Topic来保存轨迹（即为创建普通的Topic用于保存消息轨迹数据）。下面一节会介绍Client客户端的接口如何支持用户自定义的TraceTopic。</p>
-<h2 id="4-支持消息轨迹的Client客户端实践"><a href="#4-支持消息轨迹的Client客户端实践" class="headerlink" title="4. 支持消息轨迹的Client客户端实践"></a>4. 支持消息轨迹的Client客户端实践</h2><p>为了尽可能地减少用户业务系统使用RocketMQ消息轨迹特性的改造工作量，作者在设计时候采用对原来接口增加一个开关参数(<strong>enableMsgTrace</strong>)来实现消息轨迹是否开启；并新增一个自定义参(<strong>customizedTraceTopic</strong>)数来实现用户存储消息轨迹数据至自己创建的用户级Topic。</p>
-<h3 id="4-1-发送消息时开启消息轨迹"><a href="#4-1-发送消息时开启消息轨迹" class="headerlink" title="4.1 发送消息时开启消息轨迹"></a>4.1 发送消息时开启消息轨迹</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">DefaultMQProducer producer = new DefaultMQProducer(&quot;ProducerGroupName&quot;,true);</span><br><span class="line">producer.setNamesrvAddr(&quot;XX.XX.XX.XX1&quot;);</span><br><span class="line">producer.start();</span><br><span class="line">    try &#123;</span><br><span class="line">        &#123;</span><br><span class="line">            Message msg = new Message(&quot;TopicTest&quot;,</span><br><span class="line">                &quot;TagA&quot;,</span><br><span class="line">                &quot;OrderID188&quot;,</span><br><span class="line">                &quot;Hello world&quot;.getBytes(RemotingHelper.DEFAULT_CHARSET));</span><br><span class="line">            SendResult sendResult = producer.send(msg);</span><br><span class="line">            System.out.printf(&quot;%s%n&quot;, sendResult);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-2-订阅消息时开启消息轨迹"><a href="#4-2-订阅消息时开启消息轨迹" class="headerlink" title="4.2 订阅消息时开启消息轨迹"></a>4.2 订阅消息时开启消息轨迹</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(&quot;CID_JODIE_1&quot;,true);</span><br><span class="line">consumer.subscribe(&quot;TopicTest&quot;, &quot;*&quot;);</span><br><span class="line">consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);</span><br><span class="line">consumer.setConsumeTimestamp(&quot;20181109221800&quot;);</span><br><span class="line">consumer.registerMessageListener(new MessageListenerConcurrently() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public ConsumeConcurrentlyStatus consumeMessage(List&lt;MessageExt&gt; msgs, ConsumeConcurrentlyContext context) &#123;</span><br><span class="line">        System.out.printf(&quot;%s Receive New Messages: %s %n&quot;, Thread.currentThread().getName(), msgs);</span><br><span class="line">        return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">consumer.start();</span><br><span class="line">System.out.printf(&quot;Consumer Started.%n&quot;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-3-支持自定义存储消息轨迹Topic"><a href="#4-3-支持自定义存储消息轨迹Topic" class="headerlink" title="4.3 支持自定义存储消息轨迹Topic"></a>4.3 支持自定义存储消息轨迹Topic</h3><p>在上面的发送和订阅消息时候分别将DefaultMQProducer和DefaultMQPushConsumer实例的初始化修改为如下即可支持自定义存储消息轨迹Topic。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##其中Topic_test11111需要用户自己预先创建，来保存消息轨迹；</span><br><span class="line">DefaultMQProducer producer = new DefaultMQProducer(&quot;ProducerGroupName&quot;,true,&quot;Topic_test11111&quot;);</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(&quot;CID_JODIE_1&quot;,true,&quot;Topic_test11111&quot;);</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/cn/dledger/deploy_guide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -784,7 +545,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/01/rocketmq-docs/cn/dledger/deploy_guide/" class="post-title-link" itemprop="url">Dledger集群搭建</a>
+            <a href="/2022/10/01/rocketmq-docs/cn/dledger/deploy_guide/" class="post-title-link" itemprop="url">RocketMQ Dledger集群搭建</a>
         </h2>
 
         <div class="post-meta">
@@ -801,7 +562,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+                <time title="Modified: 2025-04-26 20:56:56" itemprop="dateModified" datetime="2025-04-26T20:56:56+08:00">2025-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -907,7 +668,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/01/rocketmq-docs/cn/dledger/quick_start/" class="post-title-link" itemprop="url">Dledger快速搭建</a>
+            <a href="/2022/10/01/rocketmq-docs/cn/dledger/quick_start/" class="post-title-link" itemprop="url">RocketMQ Dledger快速搭建</a>
         </h2>
 
         <div class="post-meta">
@@ -924,7 +685,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+                <time title="Modified: 2025-04-26 20:56:51" itemprop="dateModified" datetime="2025-04-26T20:56:51+08:00">2025-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -990,7 +751,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/acl/Operations_ACL/">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/cn/acl/user_guide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1004,7 +765,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/01/rocketmq-docs/en/acl/Operations_ACL/" class="post-title-link" itemprop="url">Access control list</a>
+            <a href="/2022/10/01/rocketmq-docs/cn/acl/user_guide/" class="post-title-link" itemprop="url">RocketMQ 权限控制</a>
         </h2>
 
         <div class="post-meta">
@@ -1021,7 +782,452 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+                <time title="Modified: 2025-04-26 20:57:13" itemprop="dateModified" datetime="2025-04-26T20:57:13+08:00">2025-04-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="权限控制"><a href="#权限控制" class="headerlink" title="权限控制"></a>权限控制</h1><hr>
+<h2 id="1-权限控制特性介绍"><a href="#1-权限控制特性介绍" class="headerlink" title="1.权限控制特性介绍"></a>1.权限控制特性介绍</h2><p>权限控制（ACL）主要为RocketMQ提供Topic资源级别的用户访问控制。用户在使用RocketMQ权限控制时，可以在Client客户端通过 RPCHook注入AccessKey和SecretKey签名；同时，将对应的权限控制属性（包括Topic访问权限、IP白名单和AccessKey和SecretKey签名等）设置在distribution&#x2F;conf&#x2F;plain_acl.yml的配置文件中。Broker端对AccessKey所拥有的权限进行校验，校验不过，抛出异常；<br>ACL客户端可以参考：<strong>org.apache.rocketmq.example.simple</strong>包下面的<strong>AclClient</strong>代码。</p>
+<h2 id="2-权限控制的定义与属性值"><a href="#2-权限控制的定义与属性值" class="headerlink" title="2. 权限控制的定义与属性值"></a>2. 权限控制的定义与属性值</h2><h3 id="2-1权限定义"><a href="#2-1权限定义" class="headerlink" title="2.1权限定义"></a>2.1权限定义</h3><p>对RocketMQ的Topic资源访问权限控制定义主要如下表所示，分为以下四种</p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DENY</td>
+<td>拒绝</td>
+</tr>
+<tr>
+<td>ANY</td>
+<td>PUB 或者 SUB 权限</td>
+</tr>
+<tr>
+<td>PUB</td>
+<td>发送权限</td>
+</tr>
+<tr>
+<td>SUB</td>
+<td>订阅权限</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-权限定义的关键属性"><a href="#2-2-权限定义的关键属性" class="headerlink" title="2.2 权限定义的关键属性"></a>2.2 权限定义的关键属性</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>globalWhiteRemoteAddresses</td>
+<td>*;192.168.*.*;192.168.0.1</td>
+<td>全局IP白名单</td>
+</tr>
+<tr>
+<td>accessKey</td>
+<td>字符串</td>
+<td>Access Key</td>
+</tr>
+<tr>
+<td>secretKey</td>
+<td>字符串</td>
+<td>Secret Key</td>
+</tr>
+<tr>
+<td>whiteRemoteAddress</td>
+<td>*;192.168.*.*;192.168.0.1</td>
+<td>用户IP白名单</td>
+</tr>
+<tr>
+<td>admin</td>
+<td>true;false</td>
+<td>是否管理员账户</td>
+</tr>
+<tr>
+<td>defaultTopicPerm</td>
+<td>DENY;PUB;SUB;PUB|SUB</td>
+<td>默认的Topic权限</td>
+</tr>
+<tr>
+<td>defaultGroupPerm</td>
+<td>DENY;PUB;SUB;PUB|SUB</td>
+<td>默认的ConsumerGroup权限</td>
+</tr>
+<tr>
+<td>topicPerms</td>
+<td>topic&#x3D;权限</td>
+<td>各个Topic的权限</td>
+</tr>
+<tr>
+<td>groupPerms</td>
+<td>group&#x3D;权限</td>
+<td>各个ConsumerGroup的权限</td>
+</tr>
+</tbody></table>
+<p>具体可以参考<strong>distribution&#x2F;conf&#x2F;plain_acl.yml</strong>配置文件</p>
+<h2 id="3-支持权限控制的集群部署"><a href="#3-支持权限控制的集群部署" class="headerlink" title="3. 支持权限控制的集群部署"></a>3. 支持权限控制的集群部署</h2><p>在<strong>distribution&#x2F;conf&#x2F;plain_acl.yml</strong>配置文件中按照上述说明定义好权限属性后，打开<strong>aclEnable</strong>开关变量即可开启RocketMQ集群的ACL特性。这里贴出Broker端开启ACL特性的properties配置文件内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">brokerClusterName=DefaultCluster</span><br><span class="line">brokerName=broker-a</span><br><span class="line">brokerId=0</span><br><span class="line">deleteWhen=04</span><br><span class="line">fileReservedTime=48</span><br><span class="line">brokerRole=ASYNC_MASTER</span><br><span class="line">flushDiskType=ASYNC_FLUSH</span><br><span class="line">storePathRootDir=/data/rocketmq/rootdir-a-m</span><br><span class="line">storePathCommitLog=/data/rocketmq/commitlog-a-m</span><br><span class="line">autoCreateSubscriptionGroup=true</span><br><span class="line">## if acl is open,the flag will be true</span><br><span class="line">aclEnable=true</span><br><span class="line">listenPort=10911</span><br><span class="line">brokerIP1=XX.XX.XX.XX1</span><br><span class="line">namesrvAddr=XX.XX.XX.XX:9876</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-权限控制主要流程"><a href="#4-权限控制主要流程" class="headerlink" title="4. 权限控制主要流程"></a>4. 权限控制主要流程</h2><p>ACL主要流程分为两部分，主要包括权限解析和权限校验。</p>
+<h3 id="4-1-权限解析"><a href="#4-1-权限解析" class="headerlink" title="4.1 权限解析"></a>4.1 权限解析</h3><p>Broker端对客户端的RequestCommand请求进行解析，拿到需要鉴权的属性字段。<br>主要包括：<br>（1）AccessKey：类似于用户名，代指用户主体，权限数据与之对应；<br>（2）Signature：客户根据 SecretKey 签名得到的串，服务端再用SecretKey进行签名验证；</p>
+<h3 id="4-2-权限校验"><a href="#4-2-权限校验" class="headerlink" title="4.2 权限校验"></a>4.2 权限校验</h3><p>Broker端对权限的校验逻辑主要分为以下几步：<br>（1）检查是否命中全局 IP 白名单；如果是，则认为校验通过；否则走 2；<br>（2）检查是否命中用户 IP 白名单；如果是，则认为校验通过；否则走 3；<br>（3）校验签名，校验不通过，抛出异常；校验通过，则走 4；<br>（4）对用户请求所需的权限 和 用户所拥有的权限进行校验；不通过，抛出异常；<br>用户所需权限的校验需要注意已下内容：<br>（1）特殊的请求例如 UPDATE_AND_CREATE_TOPIC 等，只能由 admin 账户进行操作；<br>（2）对于某个资源，如果有显性配置权限，则采用配置的权限；如果没有显性配置权限，则采用默认的权限；</p>
+<h2 id="5-热加载修改后权限控制定义"><a href="#5-热加载修改后权限控制定义" class="headerlink" title="5. 热加载修改后权限控制定义"></a>5. 热加载修改后权限控制定义</h2><p>RocketMQ的权限控制存储的默认实现是基于yml配置文件。用户可以动态修改权限控制定义的属性，而不需重新启动Broker服务节点。</p>
+<h2 id="6-权限控制的使用限制"><a href="#6-权限控制的使用限制" class="headerlink" title="6. 权限控制的使用限制"></a>6. 权限控制的使用限制</h2><p>(1)如果ACL与高可用部署(Master&#x2F;Slave架构)同时启用，那么需要在Broker Master节点的distribution&#x2F;conf&#x2F;plain_acl.yml配置文件中<br>设置全局白名单信息，即为将Slave节点的ip地址设置至Master节点plain_acl.yml配置文件的全局白名单中。</p>
+<p>(2)如果ACL与高可用部署(多副本Dledger架构)同时启用，由于出现节点宕机时，Dledger Group组内会自动选主，那么就需要将Dledger Group组<br>内所有Broker节点的plain_acl.yml配置文件的白名单设置所有Broker节点的ip地址。</p>
+<h2 id="7-ACL-mqadmin配置管理命令"><a href="#7-ACL-mqadmin配置管理命令" class="headerlink" title="7. ACL mqadmin配置管理命令"></a>7. ACL mqadmin配置管理命令</h2><h3 id="7-1-更新ACL配置文件中“account”的属性值"><a href="#7-1-更新ACL配置文件中“account”的属性值" class="headerlink" title="7.1 更新ACL配置文件中“account”的属性值"></a>7.1 更新ACL配置文件中“account”的属性值</h3><p>该命令的示例如下：</p>
+<p>sh mqadmin updateAclConfig -n 192.168.1.2:9876 -b 192.168.12.134:10911 -a RocketMQ -s 1234567809123<br>-t topicA&#x3D;DENY,topicD&#x3D;SUB -g groupD&#x3D;DENY,groupB&#x3D;SUB</p>
+<p>说明：如果不存在则会在ACL Config YAML配置文件中创建；若存在，则会更新对应的“accounts”的属性值;<br>如果指定的是集群名称，则会在集群中各个broker节点执行该命令；否则会在单个broker节点执行该命令。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>n</td>
+<td>eg:192.168.1.2:9876</td>
+<td>namesrv地址(必填)</td>
+</tr>
+<tr>
+<td>c</td>
+<td>eg:DefaultCluster</td>
+<td>指定集群名称(与broker地址二选一)</td>
+</tr>
+<tr>
+<td>b</td>
+<td>eg:192.168.12.134:10911</td>
+<td>指定broker地址(与集群名称二选一)</td>
+</tr>
+<tr>
+<td>a</td>
+<td>eg:RocketMQ</td>
+<td>Access Key值(必填)</td>
+</tr>
+<tr>
+<td>s</td>
+<td>eg:1234567809123</td>
+<td>Secret Key值(可选)</td>
+</tr>
+<tr>
+<td>m</td>
+<td>eg:true</td>
+<td>是否管理员账户(可选)</td>
+</tr>
+<tr>
+<td>w</td>
+<td>eg:192.168.0.*</td>
+<td>whiteRemoteAddress,用户IP白名单(可选)</td>
+</tr>
+<tr>
+<td>i</td>
+<td>eg:DENY;PUB;SUB;PUB|SUB</td>
+<td>defaultTopicPerm,默认Topic权限(可选)</td>
+</tr>
+<tr>
+<td>u</td>
+<td>eg:DENY;PUB;SUB;PUB|SUB</td>
+<td>defaultGroupPerm,默认ConsumerGroup权限(可选)</td>
+</tr>
+<tr>
+<td>t</td>
+<td>eg:topicA&#x3D;DENY,topicD&#x3D;SUB</td>
+<td>topicPerms,各个Topic的权限(可选)</td>
+</tr>
+<tr>
+<td>g</td>
+<td>eg:groupD&#x3D;DENY,groupB&#x3D;SUB</td>
+<td>groupPerms,各个ConsumerGroup的权限(可选)</td>
+</tr>
+</tbody></table>
+<h3 id="7-2-删除ACL配置文件里面的对应“account”"><a href="#7-2-删除ACL配置文件里面的对应“account”" class="headerlink" title="7.2 删除ACL配置文件里面的对应“account”"></a>7.2 删除ACL配置文件里面的对应“account”</h3><p>该命令的示例如下：</p>
+<p>sh mqadmin deleteAccessConfig -n 192.168.1.2:9876 -c DefaultCluster -a RocketMQ</p>
+<p>说明：如果指定的是集群名称，则会在集群中各个broker节点执行该命令；否则会在单个broker节点执行该命令。<br>其中，参数”a”为Access Key的值，用以标识唯一账户id，因此该命令的参数中指定账户id即可。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>n</td>
+<td>eg:192.168.1.2:9876</td>
+<td>namesrv地址(必填)</td>
+</tr>
+<tr>
+<td>c</td>
+<td>eg:DefaultCluster</td>
+<td>指定集群名称(与broker地址二选一)</td>
+</tr>
+<tr>
+<td>b</td>
+<td>eg:192.168.12.134:10911</td>
+<td>指定broker地址(与集群名称二选一)</td>
+</tr>
+<tr>
+<td>a</td>
+<td>eg:RocketMQ</td>
+<td>Access Key的值(必填)</td>
+</tr>
+</tbody></table>
+<h3 id="7-3-更新ACL配置文件里面中的全局白名单"><a href="#7-3-更新ACL配置文件里面中的全局白名单" class="headerlink" title="7.3 更新ACL配置文件里面中的全局白名单"></a>7.3 更新ACL配置文件里面中的全局白名单</h3><p>该命令的示例如下：</p>
+<p>sh mqadmin updateGlobalWhiteAddr -n 192.168.1.2:9876 -b 192.168.12.134:10911 -g 10.10.154.1,10.10.154.2</p>
+<p>说明：如果指定的是集群名称，则会在集群中各个broker节点执行该命令；否则会在单个broker节点执行该命令。<br>其中，参数”g”为全局IP白名的值，用以更新ACL配置文件中的“globalWhiteRemoteAddresses”字段的属性值。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>n</td>
+<td>eg:192.168.1.2:9876</td>
+<td>namesrv地址(必填)</td>
+</tr>
+<tr>
+<td>c</td>
+<td>eg:DefaultCluster</td>
+<td>指定集群名称(与broker地址二选一)</td>
+</tr>
+<tr>
+<td>b</td>
+<td>eg:192.168.12.134:10911</td>
+<td>指定broker地址(与集群名称二选一)</td>
+</tr>
+<tr>
+<td>g</td>
+<td>eg:10.10.154.1,10.10.154.2</td>
+<td>全局IP白名单(必填)</td>
+</tr>
+</tbody></table>
+<h3 id="7-4-查询集群-x2F-Broker的ACL配置文件版本信息"><a href="#7-4-查询集群-x2F-Broker的ACL配置文件版本信息" class="headerlink" title="7.4 查询集群&#x2F;Broker的ACL配置文件版本信息"></a>7.4 查询集群&#x2F;Broker的ACL配置文件版本信息</h3><p>该命令的示例如下：</p>
+<p>sh mqadmin clusterAclConfigVersion -n 192.168.1.2:9876 -c DefaultCluster</p>
+<p>说明：如果指定的是集群名称，则会在集群中各个broker节点执行该命令；否则会在单个broker节点执行该命令。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>n</td>
+<td>eg:192.168.1.2:9876</td>
+<td>namesrv地址(必填)</td>
+</tr>
+<tr>
+<td>c</td>
+<td>eg:DefaultCluster</td>
+<td>指定集群名称(与broker地址二选一)</td>
+</tr>
+<tr>
+<td>b</td>
+<td>eg:192.168.12.134:10911</td>
+<td>指定broker地址(与集群名称二选一)</td>
+</tr>
+</tbody></table>
+<p><strong>特别注意</strong>开启Acl鉴权认证后导致Master&#x2F;Slave和Dledger模式下Broker同步数据异常的问题，<br>在社区[4.5.1]版本中已经修复，具体的PR链接为：<a target="_blank" rel="noopener" href="https://github.com/apache/rocketmq/pull/1149%EF%BC%9B">https://github.com/apache/rocketmq/pull/1149；</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/cn/msg_trace/user_guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/cn/msg_trace/user_guide/" class="post-title-link" itemprop="url">RocketMQ消息轨迹</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-26 20:56:28" itemprop="dateModified" datetime="2025-04-26T20:56:28+08:00">2025-04-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index"><span itemprop="name">RocketMQ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="消息轨迹"><a href="#消息轨迹" class="headerlink" title="消息轨迹"></a>消息轨迹</h1><hr>
+<h2 id="1-消息轨迹数据关键属性"><a href="#1-消息轨迹数据关键属性" class="headerlink" title="1. 消息轨迹数据关键属性"></a>1. 消息轨迹数据关键属性</h2><table>
+<thead>
+<tr>
+<th>Producer端</th>
+<th>Consumer端</th>
+<th>Broker端</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>生产实例信息</td>
+<td>消费实例信息</td>
+<td>消息的Topic</td>
+</tr>
+<tr>
+<td>发送消息时间</td>
+<td>投递时间,投递轮次</td>
+<td>消息存储位置</td>
+</tr>
+<tr>
+<td>消息是否发送成功</td>
+<td>消息是否消费成功</td>
+<td>消息的Key值</td>
+</tr>
+<tr>
+<td>发送耗时</td>
+<td>消费耗时</td>
+<td>消息的Tag值</td>
+</tr>
+</tbody></table>
+<h2 id="2-支持消息轨迹集群部署"><a href="#2-支持消息轨迹集群部署" class="headerlink" title="2. 支持消息轨迹集群部署"></a>2. 支持消息轨迹集群部署</h2><h3 id="2-1-Broker端配置文件"><a href="#2-1-Broker端配置文件" class="headerlink" title="2.1 Broker端配置文件"></a>2.1 Broker端配置文件</h3><p>这里贴出Broker端开启消息轨迹特性的properties配置文件内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">brokerClusterName=DefaultCluster</span><br><span class="line">brokerName=broker-a</span><br><span class="line">brokerId=0</span><br><span class="line">deleteWhen=04</span><br><span class="line">fileReservedTime=48</span><br><span class="line">brokerRole=ASYNC_MASTER</span><br><span class="line">flushDiskType=ASYNC_FLUSH</span><br><span class="line">storePathRootDir=/data/rocketmq/rootdir-a-m</span><br><span class="line">storePathCommitLog=/data/rocketmq/commitlog-a-m</span><br><span class="line">autoCreateSubscriptionGroup=true</span><br><span class="line">## if msg tracing is open,the flag will be true</span><br><span class="line">traceTopicEnable=true</span><br><span class="line">listenPort=10911</span><br><span class="line">brokerIP1=XX.XX.XX.XX1</span><br><span class="line">namesrvAddr=XX.XX.XX.XX:9876</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-普通模式"><a href="#2-2-普通模式" class="headerlink" title="2.2 普通模式"></a>2.2 普通模式</h3><p>RocketMQ集群中每一个Broker节点均用于存储Client端收集并发送过来的消息轨迹数据。因此，对于RocketMQ集群中的Broker节点数量并无要求和限制。</p>
+<h3 id="2-3-物理IO隔离模式"><a href="#2-3-物理IO隔离模式" class="headerlink" title="2.3 物理IO隔离模式"></a>2.3 物理IO隔离模式</h3><p>对于消息轨迹数据量较大的场景，可以在RocketMQ集群中选择其中一个Broker节点专用于存储消息轨迹，使得用户普通的消息数据与消息轨迹数据的物理IO完全隔离，互不影响。在该模式下，RockeMQ集群中至少有两个Broker节点，其中一个Broker节点定义为存储消息轨迹数据的服务端。</p>
+<h3 id="2-4-启动开启消息轨迹的Broker"><a href="#2-4-启动开启消息轨迹的Broker" class="headerlink" title="2.4 启动开启消息轨迹的Broker"></a>2.4 启动开启消息轨迹的Broker</h3><p><code>nohup sh mqbroker -c ../conf/2m-noslave/broker-a.properties &amp;</code></p>
+<h2 id="3-保存消息轨迹的Topic定义"><a href="#3-保存消息轨迹的Topic定义" class="headerlink" title="3. 保存消息轨迹的Topic定义"></a>3. 保存消息轨迹的Topic定义</h2><p>RocketMQ的消息轨迹特性支持两种存储轨迹数据的方式：</p>
+<h3 id="3-1-系统级的TraceTopic"><a href="#3-1-系统级的TraceTopic" class="headerlink" title="3.1 系统级的TraceTopic"></a>3.1 系统级的TraceTopic</h3><p>在默认情况下，消息轨迹数据是存储于系统级的TraceTopic中(其名称为：<strong>RMQ_SYS_TRACE_TOPIC</strong>)。该Topic在Broker节点启动时，会自动创建出来（如上所叙，需要在Broker端的配置文件中将<strong>traceTopicEnable</strong>的开关变量设置为<strong>true</strong>）。</p>
+<h3 id="3-2-用户自定义的TraceTopic"><a href="#3-2-用户自定义的TraceTopic" class="headerlink" title="3.2 用户自定义的TraceTopic"></a>3.2 用户自定义的TraceTopic</h3><p>如果用户不准备将消息轨迹的数据存储于系统级的默认TraceTopic，也可以自己定义并创建用户级的Topic来保存轨迹（即为创建普通的Topic用于保存消息轨迹数据）。下面一节会介绍Client客户端的接口如何支持用户自定义的TraceTopic。</p>
+<h2 id="4-支持消息轨迹的Client客户端实践"><a href="#4-支持消息轨迹的Client客户端实践" class="headerlink" title="4. 支持消息轨迹的Client客户端实践"></a>4. 支持消息轨迹的Client客户端实践</h2><p>为了尽可能地减少用户业务系统使用RocketMQ消息轨迹特性的改造工作量，作者在设计时候采用对原来接口增加一个开关参数(<strong>enableMsgTrace</strong>)来实现消息轨迹是否开启；并新增一个自定义参(<strong>customizedTraceTopic</strong>)数来实现用户存储消息轨迹数据至自己创建的用户级Topic。</p>
+<h3 id="4-1-发送消息时开启消息轨迹"><a href="#4-1-发送消息时开启消息轨迹" class="headerlink" title="4.1 发送消息时开启消息轨迹"></a>4.1 发送消息时开启消息轨迹</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">DefaultMQProducer producer = new DefaultMQProducer(&quot;ProducerGroupName&quot;,true);</span><br><span class="line">producer.setNamesrvAddr(&quot;XX.XX.XX.XX1&quot;);</span><br><span class="line">producer.start();</span><br><span class="line">    try &#123;</span><br><span class="line">        &#123;</span><br><span class="line">            Message msg = new Message(&quot;TopicTest&quot;,</span><br><span class="line">                &quot;TagA&quot;,</span><br><span class="line">                &quot;OrderID188&quot;,</span><br><span class="line">                &quot;Hello world&quot;.getBytes(RemotingHelper.DEFAULT_CHARSET));</span><br><span class="line">            SendResult sendResult = producer.send(msg);</span><br><span class="line">            System.out.printf(&quot;%s%n&quot;, sendResult);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-订阅消息时开启消息轨迹"><a href="#4-2-订阅消息时开启消息轨迹" class="headerlink" title="4.2 订阅消息时开启消息轨迹"></a>4.2 订阅消息时开启消息轨迹</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(&quot;CID_JODIE_1&quot;,true);</span><br><span class="line">consumer.subscribe(&quot;TopicTest&quot;, &quot;*&quot;);</span><br><span class="line">consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);</span><br><span class="line">consumer.setConsumeTimestamp(&quot;20181109221800&quot;);</span><br><span class="line">consumer.registerMessageListener(new MessageListenerConcurrently() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public ConsumeConcurrentlyStatus consumeMessage(List&lt;MessageExt&gt; msgs, ConsumeConcurrentlyContext context) &#123;</span><br><span class="line">        System.out.printf(&quot;%s Receive New Messages: %s %n&quot;, Thread.currentThread().getName(), msgs);</span><br><span class="line">        return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">consumer.start();</span><br><span class="line">System.out.printf(&quot;Consumer Started.%n&quot;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-支持自定义存储消息轨迹Topic"><a href="#4-3-支持自定义存储消息轨迹Topic" class="headerlink" title="4.3 支持自定义存储消息轨迹Topic"></a>4.3 支持自定义存储消息轨迹Topic</h3><p>在上面的发送和订阅消息时候分别将DefaultMQProducer和DefaultMQPushConsumer实例的初始化修改为如下即可支持自定义存储消息轨迹Topic。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##其中Topic_test11111需要用户自己预先创建，来保存消息轨迹；</span><br><span class="line">DefaultMQProducer producer = new DefaultMQProducer(&quot;ProducerGroupName&quot;,true,&quot;Topic_test11111&quot;);</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(&quot;CID_JODIE_1&quot;,true,&quot;Topic_test11111&quot;);</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://nydia.github.io/2022/10/01/rocketmq-docs/en/acl/Operations_ACL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nydia">
+      <meta itemprop="description" content="开源，协作，共享，进步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Talk is cheap,show me the code">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/01/rocketmq-docs/en/acl/Operations_ACL/" class="post-title-link" itemprop="url">RocketMQ Access control list</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-01 17:52:56" itemprop="dateCreated datePublished" datetime="2022-10-01T17:52:56+08:00">2022-10-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2025-04-26 20:58:31" itemprop="dateModified" datetime="2025-04-26T20:58:31+08:00">2025-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1166,7 +1372,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/01/rocketmq-docs/cn/client/java/API_Reference_DefaultMQProducer/" class="post-title-link" itemprop="url">DefaultMQProducer</a>
+            <a href="/2022/10/01/rocketmq-docs/cn/client/java/API_Reference_DefaultMQProducer/" class="post-title-link" itemprop="url">RocketMQ DefaultMQProducer</a>
         </h2>
 
         <div class="post-meta">
@@ -1183,7 +1389,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+                <time title="Modified: 2025-04-26 20:57:02" itemprop="dateModified" datetime="2025-04-26T20:57:02+08:00">2025-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -3308,7 +3514,7 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">

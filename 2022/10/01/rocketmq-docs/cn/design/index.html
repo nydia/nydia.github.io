@@ -22,7 +22,7 @@
 
   <meta name="description" content="设计(design) 1 消息存储 消息存储是RocketMQ中最为复杂和最为重要的一部分，本节将分别从RocketMQ的消息存储整体架构、PageCache与Mmap内存映射以及RocketMQ中两种不同的刷盘方式三方面来分别展开叙述。 1.1 消息存储整体架构消息存储架构图中主要有下面三个跟消息存储相关的文件构成。 (1) CommitLog：消息主体以及元数据的存储主体，存储Producer">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计(design)">
+<meta property="og:title" content="RocketMQ设计(design)">
 <meta property="og:url" content="https://nydia.github.io/2022/10/01/rocketmq-docs/cn/design/index.html">
 <meta property="og:site_name" content="Talk is cheap,show me the code">
 <meta property="og:description" content="设计(design) 1 消息存储 消息存储是RocketMQ中最为复杂和最为重要的一部分，本节将分别从RocketMQ的消息存储整体架构、PageCache与Mmap内存映射以及RocketMQ中两种不同的刷盘方式三方面来分别展开叙述。 1.1 消息存储整体架构消息存储架构图中主要有下面三个跟消息存储相关的文件构成。 (1) CommitLog：消息主体以及元数据的存储主体，存储Producer">
@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://nydia.github.io/image/rocketmq_design_12.png">
 <meta property="og:image" content="https://nydia.github.io/image/rocketmq_design_13.png">
 <meta property="article:published_time" content="2022-10-01T09:52:56.000Z">
-<meta property="article:modified_time" content="2025-04-20T06:53:17.093Z">
+<meta property="article:modified_time" content="2025-04-26T12:57:24.026Z">
 <meta property="article:author" content="nydia">
 <meta property="article:tag" content="设计(design)">
 <meta name="twitter:card" content="summary">
@@ -60,7 +60,7 @@
   };
 </script>
 
-  <title>设计(design) | Talk is cheap,show me the code</title>
+  <title>RocketMQ设计(design) | Talk is cheap,show me the code</title>
   
 
 
@@ -180,7 +180,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          设计(design)
+          RocketMQ设计(design)
         </h1>
 
         <div class="post-meta">
@@ -197,7 +197,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-04-20 14:53:17" itemprop="dateModified" datetime="2025-04-20T14:53:17+08:00">2025-04-20</time>
+                <time title="Modified: 2025-04-26 20:57:24" itemprop="dateModified" datetime="2025-04-26T20:57:24+08:00">2025-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -413,12 +413,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/10/01/rocketmq-docs/cn/features/" rel="prev" title="特性(features)">
-      <i class="fa fa-chevron-left"></i> 特性(features)
+    <a href="/2022/10/01/rocketmq-docs/en/Configuration_System/" rel="prev" title="RocketMQ System Configuration">
+      <i class="fa fa-chevron-left"></i> RocketMQ System Configuration
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/10/01/rocketmq-docs/cn/concept/" rel="next" title="基本概念">
-      基本概念 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/10/01/rocketmq-docs/cn/operation/" rel="next" title="RocketMQ运维管理">
+      RocketMQ运维管理 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -497,7 +497,7 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
